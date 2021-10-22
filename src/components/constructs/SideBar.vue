@@ -3,15 +3,13 @@
     <div class="sidebar-container d-none d-md-block">
       <div class="menu-sidebar">
         <b-list-group>
-          <b-list-group-item
-            v-for="(item, index) in menuList"
-            :key="index"
-            :href="item.href"
-          >
-            <div class="icon">
-              <img :src="item.icon" :alt="item.title" />
-            </div>
-            <div class="title">{{ item.title }}</div>
+          <b-list-group-item v-for="(item, index) in menuList" :key="index">
+            <router-link :to="item.href">
+              <div class="icon">
+                <img :src="item.icon" :alt="item.title" />
+              </div>
+              <div class="title">{{ item.title }}</div>
+            </router-link>
           </b-list-group-item>
         </b-list-group>
       </div>
@@ -19,15 +17,15 @@
       <div class="list-course">
         <div class="list-title">Khóa học</div>
         <b-list-group>
-          <b-list-group-item
-            v-for="(item, index) in courseList"
-            :key="index"
-            :href="item.href"
-          >
-            <div class="course-item">{{ item.title }}</div>
+          <b-list-group-item v-for="(item, index) in courseList" :key="index">
+            <router-link :to="item.href">
+              <div class="course-item">{{ item.title }}</div>
+            </router-link>
           </b-list-group-item>
-          <b-list-group-item href="#" class="view-more">
-            <div class="course-item">...</div>
+          <b-list-group-item class="view-more">
+            <router-link to="#">
+              <div class="course-item">...</div>
+            </router-link>
           </b-list-group-item>
         </b-list-group>
       </div>
@@ -43,15 +41,13 @@
       </b-form>
       <div class="menu-sidebar">
         <b-list-group>
-          <b-list-group-item
-            v-for="(item, index) in menuList"
-            :key="index"
-            :href="item.href"
-          >
-            <div class="icon">
-              <img :src="item.icon" :alt="item.title" />
-            </div>
-            <div class="title">{{ item.title }}</div>
+          <b-list-group-item v-for="(item, index) in menuList" :key="index">
+            <router-link :to="item.href">
+              <div class="icon">
+                <img :src="item.icon" :alt="item.title" />
+              </div>
+              <div class="title">{{ item.title }}</div>
+            </router-link>
           </b-list-group-item>
         </b-list-group>
       </div>
@@ -59,15 +55,15 @@
       <div class="list-course">
         <div class="list-title">Khóa học</div>
         <b-list-group>
-          <b-list-group-item
-            v-for="(item, index) in courseList"
-            :key="index"
-            :href="item.href"
-          >
-            <div class="course-item">{{ item.title }}</div>
+          <b-list-group-item v-for="(item, index) in courseList" :key="index">
+            <router-link :to="item.href">
+              <div class="course-item">{{ item.title }}</div>
+            </router-link>
           </b-list-group-item>
-          <b-list-group-item href="#" class="view-more">
-            <div class="course-item">...</div>
+          <b-list-group-item class="view-more">
+            <router-link to="#">
+              <div class="course-item">...</div>
+            </router-link>
           </b-list-group-item>
         </b-list-group>
       </div>
@@ -126,25 +122,28 @@ export default {
         height: 60px;
         border-radius: 12px;
         margin: 10px 0;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+
         padding-left: 0;
         padding-right: 0;
 
         border: none;
 
-        .icon {
-          flex: 0 100%;
-          img {
-            width: 25px;
-            height: 22px;
+        a {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          .icon {
+            flex: 0 100%;
+            img {
+              width: 25px;
+              height: 22px;
+            }
           }
-        }
-        .title {
-          flex: 0 100%;
-          font-size: 12px;
-          font-weight: 700;
+          .title {
+            flex: 0 100%;
+            font-size: 12px;
+            font-weight: 700;
+          }
         }
       }
     }
@@ -190,26 +189,27 @@ export default {
           height: 60px;
           border-radius: 12px;
           margin: 10px 0;
-          display: flex;
-
-          align-items: center;
           padding-left: 0;
           padding-right: 0;
-
           border: none;
 
-          .icon {
-            flex: 0 40%;
-            img {
-              width: 25px;
-              height: 22px;
+          a {
+            display: flex;
+            align-items: center;
+
+            .icon {
+              flex: 0 40%;
+              img {
+                width: 25px;
+                height: 22px;
+              }
             }
-          }
-          .title {
-            flex: 0 60%;
-            font-size: 12px;
-            font-weight: 700;
-            justify-content: left;
+            .title {
+              flex: 0 60%;
+              font-size: 12px;
+              font-weight: 700;
+              justify-content: left;
+            }
           }
         }
       }

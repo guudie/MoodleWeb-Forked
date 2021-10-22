@@ -4,8 +4,10 @@
       <b-navbar-brand class="d-md-none sidebar-button">
         <b-navbar-toggle target="" v-b-toggle.sidebar-sub></b-navbar-toggle>
       </b-navbar-brand>
-      <b-navbar-brand href="#" class="logo-header">
-        <img src="../../assets/images/logo.png" alt="" srcset="" />
+      <b-navbar-brand class="logo-header">
+        <router-link to="/">
+          <img src="../../assets/images/logo.png" alt="" srcset="" />
+        </router-link>
       </b-navbar-brand>
 
       <b-navbar-brand class="d-none d-sm-block">

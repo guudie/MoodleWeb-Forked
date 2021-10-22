@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div class="os-container">
-      <Header />
+      <Header v-if="checkRouter" style="z-index: 1000" />
       <div class="os-main">
-        <SideBar />
+        <SideBar v-if="checkRouter" />
         <div class="os-body">
           <router-view />
           <Footer />
@@ -29,6 +29,32 @@ export default {
     Header,
     SideBar,
     Footer,
+  },
+  computed: {
+    checkRouter() {
+      return this.$route.path !== "/search" && this.$route.path !== "/register";
+    },
+  },
+  mounted() {
+    let lastScrollTop = 0;
+
+    document.onscroll = (event) => {
+      var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+      if (st > lastScrollTop) {
+        // downscroll code
+        console.log("down");
+      } else {
+        // upscroll code
+        console.log("up");
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+
+    // document
+    //   .querySelector(".os-container")
+    //   .addEventListener("scroll", (event) => {
+    //     console.log(event);
+    //   });
   },
 };
 </script>
@@ -66,6 +92,7 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: #000;
+  text-decoration: none;
 }
 </style>
