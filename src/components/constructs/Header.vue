@@ -27,8 +27,8 @@
         <template #button-content>
           <b-avatar variant="primary" class="avatar-img"></b-avatar
         ></template>
-        <b-dropdown-item href="#">Sign In</b-dropdown-item>
-        <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+        <b-dropdown-item>Profile</b-dropdown-item>
+        <b-dropdown-item>Sign Out</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar>
   </div>
@@ -36,13 +36,22 @@
 
 <script>
 export default {
-  name: "Header",
+  name: "Header"
 };
 </script>
 
 <style lang="scss" scope>
 .os-header {
+  width: 100%;
+  height: 86px;
+  z-index: 1000;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
   .logo-header {
     margin-left: 18px;
     img {
@@ -78,6 +87,9 @@ export default {
   }
   .sidebar-button {
     margin-left: 20px;
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
   }
 }
 </style>

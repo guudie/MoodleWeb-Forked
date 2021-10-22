@@ -19,12 +19,16 @@
         <b-list-group>
           <b-list-group-item v-for="(item, index) in courseList" :key="index">
             <router-link :to="item.href">
-              <div class="course-item">{{ item.title }}</div>
+              <div class="course-item">
+                <div class="course-image">
+                  <span>{{ item.title }}</span>
+                </div>
+              </div>
             </router-link>
           </b-list-group-item>
           <b-list-group-item class="view-more">
             <router-link to="#">
-              <div class="course-item">...</div>
+              <div class="course-item"><div>&#183;&#183;&#183;</div></div>
             </router-link>
           </b-list-group-item>
         </b-list-group>
@@ -57,12 +61,15 @@
         <b-list-group>
           <b-list-group-item v-for="(item, index) in courseList" :key="index">
             <router-link :to="item.href">
-              <div class="course-item">{{ item.title }}</div>
+              <div class="course-item">
+                <div class="course-image"></div>
+                <div class="course-title">{{ item.title }}</div>
+              </div>
             </router-link>
           </b-list-group-item>
           <b-list-group-item class="view-more">
             <router-link to="#">
-              <div class="course-item">...</div>
+              <div class="course-item"><div>&#183;&#183;&#183;</div></div>
             </router-link>
           </b-list-group-item>
         </b-list-group>
@@ -84,26 +91,27 @@ export default {
         {
           title: "Home",
           href: "/",
-          icon: iconHome,
+          icon: iconHome
         },
         {
           title: "Learn",
           href: "/courses",
-          icon: iconLearn,
+          icon: iconLearn
         },
         {
           title: "Question",
           href: "/forum",
-          icon: iconQuestion,
-        },
+          icon: iconQuestion
+        }
       ],
       courseList: [
         { title: "OOP", href: "#" },
         { title: "IOT", href: "#" },
         { title: "C++", href: "#" },
-      ],
+        { title: "JS", href: "#" }
+      ]
     };
-  },
+  }
 };
 </script>
 
@@ -114,6 +122,10 @@ export default {
     height: 100%;
 
     padding: 0 12px;
+
+    position: fixed;
+    top: 86px;
+    left: 0;
 
     .menu-sidebar {
       border-bottom: 1px solid #666;
@@ -155,11 +167,30 @@ export default {
         font-size: 14px;
         font-weight: 600;
       }
+      .list-group-item {
+        width: 100%;
+        height: 60px;
+        border-radius: 12px;
+        margin: 10px 0;
+        padding-left: 0;
+        padding-right: 0;
+        border: none;
 
-      .view-more {
-        font-size: 15px;
-        font-weight: 800;
-        margin-top: 10px;
+        .course-item {
+          display: flex;
+          align-items: center;
+
+          .course-image {
+            height: 56px;
+            flex: 0 100%;
+            background: #4682b4;
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
       }
     }
   }
@@ -168,6 +199,11 @@ export default {
     .b-sidebar-header {
       strong {
         display: none;
+      }
+
+      button {
+        border: 1px solid #aaa;
+        border-radius: 10px;
       }
     }
     .b-sidebar-body {
@@ -221,12 +257,48 @@ export default {
           font-size: 22px;
           font-weight: 600;
         }
+        .list-group-item {
+          width: 100%;
+          height: 60px;
+          border-radius: 12px;
+          margin: 10px 0;
+          padding-left: 0;
+          padding-right: 0;
+          border: none;
 
-        .view-more {
-          font-size: 15px;
-          font-weight: 800;
-          margin-top: 10px;
+          .course-item {
+            display: flex;
+            align-items: center;
+
+            .course-image {
+              height: 56px;
+              flex: 0 40%;
+              background: #4682b4;
+              border-radius: 10px;
+            }
+            .course-title {
+              flex: 0 60%;
+              font-size: 12px;
+              font-weight: 700;
+              justify-content: left;
+            }
+          }
         }
+      }
+    }
+  }
+
+  .view-more {
+    font-size: 15px;
+    font-weight: 800;
+    margin-top: 10px;
+
+    .course-item {
+      width: 100%;
+      border: 1px dashed #ddd;
+      border-radius: 5px;
+      div {
+        flex: 0 100%;
       }
     }
   }

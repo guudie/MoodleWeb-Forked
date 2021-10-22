@@ -1,13 +1,11 @@
 <template>
   <div id="app">
     <div class="os-container">
-      <Header v-if="checkRouter" style="z-index: 1000" />
+      <Header v-if="checkRouter"  />
+      <SideBar v-if="checkRouter" />
       <div class="os-main">
-        <SideBar v-if="checkRouter" />
-        <div class="os-body">
           <router-view />
           <Footer />
-        </div>
       </div>
     </div>
   </div>
@@ -22,7 +20,7 @@ export default {
   name: "app",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
+  
     };
   },
   components: {
@@ -36,25 +34,6 @@ export default {
     },
   },
   mounted() {
-    let lastScrollTop = 0;
-
-    document.onscroll = (event) => {
-      var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-      if (st > lastScrollTop) {
-        // downscroll code
-        console.log("down");
-      } else {
-        // upscroll code
-        console.log("up");
-      }
-      lastScrollTop = st <= 0 ? 0 : st;
-    };
-
-    // document
-    //   .querySelector(".os-container")
-    //   .addEventListener("scroll", (event) => {
-    //     console.log(event);
-    //   });
   },
 };
 </script>
@@ -68,10 +47,10 @@ export default {
   color: #2c3e50;
   .os-container {
     .os-main {
-      display: flex;
-      .os-body {
         width: 100%;
-      }
+        margin-top: 86px;
+        margin-left: 96px;
+        position: relative;
     }
   }
 }
@@ -94,5 +73,11 @@ li {
 a {
   color: #000;
   text-decoration: none;
+}
+
+@media screen and (max-width:768px ) {
+  .os-main{
+    margin-left: 0 !important;
+  }
 }
 </style>
