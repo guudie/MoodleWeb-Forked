@@ -38,6 +38,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -79,5 +80,27 @@ a {
   .os-main{
     margin-left: 0 !important;
   }
+}
+.btn {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    border:none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: inherit;
+}
+.btn:hover {
+  background-color: #dce0e3;
+}
+.btn:focus {
+    outline: none;
+}
+.btn:active {
+    transform: scale(0.98);
 }
 </style>

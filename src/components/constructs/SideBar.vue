@@ -1,5 +1,5 @@
 <template>
-  <div class="os-sidebar">
+  <div v-show="homePage" class="os-sidebar">
     <div class="sidebar-container d-none d-md-block">
       <div class="menu-sidebar">
         <b-list-group>

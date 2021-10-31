@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div v-show="homePage" class="footer">
     <div class="copy-right">Copyright by htvd@hcmus.edu.vn</div>
     <div class="footer-menu">
       <a href="#">Giới thiệu</a>
@@ -12,6 +12,14 @@
 <script>
 export default {
   name: "Footer",
+  computed: {
+    homePage() {
+      if(this.$route.path === '/') {
+        return true
+      }
+      return false
+    }
+  }
 };
 </script>
 

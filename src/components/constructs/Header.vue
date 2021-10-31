@@ -1,5 +1,5 @@
 <template>
-  <div class="os-header">
+  <div v-show="homePage" class="os-header">
     <b-navbar toggleable type="light">
       <b-navbar-brand class="d-md-none sidebar-button">
         <b-navbar-toggle target="" v-b-toggle.sidebar-sub></b-navbar-toggle>
