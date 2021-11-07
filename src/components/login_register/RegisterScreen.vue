@@ -5,10 +5,10 @@
         <router-view></router-view>
         <div v-show="registerScreen" class="login-button">
             <Button @btnClick="onClick" 
-            :text="'Use ' + 'email ' + '/ ' + 'phone ' + 'number '" :source="'https://fullstack.edu.vn/assets/images/signin/personal-18px.svg'" />
-            <Button :text='"Continue " + "with " + "google"' :source="'https://fullstack.edu.vn/assets/images/signin/google-18px.svg'"/>
-            <Button :text='"Continue " + "with " + "facebook"' :source="'https://fullstack.edu.vn/assets/images/signin/facebook-18px.svg'"/>
-            <Button :text='"Continue " + "with " + "github"' :source="'https://fullstack.edu.vn/assets/images/signin/github-18px.svg'"/>
+            :text="'Use ' + 'email ' + '/ ' + 'phone ' + 'number '" :source="iconps" />
+            <Button :text='"Continue " + "with " + "google"' :source="icongg"/>
+            <Button :text='"Continue " + "with " + "facebook"' :source="iconfb"/>
+            <Button :text='"Continue " + "with " + "github"' :source="icongh"/>
         </div>
         <div class="sign-up">
             <h3>Bạn đã có tài khoản?</h3>
@@ -17,6 +17,10 @@
     </div>
 </template>
 <script>
+    import iconperson from "../../assets/images/login_register/personal.svg";
+    import icongoogle from "../../assets/images/login_register/google.svg";
+    import iconfacebook from "../../assets/images/login_register/facebook.svg";
+    import icongithub from "../../assets/images/login_register/github.svg";
     import AuthenApi from '../../services/apis/AuthenApi'
     import Button from './Button.vue'
     import RegisterByEmail from './RegisterByEmailScreen.vue'
@@ -37,6 +41,10 @@
         data() {
             return {
                 showEmailRegister: false,
+                iconps: iconperson,
+                icongg: icongoogle,
+                iconfb: iconfacebook,
+                icongh: icongithub,
             }
         },
         computed: {

@@ -1,7 +1,7 @@
 <template>
     <button @click="$emit('btnClick')" style="border: 2px solid #dce0e3; border-radius: 25px; color: #000" class="btn">
         <div class="image">
-            <img :src="source" alt="">
+            <img class="img" :src="source" alt="">
         </div>
         <div class="text">
             {{text}}
@@ -35,5 +35,9 @@ button {
 }
 .image {
     flex: 1;
+}
+.img {
+    width: 18px;
+    height: 18px;
 }
 </style>

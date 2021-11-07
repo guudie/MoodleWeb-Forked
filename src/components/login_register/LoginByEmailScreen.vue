@@ -56,10 +56,6 @@
                     AuthenApi.login(user)
             },
         },
-        // created() {
-        //     showPasswordRequest =  false
-        //     showEmailRequest = false
-        // }
     }
 </script>
 
@@ -129,7 +125,7 @@ h1 {
     color: #fff;
     border-radius: 25px;
     width: 100%;
-    background: #91ede5;
+    background: rgb(29, 191, 175);
 }
 .form-control p {
     margin-bottom: 0;

@@ -5,11 +5,11 @@
         <RegisterByEmail v-show="false"></RegisterByEmail>
         <router-view></router-view>
         <div v-show="loginScreen" class="login-button">
-            <Button @btn-click="onClick" 
-            :text="'Use ' + 'email ' + '/ ' + 'phone ' + 'number '" :source="'https://fullstack.edu.vn/assets/images/signin/personal-18px.svg'" />
-            <Button :text='"Continue " + "with " + "google"' :source="'https://fullstack.edu.vn/assets/images/signin/google-18px.svg'"/>
-            <Button :text='"Continue " + "with " + "facebook"' :source="'https://fullstack.edu.vn/assets/images/signin/facebook-18px.svg'"/>
-            <Button :text='"Continue " + "with " + "github"' :source="'https://fullstack.edu.vn/assets/images/signin/github-18px.svg'"/>
+            <Button @btnClick="onClick" 
+            :text="'Use ' + 'email ' + '/ ' + 'phone ' + 'number '" :source="iconps" />
+            <Button :text='"Continue " + "with " + "google"' :source="icongg"/>
+            <Button :text='"Continue " + "with " + "facebook"' :source="iconfb"/>
+            <Button :text='"Continue " + "with " + "github"' :source="icongh"/>
         </div>
         <div class="sign-up">
             <h3>Bạn chưa có tài khoản?</h3>
@@ -19,6 +19,10 @@
 </template>
 
 <script>
+    import iconperson from "../../assets/images/login_register/personal.svg";
+    import icongoogle from "../../assets/images/login_register/google.svg";
+    import iconfacebook from "../../assets/images/login_register/facebook.svg";
+    import icongithub from "../../assets/images/login_register/github.svg";
     import Button from './Button.vue'
     import LoginByEmail from './LoginByEmailScreen.vue'
     import RegisterByEmail from './RegisterByEmailScreen.vue'
@@ -27,7 +31,7 @@
         components: {
             Button,
             LoginByEmail,
-            RegisterByEmail
+            RegisterByEmail,
         },
         methods: {
             onClick() {
@@ -38,6 +42,10 @@
             return {
                 showEmailLogin: false,
                 showEmailRegister: false,
+                iconps: iconperson,
+                icongg: icongoogle,
+                iconfb: iconfacebook,
+                icongh: icongithub,
             }
         },
         computed: {
@@ -73,4 +81,5 @@ h1 {
 .sign-up {
     margin-top: 20px;
 }
+
 </style>
