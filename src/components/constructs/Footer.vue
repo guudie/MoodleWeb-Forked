@@ -1,5 +1,5 @@
 <template>
-  <div v-show="homePage" class="footer">
+  <div class="footer">
     <div class="copy-right">Copyright by htvd@hcmus.edu.vn</div>
     <div class="footer-menu">
       <a href="#">Giới thiệu</a>

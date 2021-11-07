@@ -1,5 +1,5 @@
 <template>
-    <button @click="$emit('btn-click')" style="border: 2px solid #dce0e3; border-radius: 25px; color: #000" class="btn">
+    <button @click="$emit('btnClick')" style="border: 2px solid #dce0e3; border-radius: 25px; color: #000" class="btn">
         <div class="image">
             <img :src="source" alt="">
         </div>

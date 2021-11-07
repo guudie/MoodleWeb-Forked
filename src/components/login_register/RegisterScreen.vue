@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <h1>Đăng ký tài khoản Edulanthropy</h1>
-        <RegisterByEmail @add-user="AddUser" :users="this.users" v-show="showEmailRegister"></RegisterByEmail>
+        <RegisterByEmail @addUser="AddUser" v-show="showEmailRegister"></RegisterByEmail>
         <router-view></router-view>
         <div v-show="registerScreen" class="login-button">
-            <Button @btn-click="onClick" 
+            <Button @btnClick="onClick" 
             :text="'Use ' + 'email ' + '/ ' + 'phone ' + 'number '" :source="'https://fullstack.edu.vn/assets/images/signin/personal-18px.svg'" />
             <Button :text='"Continue " + "with " + "google"' :source="'https://fullstack.edu.vn/assets/images/signin/google-18px.svg'"/>
             <Button :text='"Continue " + "with " + "facebook"' :source="'https://fullstack.edu.vn/assets/images/signin/facebook-18px.svg'"/>
@@ -17,6 +17,7 @@
     </div>
 </template>
 <script>
+    import AuthenApi from '../../services/apis/AuthenApi'
     import Button from './Button.vue'
     import RegisterByEmail from './RegisterByEmailScreen.vue'
     export default {
@@ -30,15 +31,12 @@
                 this.showEmailRegister = true
             },
             AddUser(newUser) {
-                // gửi cái này lên db
-                this.users = [...this.users, newUser]
-                console.log(this.users)
+                AuthenApi.register(newUser)
             }
         },
         data() {
             return {
                 showEmailRegister: false,
-                users: [],
             }
         },
         computed: {
@@ -49,28 +47,6 @@
                 return false
             }
         },
-        created() {
-            this.users = [
-                {
-                    name: 'Nguyễn Đức Hiếu',
-                    email: '123@gmail.com',
-                    level: 0,
-                    password: '123'
-                },
-                {
-                    name: 'Dương Quang Hùng',
-                    email: '12@gmail.com',
-                    level: 0,
-                    password: '12'
-                },
-                {
-                    name: 'Phạm Văn Thật',
-                    email: '1@gmail.com',
-                    level: 1,
-                    password: '1'
-                }
-            ]
-        }
     }
 </script>
 

@@ -6,20 +6,32 @@
             <div class="form-control">
                 <input class="name" v-model="name" type="text" name="name" placeholder="Họ và tên">
             </div>
+            <div v-show="showNameRequest" style="color:red" class="form-control">
+                <p>Vui lòng nhập họ tên</p>
+            </div>
             <div class="form-control">
                 <label class="email-label" for="">Email</label>
             </div>
             <div class="form-control">
                 <input class="email" v-model="text" type="text" name="email" placeholder="Địa chỉ email">
             </div>
+            <div v-show="showEmailRequest" style="color:red" class="form-control">
+                <p>Email không hợp lệ</p>
+            </div>
             <div class="form-control">
                 <input type="password" v-model="password" name="password" placeholder="Mật khẩu">
+            </div>
+            <div v-show="showPasswordRequest" style="color:red" class="form-control">
+                <p>Mật khẩu không hợp lệ</p>
             </div>
             <div class="form-control">
                 <p>Gợi ý: Mật khẩu cần có ít nhất 8 ký tự</p>
             </div>
             <div class="form-control">
                 <input type="password" v-model="verify" name="verify" placeholder="Nhập lại mật khẩu">
+            </div>
+            <div v-show="showPasswordRetypeRequest" style="color:red" class="form-control">
+                <p>Mật khẩu nhập lại không hợp lệ</p>
             </div>
             <div class="form-control form-control-check">
                 <div class="level">
@@ -30,6 +42,9 @@
                     <input type="checkbox" v-model="position2" name="position"/>
                     <label for="">Giáo viên</label>
                 </div>
+            </div>
+            <div v-show="showPositionRequest" style="color:red" class="form-control">
+                <p>Vui lòng chọn vai trò</p>
             </div>
             <div class="form-control">
                 <input style="background: #1dbfaf;" type="submit" value="Đăng ký" class="btn sign-in-btn">
@@ -43,9 +58,6 @@
         components: {
             Button,
         },
-        props: {
-            users: []
-        },
         data() {
             return {
                 text: '',
@@ -54,53 +66,34 @@
                 name: '',
                 position1: false,
                 position2: false,
+                showNameRequest: false,
+                showEmailRequest: false,
+                showPasswordRequest: false,
+                showPasswordRetypeRequest: false,
+                showPositionRequest: false,
             }
         },
         methods: {
             onSubmit(e) {
                 e.preventDefault()
-                if(!this.name) {
-                    alert('Please add a name')
-                    return
-                }
-                if(!this.text) {
-                    alert('Please add an email')
-                    return
-                }
-                if(!this.password) {
-                    alert('Please add a password')
-                    return
-                }
-                if(!this.verify) {
-                    alert('Please add a retype password')
-                    return
-                }
-                if(!this.position1 && !this.position2) {
-                    alert('Please select a position')
-                    return
-                }
+                this.showNameRequest = this.name ? false : true
+                this.showPasswordRequest = this.password.length >= 8 ? false : true
+                this.showPasswordRetypeRequest = this.verify ? false : true
+                this.showPositionRequest = (this.position1 && this.position2) ? false : true
                 let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                if(!this.text.match(regexEmail)) {
-                    alert('Invalid Email')
+                this.showEmailRequest = this.text.match(regexEmail) ? false : true
+                if(!this.name || !this.password || !this.verify || (!this.position1 && !this.position2) || this.text.match(regexEmail)) {
                     return
                 }
-                if(this.password.length < 8) {
-                    alert('Password must have at least 8 character')
-                    return
-                }
-                if(this.verify !== this.password) {
-                    alert('Retype is false')
-                    return
-                }
-                
+        
                 const newUser = {
                     name: this.name,
                     email: this.text, 
                     level: this.position1 ? 0 : 1,
                     password: this.password
                 }
-                // add this new user to database
-                this.$emit('add-user',newUser)
+                this.$emit('addUser',newUser)
+
                 this.name = ''
                 this.text = ''
                 this.position1 = false,

@@ -6,8 +6,14 @@
             <div class="form-control">
                 <input v-model="text" type="text" name="phoneNum" placeholder="Nhập email">
             </div>
+            <div v-show="showEmailRequest" class="form-control" style="color:red">
+                <p>Vui lòng nhập email</p>
+            </div>
             <div class="form-control">
                 <input v-model="verify" type="text" name="verify" placeholder="Nhập mật khẩu">
+            </div>
+            <div v-show="showPasswordRequest" class="form-control" style="color:red">
+                <p>Vui lòng nhập mật khẩu</p>
             </div>
             <div class="form-control">
                 <input type="submit" value="Đăng nhập" class="sign-in-btn">
@@ -16,46 +22,44 @@
 </template>
 
 <script>
+    import AuthenApi from '../../services/apis/AuthenApi'
     import Button from './Button.vue'
     export default {
         name: 'LoginByEmail',
         components: {
             Button
         },
-        props: {
-            users: []
+        data() {
+            return {
+                text: '',
+                verify: '',
+                showEmailRequest: false,
+                showPasswordRequest: false,
+            }
         },
         methods: {
             onSubmit(e) {
                 e.preventDefault()
                     if(!this.text) {
-                        alert('Please add an email')
-                        return
+                        this.showEmailRequest = true
                     }
                     if(!this.verify) {
-                        alert('Please add a password')
+                        this.showPasswordRequest = true
+                    }
+                    if(!this.text || !this.verify) {
                         return
                     }
-
-                    for(var i = 0; i < this.users.length; i++) {
-                        if(this.text === this.users[i].email && this.verify === this.users[i].password) {
-                            alert('Successfully login!!')
-                            this.$router.push('/')
-                            this.text = ''
-                            this.verify = ''
-                            return
-                        }
+                    const user = {
+                        email: this.text,
+                        password: this.verify
                     }
-                    alert('Wrong email or password!!')
+                    AuthenApi.login(user)
             },
         },
-        data() {
-            return {
-                text: '',
-                verify: '',
-            }
-        },
-        
+        // created() {
+        //     showPasswordRequest =  false
+        //     showEmailRequest = false
+        // }
     }
 </script>
 

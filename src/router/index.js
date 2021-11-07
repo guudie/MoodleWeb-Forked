@@ -20,7 +20,7 @@ export default new VueRouter({
       component: CoursesScreen
     },
     {
-      path: "/Register",
+      path: "/register",
       component: Register
     },
     {

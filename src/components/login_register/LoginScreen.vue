@@ -1,9 +1,8 @@
 <template>
     <div class="container">
         <h1>Chào mừng đến với Edulanthropy</h1>
-        <LoginByEmail :users="this.users" v-show="showEmailLogin"></LoginByEmail>
-        <RegisterByEmail :users="this.users" v-show="false"></RegisterByEmail>
-        <!-- Goi cai the register vao day -->
+        <LoginByEmail v-show="showEmailLogin"></LoginByEmail>
+        <RegisterByEmail v-show="false"></RegisterByEmail>
         <router-view></router-view>
         <div v-show="loginScreen" class="login-button">
             <Button @btn-click="onClick" 
@@ -39,7 +38,6 @@
             return {
                 showEmailLogin: false,
                 showEmailRegister: false,
-                users: []
             }
         },
         computed: {
@@ -49,28 +47,6 @@
                 }
                 return false
             }
-        },
-        created() {
-            this.users = [
-                {
-                    name: 'Nguyễn Đức Hiếu',
-                    email: '123@gmail.com',
-                    level: 0,
-                    password: '123'
-                },
-                {
-                    name: 'Dương Quang Hùng',
-                    email: '12@gmail.com',
-                    level: 0,
-                    password: '12'
-                },
-                {
-                    name: 'Phạm Văn Thật',
-                    email: '1@gmail.com',
-                    level: 1,
-                    password: '1'
-                }
-            ]
         }
     }
 </script>
