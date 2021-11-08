@@ -47,7 +47,7 @@ export default {
   color: #2c3e50;
   .os-container {
     .os-main {
-        width: 100%;
+        width: calc(100% - 96px);   // để width: 96px thì bị mấy cái div trong home đè lên
         margin-top: 86px;
         margin-left: 96px;
         position: relative;
