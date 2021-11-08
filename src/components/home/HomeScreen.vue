@@ -1,17 +1,22 @@
 <template>
   <div class="home">
-    <h1>This is Home.....</h1>
+    <HomeCarousel />
   </div>
 </template>
 
 <script>
 import AuthenApi from "../../services/apis/AuthenApi"
+import HomeCarousel from './HomeCarousel.vue'
+
 export default {
   name: "HomeScreen",
   mounted(){
     // AuthenApi.login({email:"client1@gmail.com",password: "123456"}).then((res)=>{
     //   console.log("loginnnnn", res);
     // })
+  },
+  components: {
+    HomeCarousel,
   }
 };
 </script>
