@@ -24,5 +24,6 @@ export default {
 <style lang="scss" scope>
 .home {
   min-height: 300vh;
+  z-index: -10000;
 }
 </style>
