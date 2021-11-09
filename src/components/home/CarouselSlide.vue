@@ -1,11 +1,12 @@
 <template>
     <div class="carousel-slide">
         <transition :name="direction">
-            <div v-show="activeSlide===index" class="activeSlide">
-                <img :src="slideInfo.img" />
+            <div v-show="activeSlide===index" class="activeSlide" :style='{backgroundImage: "url(" + slideInfo.img + ")"}'>
+                <!-- <img :src="slideInfo.img" /> -->
                 <div class="content">
                     <h2>{{ slideInfo.title }}</h2>
                     <p>{{ slideInfo.text }}</p>
+                    <button>More info</button>
                 </div>
             </div>
         </transition>
@@ -38,17 +39,40 @@ export default {
 //     margin-left: 100px;
 // }
 
+button {
+    width: 100px;
+    height: 40px;
+    border: 4px solid #FFF;
+    border-radius: 20px;
+    font-family: 'Work Sans';
+    font-weight: 500;
+    color: #FFF;
+    background-color: transparent;
+}
+
+.activeSlide {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
 img {
     border-radius: 10px;
     //position: relative;
 }
 
 .content {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
+    z-index: 1;
+    // position: absolute;
+    // bottom: 16px;
+    // left: 16px;
     text-align: left;
-    margin-left: calc((100% - min(100%, 1600px))/2);
+    margin-left: 80px;
+    //margin-left: calc((100% - min(100%, 1600px))/2);
 
     h2 {
         font-family: 'Work Sans';

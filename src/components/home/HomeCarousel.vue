@@ -108,6 +108,9 @@ export default {
 .home-carousel {
     position: relative;
     overflow: hidden;
+    // margin-left: 40px;
+    // margin-right: 40px;
+    
     //height: 200px;
     min-height: 200px;
     //max-height: 1000px;
