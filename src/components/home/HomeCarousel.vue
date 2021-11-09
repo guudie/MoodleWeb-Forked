@@ -75,15 +75,14 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        top: calc(50% - 18px);
+        top: calc(50% - 15px);
         cursor: pointer;
         border-radius: 50%;
-        width: 36px;
-        height: 36px;
+        width: 30px;
+        height: 30px;
         background-color: #6347c7;
         color: #fff;
         box-shadow: 0px 2px 5px #999;
-        
     }
     .change-slide-btn:hover {
         background-color: #6e53d1;
@@ -95,11 +94,11 @@ export default {
     
     .next {
         right: 0px;
-        margin-right: 10px;
+        margin-right: 20px;
     }
     .prev {
         left: 0px;
-        margin-left: 10px;
+        margin-left: 20px;
     }
 }
 
