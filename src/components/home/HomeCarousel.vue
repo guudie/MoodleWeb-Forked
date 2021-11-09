@@ -1,14 +1,17 @@
 <template>
     <div class="home-carousel">
-        <div fluid class="slides">
+        <div class="slides">
             <img v-for="(slide, index) in slides" 
                 :key="index" 
                 :src="slide.img" 
                 v-show="index===currentSlide"
             />
 
-            <i @click="prev" class="prev fas fa-chevron-left"></i>
-            <i @click="next" class="next fas fa-chevron-right"></i>
+            <i @click="prev" class="prev fas fa-chevron-left change-slide-btn"></i>
+            <i @click="next" class="next fas fa-chevron-right change-slide-btn"></i>
+            <div class="indicators">
+                <span @click="changeSlide(i)" v-for="i in slidesSize" :key="i" :class="{active: i===currentSlide+1}" class="paginations"></span>
+            </div>
         </div>
         
     </div>
@@ -48,6 +51,9 @@ export default {
         next() {
             this.currentSlide++;
             this.currentSlide %= this.slidesSize;
+        },
+        changeSlide(i){
+            this.currentSlide = i-1;
         }
     }
 }
@@ -58,32 +64,65 @@ export default {
 .slides {
     position: relative;
     overflow: hidden;
+    max-height: 1000px;
 
     img {
         border-radius: 10px;
     }
 
-    i {
+    .change-slide-btn {
         position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
-        top: calc(50% - 20px);
+        top: calc(50% - 18px);
         cursor: pointer;
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         background-color: #6347c7;
         color: #fff;
+        box-shadow: 0px 2px 5px #999;
+        
+    }
+    .change-slide-btn:hover {
+        background-color: #6e53d1;
+    }
+    .change-slide-btn:active {
+        background-color: #453094;
+        box-shadow: 0px 0px 5px #999;
     }
     
     .next {
         right: 0px;
-        margin-right: 100px;
+        margin-right: 10px;
     }
     .prev {
         left: 0px;
-        margin-left: 100px;
+        margin-left: 10px;
+    }
+}
+
+.indicators {
+    position: absolute;
+    width: 100%;
+    bottom: 12px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    
+    .paginations {
+        cursor: pointer;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #FFF;
+        box-shadow: 0px 2px 5px #999;
+
+    }
+    .active {
+        background-color: #6347c7;
     }
 }
 
