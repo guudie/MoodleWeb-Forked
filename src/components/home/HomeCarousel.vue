@@ -34,17 +34,22 @@ export default {
         return {
             slides: [
                 {
-                    img: "https://picsum.photos/1024/200/?image=52",
+                    img: "https://picsum.photos/seed/235253/1600/200/?blur=2",
                     title: 'BIG TITLE',
                     text: 'Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd',
                 },
                 {
-                    img: "https://picsum.photos/1024/200/?image=54",
+                    img: "https://picsum.photos/seed/345253/1600/200/?blur=2",
                     title: 'BIG TITLE',
                     text: 'Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd',
                 },
                 {
-                    img: "https://picsum.photos/1024/200/?image=58",
+                    img: "https://picsum.photos/seed/756878/1600/200/?blur=2",
+                    title: 'BIG TITLE',
+                    text: 'Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd',
+                },
+                {
+                    img: "https://picsum.photos/seed/23426/1600/200/?blur=2",
                     title: 'BIG TITLE',
                     text: 'Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd',
                 }

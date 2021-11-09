@@ -48,7 +48,7 @@ img {
     bottom: 16px;
     left: 16px;
     text-align: left;
-    margin-left: calc((100% - min(100%, 1024px))/2);
+    margin-left: calc((100% - min(100%, 1600px))/2);
 
     h2 {
         font-family: 'Work Sans';
