@@ -1,23 +1,32 @@
 <template>
     <div class="home-carousel">
-        <div class="slides">
+        <!-- <transition-group>
             <img v-for="(slide, index) in slides" 
                 :key="index" 
                 :src="slide.img" 
                 v-show="index===currentSlide"
             />
+        </transition-group> -->
+        <CarouselSlide class="slides"
+            v-for="(slide, index) in slides"
+            :key="index"
+            :activeSlide="currentSlide"
+            :index="index"
+            :slideInfo="slide"
+            :direction="direction"
+        />
 
-            <i @click="prev" class="prev fas fa-chevron-left change-slide-btn"></i>
-            <i @click="next" class="next fas fa-chevron-right change-slide-btn"></i>
-            <div class="indicators">
-                <span @click="changeSlide(i)" v-for="i in slidesSize" :key="i" :class="{active: i===currentSlide+1}" class="paginations"></span>
-            </div>
+        <i @click="prev" class="prev fas fa-chevron-left change-slide-btn"></i>
+        <i @click="next" class="next fas fa-chevron-right change-slide-btn"></i>
+        <div class="indicators">
+            <span @click="changeSlide(i)" v-for="i in slidesSize" :key="i" :class="{active: i===currentSlide+1}" class="paginations"></span>
         </div>
         
     </div>
 </template>
 
 <script>
+import CarouselSlide from './CarouselSlide.vue'
 
 export default {
     name: 'HomeCarousel',
@@ -26,20 +35,37 @@ export default {
             slides: [
                 {
                     img: "https://picsum.photos/1024/200/?image=52",
-                    text: '',
+                    title: 'BIG TITLE',
+                    text: 'Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd',
                 },
                 {
                     img: "https://picsum.photos/1024/200/?image=54",
-                    text: '',
+                    title: 'BIG TITLE',
+                    text: 'Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd',
                 },
                 {
                     img: "https://picsum.photos/1024/200/?image=58",
-                    text: '',
+                    title: 'BIG TITLE',
+                    text: 'Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd',
                 }
             ],
             currentSlide: 0,
-            slidesSize: 3,
+            autoplayEnabled: false,
+            autoplayInterval: 7000,
+            direction: 'left',
         }
+    },
+    components: {
+        CarouselSlide,
+    },
+    computed: {
+        slidesSize(){
+            return this.slides.length;
+        }
+    },
+    mounted() {
+        if(this.autoplayEnabled)
+            this.autoplay();
     },
     methods: {
         prev() {
@@ -47,13 +73,26 @@ export default {
                 this.currentSlide = this.slidesSize - 1;
             else
                 this.currentSlide--;
+            
+            this.direction = 'right';
         },
         next() {
             this.currentSlide++;
             this.currentSlide %= this.slidesSize;
+
+            this.direction = 'left';
         },
         changeSlide(i){
+            if(this.currentSlide > i-1)
+                this.direction = 'right';
+            else
+                this.direction = 'left';
             this.currentSlide = i-1;
+        },
+        autoplay() {
+            setInterval(() => {
+                this.next();
+            }, this.autoplayInterval);
         }
     }
 }
@@ -61,14 +100,16 @@ export default {
 
 <style lang="scss" scoped>
 
-.slides {
+.home-carousel {
     position: relative;
     overflow: hidden;
-    max-height: 1000px;
+    //height: 200px;
+    min-height: 200px;
+    //max-height: 1000px;
 
-    img {
-        border-radius: 10px;
-    }
+    // img {
+    //     border-radius: 10px;
+    // }
 
     .change-slide-btn {
         position: absolute;
@@ -82,14 +123,14 @@ export default {
         height: 30px;
         background-color: #6347c7;
         color: #fff;
-        box-shadow: 0px 2px 5px #999;
+        box-shadow: 0px 2px 5px #888;
     }
     .change-slide-btn:hover {
         background-color: #6e53d1;
     }
     .change-slide-btn:active {
         background-color: #453094;
-        box-shadow: 0px 0px 5px #999;
+        box-shadow: 0px 0px 5px #888;
     }
     
     .next {
@@ -123,6 +164,14 @@ export default {
     .active {
         background-color: #6347c7;
     }
+}
+
+.slides {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 </style>
