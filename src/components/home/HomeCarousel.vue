@@ -63,7 +63,7 @@ export default {
                 }
             ],
             currentSlide: 0,
-            autoplayEnabled: false,
+            autoplayEnabled: true,
             autoplayInterval: 7000,
             direction: 'left',
         }
