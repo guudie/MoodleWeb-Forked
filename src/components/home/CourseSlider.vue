@@ -3,7 +3,7 @@
         <div class="title">
             <h2>{{ title }}</h2>
         </div>
-        <div class="slides-container">
+        <div class="slides-container" ref="container">
             <div class="course"
                 v-for="(course, index) in courses"
                 :key="index"
@@ -18,6 +18,9 @@
                 </div>
             </div>
         </div>
+            
+        <i @click="scrLeft" class="left fas fa-chevron-left scr-btn"></i>
+        <i @click="scrRight" class="right fas fa-chevron-right scr-btn"></i>
     </div>
 </template>
 
@@ -33,6 +36,22 @@ export default {
         title: String,
         courses: [],
     },
+    methods: {
+        scrLeft() {
+            this.$refs.container.scrollBy({
+                top: 0,
+                left: -800,
+                behavior: 'smooth'
+            })
+        },
+        scrRight() {
+            this.$refs.container.scrollBy({
+                top: 0,
+                left: +800,
+                behavior: 'smooth'
+            })
+        }
+    }
 }
 </script>
 
@@ -60,6 +79,38 @@ export default {
     margin-top: 50px;
     padding-left: 40px;
     padding-right: 40px;
+    position: relative;
+
+    .scr-btn {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 50%;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        color: #6347c7;
+        box-shadow: 0px 2px 5px #888;
+    }
+
+    .scr-btn:hover {
+        color: #937de4;
+    }
+
+    .scr-btn:active {
+        background-color: #ddd;
+        color: #332077;
+    }
+
+    .left {
+        left: 20px;
+    }
+    .right {
+        right: 20px;
+    }
 }
 
 .title {
@@ -76,34 +127,36 @@ export default {
 .slides-container {
     display: flex;
     overflow-x: auto;
-    gap: 20px;
+    gap: 10px;
 }
 
 .course {
     box-shadow: -2px 3px 5px #20173f;
     border-radius: 10px;
     margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+
+    .img-wrapper {
+        width: 300px;
+
+        img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            max-width: 100%;
+        }
+    }
+
+    .course-info {
+        padding: 10px;
+        text-align: left;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        //background-color: #584696;
+        //color: #FFF;
+    }
 }
 
-.img-wrapper {
-    width: 300px;
-}
 
-img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    max-width: 100%;
-}
-
-.course-info {
-    padding: 10px;
-    text-align: left;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    //background-color: #584696;
-    //color: #FFF;
-}
 
 </style>

@@ -4,7 +4,7 @@
             <div v-show="activeSlide===index" 
                 class="activeSlide"
                 :style='{backgroundImage: "url(" + slideInfo.img + ")"}'
-                style="border-radius: 10px"
+                style="border-radius: 10px; width: 100%;"
             >
                 <!-- <img :src="slideInfo.img" /> -->
                 <div class="content">
