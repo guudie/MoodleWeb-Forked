@@ -1,22 +1,14 @@
 <template>
   <div class="home">
     <HomeCarousel />
-
-    <horizontal-slider>
-      <course-slide v-for="(course, index) in courses" 
-        :key="index"
-        :courseInfo="course"
-      >
-      </course-slide>
-    </horizontal-slider>
+    <CourseSlider title="These are our courses" :courses="this.courses"/>
   </div>
 </template>
 
 <script>
 import AuthenApi from "../../services/apis/AuthenApi"
 import HomeCarousel from './HomeCarousel.vue'
-import HorizontalSlider from './HorizontalSlider.vue'
-import CourseSlide from './CourseSlide.vue'
+import CourseSlider from './CourseSlider.vue'
 
 export default {
   name: "HomeScreen",
@@ -25,38 +17,38 @@ export default {
       courses: [
         {
           name: 'OOP',
-          desc: 'This is the course\'s brief description ',
-          img: 'https://picsum.photos/seed/345253/400/200/?blur=2',
+          desc: 'This is the course\'s brief description. Later changed',
+          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
         },
         {
           name: 'Linear algebra',
-          desc: 'This is the course\'s brief description ',
-          img: 'https://picsum.photos/seed/345253/200/200/?blur=2',
+          desc: 'This is the course\'s brief description. Later changed',
+          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
         },
         {
           name: 'Calculus 1',
-          desc: 'This is the course\'s brief description ',
-          img: 'https://picsum.photos/seed/345253/400/200/?blur=2',
+          desc: 'This is the course\'s brief description. Later changed',
+          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
         },
         {
           name: 'Calculus 2',
-          desc: 'This is the course\'s brief description ',
-          img: 'https://picsum.photos/seed/345253/400/200/?blur=2',
+          desc: 'This is the course\'s brief description. Later changed',
+          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
         },
         {
           name: 'Calculus 3',
-          desc: 'This is the course\'s brief description ',
-          img: 'https://picsum.photos/seed/345253/400/200/?blur=2',
+          desc: 'This is the course\'s brief description. Later changed',
+          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
         },
         {
           name: 'Calculus 4',
-          desc: 'This is the course\'s brief description ',
-          img: 'https://picsum.photos/seed/345253/400/200/?blur=2',
+          desc: 'This is the course\'s brief description. Later changed',
+          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
         },
         {
           name: 'Calculus 5',
-          desc: 'This is the course\'s brief description ',
-          img: 'https://picsum.photos/seed/345253/400/200/?blur=2',
+          desc: 'This is the course\'s brief description. Later changed',
+          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
         },
       ]
     }
@@ -68,8 +60,7 @@ export default {
   },
   components: {
     HomeCarousel,
-    HorizontalSlider,
-    CourseSlide,
+    CourseSlider,
   }
 };
 </script>
