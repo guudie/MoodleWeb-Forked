@@ -2,10 +2,12 @@
     <div class="course-slider">
         <div class="title">
             <h2>{{ title }}</h2>
-            <div class="view-more">
-                <div>View more</div>
-                <i class="fas fa-chevron-right"></i>
-            </div>
+            <router-link :to="'/courses'">
+                <div class="view-more">
+                    <div>View more</div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </router-link>
         </div>
         
         <div class="slides-container" ref="container">
