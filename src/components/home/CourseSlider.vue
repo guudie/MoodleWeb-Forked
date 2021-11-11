@@ -66,24 +66,17 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap');
 
 ::-webkit-scrollbar {
-    height: 4px;
+    height: 5px;
     scroll-behavior: smooth;
 }
 
-::-webkit-scrollbar-track {
-    background: #FFF;
-}
-
 ::-webkit-scrollbar-thumb {
-    background: #AAA;
-    border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #888;
+    background-color: transparent;
+    border-radius: 2.5px;
 }
 
 .course-slider {
+    //background-color: #6347c7;
     margin-top: 50px;
     padding-left: 40px;
     padding-right: 40px;
@@ -101,7 +94,7 @@ export default {
         height: 30px;
         background-color: #fff;
         color: #6347c7;
-        box-shadow: 0px 2px 5px #888;
+        box-shadow: 0px 2px 5px #AAA;
     }
 
     .scr-btn:hover {
@@ -111,6 +104,7 @@ export default {
     .scr-btn:active {
         background-color: #ddd;
         color: #332077;
+        box-shadow: 0px 2px 3px #DDD;
     }
 
     .left {
@@ -157,6 +151,17 @@ export default {
     display: flex;
     overflow-x: auto;
     gap: 10px;
+}
+
+.slides-container:hover {
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #AAA;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #888;
+    }
 }
 
 .course {
