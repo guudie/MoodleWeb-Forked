@@ -2,6 +2,8 @@
   <div class="home">
     <HomeCarousel />
     <CourseSlider title="These are our courses" :courses="this.courses"/>
+
+    <ForumCard />
   </div>
 </template>
 

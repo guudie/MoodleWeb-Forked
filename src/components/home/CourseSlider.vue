@@ -188,6 +188,11 @@ export default {
         border-bottom-left-radius: 10px;
         //background-color: #584696;
         //color: #FFF;
+
+        h3 {
+            font-family: 'Work Sans';
+            font-weight: 500;
+        }
     }
 }
 
