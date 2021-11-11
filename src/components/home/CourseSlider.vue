@@ -2,7 +2,12 @@
     <div class="course-slider">
         <div class="title">
             <h2>{{ title }}</h2>
+            <div class="view-more">
+                <div>View more</div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
         </div>
+        
         <div class="slides-container" ref="container">
             <div class="course"
                 v-for="(course, index) in courses"
@@ -59,7 +64,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap');
 
 ::-webkit-scrollbar {
-    height: 6px;
+    height: 4px;
+    scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar-track {
@@ -67,12 +73,12 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 3px;
+    background: #AAA;
+    border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #888;
 }
 
 .course-slider {
@@ -116,11 +122,32 @@ export default {
 .title {
     text-align: left;
     margin-bottom: 30px;
+    position: relative;
 
     h2 {
         font-family: 'Work Sans';
         font-weight: 900;
         color: #2e1e69;
+    }
+
+    .view-more {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 20px;
+        right: 20px;
+        gap: 4px;
+
+        div {
+            font-family: 'Work Sans';
+            font-weight: 500;
+        }
+    }
+
+    .view-more:hover div, :hover i {
+        cursor: pointer;
+        color: #6347c7;
     }
 }
 
