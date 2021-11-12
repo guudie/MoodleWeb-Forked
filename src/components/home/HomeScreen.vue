@@ -21,37 +21,37 @@ export default {
         {
           name: 'OOP',
           desc: 'This is the course\'s brief description. Later changed',
-          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
+          img: 'https://picsum.photos/seed/345253/1920/640/?blur=2',
         },
         {
           name: 'Linear algebra',
           desc: 'This is the course\'s brief description. Later changed',
-          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
+          img: 'https://picsum.photos/seed/345253/1920/640/?blur=2',
         },
         {
           name: 'Calculus 1',
           desc: 'This is the course\'s brief description. Later changed',
-          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
+          img: 'https://picsum.photos/seed/345253/1920/640/?blur=2',
         },
         {
           name: 'Calculus 2',
           desc: 'This is the course\'s brief description. Later changed',
-          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
+          img: 'https://picsum.photos/seed/345253/1920/640/?blur=2',
         },
         {
           name: 'Calculus 3',
           desc: 'This is the course\'s brief description. Later changed',
-          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
+          img: 'https://picsum.photos/seed/345253/1920/640/?blur=2',
         },
         {
           name: 'Calculus 4',
           desc: 'This is the course\'s brief description. Later changed',
-          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
+          img: 'https://picsum.photos/seed/345253/1920/640/?blur=2',
         },
         {
           name: 'Calculus 5',
           desc: 'This is the course\'s brief description. Later changed',
-          img: 'https://picsum.photos/seed/345253/300/100/?blur=2',
+          img: 'https://picsum.photos/seed/345253/1920/640/?blur=2',
         },
       ]
     }

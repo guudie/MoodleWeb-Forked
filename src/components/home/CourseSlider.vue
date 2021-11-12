@@ -176,11 +176,13 @@ export default {
 
     .img-wrapper {
         width: 300px;
+        height: 100px;
 
         img {
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             max-width: 100%;
+            max-height: 100%;
         }
     }
 

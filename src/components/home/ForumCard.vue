@@ -2,13 +2,15 @@
     <div class="forum-card">
         <div class="visit">
             <div class="visit-func">
-                <h2>Visit the Forum!</h2>
+                <router-link :to="'/forum'">
+                    <h2>Visit the Forum!</h2>
+                </router-link>
                 <p class="checkout">Checkout our forum!</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio recusandae, voluptates soluta aliquid nulla nisi blanditiis ducimus vitae fuga quod quam, minima quis, nam suscipit officia ex? Quas, non officiis.</p>
             </div>
         </div>
         <div class="img-wrapper">
-            <img :src="'https://picsum.photos/seed/23426/' + 800 + '/400/?blur=2'" />
+            <img :src="'https://picsum.photos/seed/23426/1920/1080/?blur=2'" />
         </div>
     </div>
 </template>
@@ -75,7 +77,8 @@ export default {
 
         img {
             position: absolute;
-            height: 95%;
+            max-height: 95%;
+            max-width: 95%;
             left: 0;
             top: 0px;
             bottom: 0px;
