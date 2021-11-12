@@ -76,11 +76,12 @@ export default {
 }
 
 .course-slider {
-    //background-color: #6347c7;
+    background: rgb(50,6,117);
+    background: linear-gradient(41deg, rgba(50,6,117,1) 0%, rgba(62,35,126,1) 17%, rgba(107,56,196,1) 55%, rgba(179,5,198,1) 96%);
     margin-top: 50px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 20px 40px;
     position: relative;
+    border-radius: 10px;
 
     .scr-btn {
         position: absolute;
@@ -94,7 +95,7 @@ export default {
         height: 30px;
         background-color: #fff;
         color: #6347c7;
-        box-shadow: 0px 2px 5px #AAA;
+        box-shadow: 0px 2px 5px #412f85;
     }
 
     .scr-btn:hover {
@@ -104,7 +105,7 @@ export default {
     .scr-btn:active {
         background-color: #ddd;
         color: #332077;
-        box-shadow: 0px 2px 3px #DDD;
+        box-shadow: 0px 2px 3px #412f85;
     }
 
     .left {
@@ -123,7 +124,7 @@ export default {
     h2 {
         font-family: 'Work Sans';
         font-weight: 900;
-        color: #2e1e69;
+        color: #fff;
     }
 
     .view-more {
@@ -134,6 +135,7 @@ export default {
         top: 20px;
         right: 20px;
         gap: 4px;
+        color: #fff;
 
         div {
             font-family: 'Work Sans';
@@ -143,11 +145,12 @@ export default {
 
     .view-more:hover div, :hover i {
         cursor: pointer;
-        color: #6347c7;
+        color: #f2a8fa;
     }
 }
 
 .slides-container {
+    padding-top: 5px;
     display: flex;
     overflow-x: auto;
     gap: 10px;
@@ -156,16 +159,16 @@ export default {
 .slides-container:hover {
 
     &::-webkit-scrollbar-thumb {
-        background-color: #AAA;
+        background-color: #7759e6;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: #888;
+        background: #937de4;
     }
 }
 
 .course {
-    box-shadow: -2px 3px 5px #20173f;
+    box-shadow: -2px 3px 8px 1px #342764;
     border-radius: 10px;
     margin-bottom: 20px;
     margin-left: 20px;
@@ -186,7 +189,7 @@ export default {
         text-align: left;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
-        //background-color: #584696;
+        background-color: #fff;
         //color: #FFF;
 
         h3 {
