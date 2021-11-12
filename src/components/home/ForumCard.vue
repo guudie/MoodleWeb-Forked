@@ -54,17 +54,21 @@ export default {
             right: 20px;
             margin-left: 40px;
             max-width: 400px;
-            text-align: justify;
 
             .checkout {
                 margin-top: 50px;
             }
 
             h2 {
+                text-align: left;
                 background-color: #4d3a94;
                 padding: 10px;
                 color: #fff;
                 cursor: pointer;
+            }
+
+            p {
+                text-align: justify;
             }
         }
     }
