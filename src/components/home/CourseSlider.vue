@@ -64,6 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
 ::-webkit-scrollbar {
     height: 5px;
@@ -79,7 +80,7 @@ export default {
     background: rgb(50,6,117);
     background: linear-gradient(41deg, rgba(50,6,117,1) 0%, rgba(62,35,126,1) 17%, rgba(107,56,196,1) 55%, rgba(179,5,198,1) 96%);
     margin-top: 50px;
-    padding: 20px 40px;
+    padding: 20px 60px;
     position: relative;
     border-radius: 10px;
 
@@ -171,8 +172,8 @@ export default {
     box-shadow: -2px 3px 8px 1px #342764;
     border-radius: 10px;
     margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 
     .img-wrapper {
         width: 300px;
@@ -182,7 +183,7 @@ export default {
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             max-width: 100%;
-            max-height: 100%;
+            //max-height: 100%;
         }
     }
 
@@ -193,9 +194,13 @@ export default {
         border-bottom-left-radius: 10px;
         background-color: #fff;
         //color: #FFF;
-
+        font-family: 'Work Sans';
+        
         h3 {
-            font-family: 'Work Sans';
+            font-weight: 500;
+        }
+
+        p {
             font-weight: 500;
         }
     }

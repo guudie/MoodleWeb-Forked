@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <HomeCarousel />
+    <Overview />
+
     <CourseSlider title="These are our courses" :courses="this.courses"/>
 
     <ForumCard />
@@ -12,6 +14,7 @@ import AuthenApi from "../../services/apis/AuthenApi"
 import HomeCarousel from './HomeCarousel.vue'
 import CourseSlider from './CourseSlider.vue'
 import ForumCard from './ForumCard.vue'
+import Overview from './Overview.vue'
 
 export default {
   name: "HomeScreen",
@@ -65,6 +68,7 @@ export default {
     HomeCarousel,
     CourseSlider,
     ForumCard,
+    Overview,
   }
 };
 </script>
