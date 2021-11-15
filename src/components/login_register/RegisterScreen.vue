@@ -35,6 +35,7 @@
                 this.showEmailRegister = true
             },
             AddUser(newUser) {
+                console.log(newUser)
                 AuthenApi.register(newUser)
             }
         },

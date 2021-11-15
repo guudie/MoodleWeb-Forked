@@ -53,6 +53,7 @@
 </template>
 <script>
     import Button from './Button.vue'
+    import AuthenApi from '../../services/apis/AuthenApi'
     export default {
         name: 'RegisterByEmail',
         components: {
@@ -79,10 +80,10 @@
                 this.showNameRequest = this.name ? false : true
                 this.showPasswordRequest = this.password.length >= 8 ? false : true
                 this.showPasswordRetypeRequest = this.verify ? false : true
-                this.showPositionRequest = (this.position1 && this.position2) ? false : true
+                this.showPositionRequest = (this.position1 || this.position2) ? false : true
                 let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 this.showEmailRequest = this.text.match(regexEmail) ? false : true
-                if(!this.name || !this.password || !this.verify || (!this.position1 && !this.position2) || this.text.match(regexEmail)) {
+                if(!this.name || !this.password || !this.verify || (!this.position1 && !this.position2) || !this.text.match(regexEmail)) {
                     return
                 }
         
