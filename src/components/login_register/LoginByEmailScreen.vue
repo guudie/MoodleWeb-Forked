@@ -10,7 +10,7 @@
                 <p>Vui lòng nhập email</p>
             </div>
             <div class="form-control">
-                <input v-model="verify" type="text" name="verify" placeholder="Nhập mật khẩu">
+                <input v-model="verify" type="password" name="verify" placeholder="Nhập mật khẩu">
             </div>
             <div v-show="showPasswordRequest" class="form-control" style="color:red">
                 <p>Vui lòng nhập mật khẩu</p>
@@ -54,7 +54,7 @@
                         password: this.verify
                     }
                     AuthenApi.login(user)
-                        .then(res => console.log(res))
+                        .then(res => this.$emit('loginToken', res))
             },
         },
     }

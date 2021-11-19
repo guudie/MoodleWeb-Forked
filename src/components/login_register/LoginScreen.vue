@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Chào mừng đến với Edulanthropy</h1>
-        <LoginByEmail v-show="showEmailLogin"></LoginByEmail>
+        <LoginByEmail @loginToken="LoginToken" v-show="showEmailLogin"></LoginByEmail>
         <RegisterByEmail v-show="false"></RegisterByEmail>
         <router-view></router-view>
         <div v-show="loginScreen" class="login-button">
@@ -37,6 +37,10 @@
             onClick() {
                 this.showEmailLogin = true
             },
+            LoginToken(res) {
+                let token = res.data.items.token
+                this.$store.dispatch('sendToken', token)
+            }
         },
         data() {
             return {
