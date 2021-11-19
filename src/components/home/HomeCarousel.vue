@@ -27,7 +27,6 @@
 
 <script>
 import CarouselSlide from './CarouselSlide.vue'
-
 export default {
     name: 'HomeCarousel',
     data() {
