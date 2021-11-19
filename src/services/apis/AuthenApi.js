@@ -6,6 +6,8 @@ AuthenApi.login = params => {
   return api.post({ url: "auth/login", data: params });
 };
 
-AuthenApi.register = () => {};
+AuthenApi.register = (params) => {
+  return api.post({ url: "auth/register", data: params });
+};
 
 export default AuthenApi;

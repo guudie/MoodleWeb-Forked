@@ -90,11 +90,10 @@
                 const newUser = {
                     name: this.name,
                     email: this.text, 
-                    level: this.position1 ? 0 : 1,
+                    level: this.position1 ? '0' : '1',
                     password: this.password
                 }
                 this.$emit('addUser',newUser)
-
                 this.name = ''
                 this.text = ''
                 this.position1 = false,

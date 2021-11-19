@@ -54,6 +54,7 @@
                         password: this.verify
                     }
                     AuthenApi.login(user)
+                        .then(res => console.log(res))
             },
         },
     }
