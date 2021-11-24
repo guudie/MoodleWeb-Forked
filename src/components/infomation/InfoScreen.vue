@@ -1,8 +1,8 @@
 <template>
     <div class="info-screen grid wide">
         <div class="row">
-            <div class="col c-3">
-                <div class="user-info">
+            <div class="col c-3 buttons-column">
+                <div class="side-buttons">
                     <router-link to="/info">
                         <p :class="{active: true}"> Information and contact </p>
                     </router-link>
@@ -22,7 +22,8 @@
                 <div class="information-header">
                     <h2 class="information-header-text">Infomation</h2>
                     <div class="draw-icon-wrapper">
-                        <img :src="draw" alt="edit" class="draw-icon">
+                        <!-- <img :src="draw" alt="edit" class="draw-icon"> -->
+                        <i class="fas fa-pen"></i>
                     </div>
                 </div>
                 <div class="grid information-body">
@@ -67,11 +68,15 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
-.user-info {// the p
+.info-screen {
+    min-height: 100vh;
+}
+
+.side-buttons {// the p
     p {
         font-family: "Montserrat";
         text-align: left;
-        margin-bottom: 0;
+        margin-bottom: 10px;
         
     }
     p.active {
@@ -81,6 +86,10 @@ export default {
     p:hover {
         color: #6347c7;
     }
+}
+
+.buttons-column {
+    max-width: 30%;
 }
 
 .information-header {
@@ -113,6 +122,7 @@ export default {
 
 .information-body {
     margin-top: 12px;
+    font-family: 'Montserrat';
 }
 
 .key {
