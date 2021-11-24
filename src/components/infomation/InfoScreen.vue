@@ -69,6 +69,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
 .info-screen {
+    margin-top: 100px;      // potato code, needs changing later
     min-height: 100vh;
 }
 
@@ -110,6 +111,7 @@ export default {
     text-align: right;
 
     .pen-icon {
+        color: #6347c7;
     }
 }
 
