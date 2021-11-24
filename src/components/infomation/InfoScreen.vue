@@ -1,0 +1,128 @@
+<template>
+    <div class="info-screen grid wide">
+        <div class="row">
+            <div class="col c-3">
+                <div class="user-info">
+                    <router-link to="/info">
+                        <p :class="{active: true}"> Information and contact </p>
+                    </router-link>
+                    <router-link to="/info/changepassword">
+                        <p>
+                            Change Password
+                        </p> 
+                    </router-link>
+                    <router-link to="/teammanagement">
+                        <p>
+                            Team Management
+                        </p>
+                    </router-link>
+                </div>
+            </div>
+            <div class="col c-9">
+                <div class="information-header">
+                    <h2 class="information-header-text">Infomation</h2>
+                    <div class="draw-icon-wrapper">
+                        <img :src="draw" alt="edit" class="draw-icon">
+                    </div>
+                </div>
+                <div class="grid information-body">
+                    <div class="row information-body-row">
+                        <div class="col c-2 avt">
+                            <img :src="avt">
+                        </div>
+                        <div class="col c-3 key">
+                            <p class="full-name-key">Full name: </p>
+                            <p class="phone-number-key">Phone number: </p>
+                            <p class="email-address-key">Email address: </p>
+                        </div>
+                        <div class="col c-7 value">
+                            <p class="full-name-value">Mohamed Ali</p>
+                            <p class="phone-number-value">0122 222 222</p>
+                            <p class="email-address-value">Mohamed@Ali.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import icon from '../../assets/images/information/img-preview.png'
+import icond from '../../assets/images/information/draw.png'
+import '../UI/grid.css'
+export default {
+    name: 'Information',
+    data() {
+        return {
+            avt: icon,
+            draw: icond
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+// để tạm, tải font sau
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+.user-info {// the p
+    p {
+        font-family: "Montserrat";
+        text-align: left;
+        margin-bottom: 0;
+        
+    }
+    p.active {
+        color: #6347c7;
+        font-weight: bold;
+    }
+    p:hover {
+        color: #6347c7;
+    }
+}
+
+.information-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.information-header-text {
+    margin-bottom: 0;
+    align-content: flex-start;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #6347c7;
+    font-size: 1.4rem;
+}
+
+.draw-icon-wrapper {
+    text-align: right;
+}
+
+.draw-icon-wrapper:hover {
+    cursor: pointer;
+}
+.draw-icon {
+    height: 16px;
+    width: 16px;
+    right: 0;
+    align-content: flex-end;
+}
+
+.information-body {
+    margin-top: 12px;
+}
+
+.key {
+    text-align: left;
+}
+
+.value {
+    text-align: left;
+}
+
+
+
+</style>
