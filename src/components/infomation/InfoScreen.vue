@@ -23,7 +23,7 @@
                     <h2 class="information-header-text">Infomation</h2>
                     <div class="draw-icon-wrapper">
                         <!-- <img :src="draw" alt="edit" class="draw-icon"> -->
-                        <i class="fas fa-pen"></i>
+                        <i class="fas fa-pen pen-icon"></i>
                     </div>
                 </div>
                 <div class="grid information-body">
@@ -108,6 +108,9 @@ export default {
 
 .draw-icon-wrapper {
     text-align: right;
+
+    .pen-icon {
+    }
 }
 
 .draw-icon-wrapper:hover {
