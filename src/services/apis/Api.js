@@ -91,6 +91,7 @@ api.post = function(params) {
     }
 
     if (params.data != undefined) {
+      console.log(JSON.stringify(params.data))
       xhttp.send(JSON.stringify(params.data));
     } else {
       xhttp.send();
