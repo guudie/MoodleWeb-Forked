@@ -23,9 +23,5 @@ export default new VueRouter({
       path: "/info",
       component: Information
     },
-    {
-      path: "/info/changepassword",
-      component: PasswordChange
-    }
   ]
 })
