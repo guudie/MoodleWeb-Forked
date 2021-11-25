@@ -4,10 +4,10 @@
             <div class="col c-3 buttons-column">
                 <div class="side-buttons">
                     <router-link to="/info">
-                        <p :class="{active: true}"> Information and contact </p>
+                        <p :class="[informationShow ? 'active' : '']" @click="onClickInformationField"> Information and contact </p>
                     </router-link>
-                    <router-link to="/info/changepassword">
-                        <p>
+                    <router-link to="/info">
+                        <p :class="[passwordShow ? 'active' : '']" @click="onClickChangePassword">
                             Change Password
                         </p> 
                     </router-link>
@@ -19,27 +19,31 @@
                 </div>
             </div>
             <div class="col c-9">
-                <div class="information-header">
-                    <h2 class="information-header-text">Infomation</h2>
-                    <div class="draw-icon-wrapper">
-                        <!-- <img :src="draw" alt="edit" class="draw-icon"> -->
-                        <i class="fas fa-pen pen-icon"></i>
+                <PasswordChange v-show="passwordShow" />
+                <router-view></router-view>
+                <div class="wrapper-information" v-show="informationShow">
+                    <div class="information-header">
+                        <h2 class="information-header-text">Infomation</h2>
+                        <div class="draw-icon-wrapper">
+                            <!-- <img :src="draw" alt="edit" class="draw-icon"> -->
+                            <i class="fas fa-pen pen-icon"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="grid information-body">
-                    <div class="row information-body-row">
-                        <div class="col c-2 avt">
-                            <img :src="avt">
-                        </div>
-                        <div class="col c-3 key">
-                            <p class="full-name-key">Full name: </p>
-                            <p class="phone-number-key">Phone number: </p>
-                            <p class="email-address-key">Email address: </p>
-                        </div>
-                        <div class="col c-7 value">
-                            <p class="full-name-value">Mohamed Ali</p>
-                            <p class="phone-number-value">0122 222 222</p>
-                            <p class="email-address-value">Mohamed@Ali.com</p>
+                    <div class="grid information-body">
+                        <div class="row information-body-row">
+                            <div class="col c-2 avt">
+                                <img :src="avt">
+                            </div>
+                            <div class="col c-3 key">
+                                <p class="full-name-key">Full name: </p>
+                                <p class="phone-number-key">Phone number: </p>
+                                <p class="email-address-key">Email address: </p>
+                            </div>
+                            <div class="col c-7 value">
+                                <p class="full-name-value">Mohamed Ali</p>
+                                <p class="phone-number-value">0122 222 222</p>
+                                <p class="email-address-value">Mohamed@Ali.com</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,14 +56,31 @@
 import icon from '../../assets/images/information/img-preview.png'
 import icond from '../../assets/images/information/draw.png'
 import '../UI/grid.css'
+import PasswordChange from './PasswordChangeScreen.vue'
+
 export default {
     name: 'Information',
+    components: {
+        PasswordChange
+    },
     data() {
         return {
             avt: icon,
-            draw: icond
+            draw: icond,
+            passwordShow: false,
+            informationShow: true
         }
-    }
+    },
+    methods: {
+        onClickChangePassword(e) {
+            this.passwordShow = true
+            this.informationShow = false
+        },
+        onClickInformationField() {
+            this.passwordShow = false,
+            this.informationShow = true
+        }
+    },
 }
 </script>
 
