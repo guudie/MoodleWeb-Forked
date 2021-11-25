@@ -132,6 +132,7 @@ export default {
 
 .key {
     text-align: left;
+    color: #999;
 }
 
 .value {

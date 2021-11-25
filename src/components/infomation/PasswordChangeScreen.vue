@@ -22,8 +22,27 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+// để tạm, tải font sau
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
 .form-change-password {
     min-height: 500px;
+    font-family: 'Montserrat';
+
+    div {
+      margin-bottom: 30px;
+
+      label {
+        padding-left: 5px;
+        font-weight: bold;
+      }
+
+      input {
+        padding-left: 10px;
+        font-size: 15px;
+      }
+    }
 }
 </style>

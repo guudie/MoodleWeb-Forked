@@ -47,7 +47,7 @@ export default {
   color: #2c3e50;
   .os-container {
     .os-main {
-        width: 100%;
+        width: calc(100% - 96px);
         margin-top: 86px;
         margin-left: 96px;
         position: relative;
