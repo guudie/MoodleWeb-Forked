@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import AuthenApi from "../../services/apis/AuthenApi"
 import HomeCarousel from './HomeCarousel.vue'
 import CourseSlider from './CourseSlider.vue'
 import ForumCard from './ForumCard.vue'
@@ -74,7 +73,5 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.home {
-  min-height: 300vh;
-}
+
 </style>

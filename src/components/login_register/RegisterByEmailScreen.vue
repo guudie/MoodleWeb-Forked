@@ -53,7 +53,7 @@
 </template>
 <script>
     import Button from './Button.vue'
-    import AuthenApi from '../../services/apis/AuthenApi'
+
     export default {
         name: 'RegisterByEmail',
         components: {

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import AuthenApi from '../../services/apis/AuthenApi'
+    import { Authen } from '../../services/apis/ApiService'
     import Button from './Button.vue'
     export default {
         name: 'LoginByEmail',
@@ -53,7 +53,7 @@
                         email: this.text,
                         password: this.verify
                     }
-                    AuthenApi.login(user)
+                    Authen.login(user)
                         .then(res => this.$emit('loginToken', res))
             },
         },

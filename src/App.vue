@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <div class="os-container">
-      <Header v-if="checkRouter"  />
-      <SideBar v-if="checkRouter" />
+    <div :class="`os-container ${checkRouter? '': 'blank' }`">
+      <Header />
+      <SideBar />
       <div class="os-main">
           <router-view />
-          <Footer />
       </div>
+      <Footer />
     </div>
   </div>
 </template>
@@ -30,10 +30,13 @@ export default {
   },
   computed: {
     checkRouter() {
-      return this.$route.path !== "/search" && this.$route.path !== "/register";
+      return this.$route.path.toLowerCase() !== "/login" && this.$route.path.toLowerCase() !== "/register";
     },
   },
   mounted() {
+    if (localStorage.access_token) {
+      this.$store.dispatch('sendToken', localStorage.access_token);
+    }
   },
 };
 </script>
@@ -47,11 +50,22 @@ export default {
   text-align: center;
   color: #2c3e50;
   .os-container {
+    margin-left: 96px;
     .os-main {
-        width: calc(100% - 96px);   // để width: 96px thì bị mấy cái div trong home đè lên
+        width: 100%; 
         margin-top: 86px;
-        margin-left: 96px;
+        padding: 20px 2% 50px 2%;
         position: relative;
+    }
+  }
+
+  .os-container.blank {
+    .os-header, .os-sidebar, .footer {
+      display: none;
+    }
+    .os-main {
+      margin-top: 0;
+      margin-left: 0;
     }
   }
 }
@@ -74,10 +88,14 @@ li {
 a {
   color: #000;
   text-decoration: none;
+
+  &:hover {
+    color: red;
+  }
 }
 
 @media screen and (max-width:768px ) {
-  .os-main{
+  .os-container{
     margin-left: 0 !important;
   }
 }

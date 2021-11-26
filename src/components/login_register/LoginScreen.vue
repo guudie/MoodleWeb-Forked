@@ -13,7 +13,7 @@
         </div>
         <div class="sign-up">
             <h3>Bạn chưa có tài khoản?</h3>
-            <router-link to="/Register">Đăng ký</router-link>
+            <router-link to="/register">Đăng ký</router-link>
         </div>
     </div>
 </template>
@@ -40,6 +40,7 @@
             LoginToken(res) {
                 let token = res.data.items.token
                 this.$store.dispatch('sendToken', token)
+                this.$router.push('/')
             }
         },
         data() {

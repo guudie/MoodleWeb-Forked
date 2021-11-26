@@ -21,7 +21,7 @@
     import icongoogle from "../../assets/images/login_register/google.svg";
     import iconfacebook from "../../assets/images/login_register/facebook.svg";
     import icongithub from "../../assets/images/login_register/github.svg";
-    import AuthenApi from '../../services/apis/AuthenApi'
+    import { Authen } from '../../services/apis/ApiService'
     import Button from './Button.vue'
     import RegisterByEmail from './RegisterByEmailScreen.vue'
     export default {
@@ -35,7 +35,7 @@
                 this.showEmailRegister = true
             },
             AddUser(newUser) {
-                AuthenApi.register(newUser)
+                Authen.register(newUser)
                     .then(res => console.log(res))
                     .catch(e => console.log(e))
             }

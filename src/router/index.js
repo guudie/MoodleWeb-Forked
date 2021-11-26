@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 // Components
-import HomeScreen from "../components/home/HomeScreen.vue"
-import CoursesScreen from "../components/courses/CoursesScreen.vue"
-import Register from "../components/login_register/RegisterScreen"
-import LoginScreen from "../components/login_register/LoginScreen"
+import HomeScreen from "../components/home/HomeScreen.vue";
+import CoursesScreen from "../components/courses/CoursesScreen.vue";
+import Register from "../components/login_register/RegisterScreen";
+import LoginScreen from "../components/login_register/LoginScreen";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 export default new VueRouter({
   routes: [
@@ -28,4 +28,4 @@ export default new VueRouter({
       component: LoginScreen
     }
   ]
-})
+});
