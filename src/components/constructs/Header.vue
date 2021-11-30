@@ -25,10 +25,22 @@
 
       <b-nav-item-dropdown class="avatar-header">
         <template #button-content>
-          <b-avatar variant="primary" class="avatar-img"></b-avatar
-        ></template>
-        <b-dropdown-item>Profile</b-dropdown-item>
-        <b-dropdown-item>Sign Out</b-dropdown-item>
+          <b-avatar variant="primary" class="avatar-img"></b-avatar>
+        </template>
+       <div v-if="$store.state.token">
+          <b-dropdown-item>
+            <router-link to="/profile">profile</router-link>
+          </b-dropdown-item>
+          <b-dropdown-item @click="signOut">Sign Out</b-dropdown-item>
+        </div>
+        <div v-else>
+          <b-dropdown-item>
+            <router-link to="/login">Sign In</router-link>
+          </b-dropdown-item>
+          <b-dropdown-item>
+            <router-link to="/register">Register</router-link>
+          </b-dropdown-item>
+        </div>
       </b-nav-item-dropdown>
     </b-navbar>
   </div>
@@ -36,7 +48,13 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  methods:{
+    signOut(){
+       this.$store.dispatch('sendToken', '');
+       this.$route.path != '/' && this.$router.push('/');
+    }
+  }
 };
 </script>
 

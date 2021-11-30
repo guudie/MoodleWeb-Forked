@@ -12,6 +12,14 @@
 <script>
 export default {
   name: "Footer",
+  computed: {
+    homePage() {
+      if(this.$route.path === '/') {
+        return true
+      }
+      return false
+    }
+  }
 };
 </script>
 

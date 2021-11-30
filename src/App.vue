@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <div class="os-container">
-      <Header v-if="checkRouter"  />
-      <SideBar v-if="checkRouter" />
+    <div :class="`os-container ${checkRouter? '': 'blank' }`">
+      <Header />
+      <SideBar />
       <div class="os-main">
           <router-view />
-          <Footer />
       </div>
+      <Footer />
     </div>
   </div>
 </template>
@@ -30,13 +30,17 @@ export default {
   },
   computed: {
     checkRouter() {
-      return this.$route.path !== "/search" && this.$route.path !== "/register";
+      return this.$route.path.toLowerCase() !== "/login" && this.$route.path.toLowerCase() !== "/register";
     },
   },
   mounted() {
+    if (localStorage.access_token) {
+      this.$store.dispatch('sendToken', localStorage.access_token);
+    }
   },
 };
 </script>
+
 
 <style lang="scss">
 #app {
@@ -46,11 +50,22 @@ export default {
   text-align: center;
   color: #2c3e50;
   .os-container {
+    margin-left: 96px;
     .os-main {
         width: calc(100% - 96px);
         margin-top: 86px;
-        margin-left: 96px;
+        padding: 20px 2% 50px 2%;
         position: relative;
+    }
+  }
+
+  .os-container.blank {
+    .os-header, .os-sidebar, .footer {
+      display: none;
+    }
+    .os-main {
+      margin-top: 0;
+      margin-left: 0;
     }
   }
 }
@@ -73,11 +88,37 @@ li {
 a {
   color: #000;
   text-decoration: none;
+
+  &:hover {
+    color: red;
+  }
 }
 
 @media screen and (max-width:768px ) {
-  .os-main{
+  .os-container{
     margin-left: 0 !important;
   }
+}
+.btn {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    border:none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: inherit;
+}
+.btn:hover {
+  background-color: #dce0e3;
+}
+.btn:focus {
+    outline: none;
+}
+.btn:active {
+    transform: scale(0.98);
 }
 </style>
