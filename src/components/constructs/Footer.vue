@@ -14,10 +14,10 @@ export default {
   name: "Footer",
   computed: {
     homePage() {
-      if(this.$route.path === '/') {
-        return true
+      if (this.$route.path === "/") {
+        return true;
       }
-      return false
+      return false;
     }
   }
 };

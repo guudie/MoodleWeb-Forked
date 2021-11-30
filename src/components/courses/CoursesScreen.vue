@@ -6,9 +6,8 @@
 
 <script>
 export default {
-  name: "CoursesScreen",
+  name: "CoursesScreen"
 };
 </script>
 
-<style>
-</style>  
+<style></style>
