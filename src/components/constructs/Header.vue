@@ -53,7 +53,7 @@ export default {
     signOut() {
       this.$store.dispatch("sendToken", "");
       this.$route.path != "/" && this.$router.push("/");
-    }
+    },
   }
 };
 </script>

@@ -48,9 +48,9 @@
                 <p class="email-address-key">Email address:</p>
               </div>
               <div class="col c-7 value">
-                <p class="full-name-value">Mohamed Ali</p>
+                <p class="full-name-value">{{ user.name }}</p>
                 <p class="phone-number-value">0122 222 222</p>
-                <p class="email-address-value">Mohamed@Ali.com</p>
+                <p class="email-address-value">{{ user.email }}</p>
               </div>
             </div>
           </div>
@@ -65,6 +65,8 @@ import icon from "../../assets/images/information/img-preview.png";
 import icond from "../../assets/images/information/draw.png";
 import "../UI/grid.css";
 import PasswordChange from "./PasswordChangeScreen.vue";
+import state from "../../store/state";
+import { Authen } from "../../services/apis/ApiService";
 
 export default {
   name: "Information",
@@ -76,17 +78,23 @@ export default {
       avt: icon,
       draw: icond,
       passwordShow: false,
-      informationShow: true
+      informationShow: true,
+      user: {}
     };
   },
   methods: {
     onClickChangePassword(e) {
       this.passwordShow = true;
       this.informationShow = false;
+      console.log(this.user);
+      console.log(this.$store.user);
     },
     onClickInformationField() {
       (this.passwordShow = false), (this.informationShow = true);
     }
+  },
+  mounted() {
+    Authen.getUser().then(res => this.user=res.data.items)
   }
 };
 </script>
