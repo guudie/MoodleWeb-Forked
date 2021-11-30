@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col c-3 buttons-column">
         <div class="side-buttons">
-          <router-link to="/info">
+          <router-link to="/profile">
             <p
               :class="[informationShow ? 'active' : '']"
               @click="onClickInformationField"
@@ -11,7 +11,7 @@
               Information and contact
             </p>
           </router-link>
-          <router-link to="/info">
+          <router-link to="/profile">
             <p
               :class="[passwordShow ? 'active' : '']"
               @click="onClickChangePassword"
@@ -65,7 +65,6 @@ import icon from "../../assets/images/information/img-preview.png";
 import icond from "../../assets/images/information/draw.png";
 import "../UI/grid.css";
 import PasswordChange from "./PasswordChangeScreen.vue";
-import state from "../../store/state";
 import { Authen } from "../../services/apis/ApiService";
 
 export default {
@@ -79,7 +78,8 @@ export default {
       draw: icond,
       passwordShow: false,
       informationShow: true,
-      user: {}
+      user: {},
+      
     };
   },
   methods: {
