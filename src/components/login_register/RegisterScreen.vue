@@ -69,6 +69,7 @@
     border: 1px solid steelblue;
     padding: 30px;
     border-radius: 5px;
+    
   }
 .login-button {
     display: flex;

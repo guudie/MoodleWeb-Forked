@@ -52,7 +52,7 @@ export default {
   .os-container {
     margin-left: 96px;
     .os-main {
-        width: 100%; 
+        width: calc(100% - 96px); 
         margin-top: 86px;
         padding: 20px 2% 50px 2%;
         position: relative;
