@@ -55,11 +55,15 @@
                 <p class="full-name-value">{{ user.name }}</p>
                 <p class="phone-number-value">{{ user.phone }}</p>
                 <p class="email-address-value">{{ user.email }}</p>
-                <p class="position-value">{{ user.level == 0 ? 'Student' : 'Teacher' }}</p>
+                <p class="position-value">{{ user.level == 1 ? 'Teacher' : 'Student' }}</p>
               </div>
             </div>
           </div>
-          <ProfileEdit :userInfo="user" v-show="profileEditShow"/>
+          <ProfileEdit
+            :userInfo="user"
+            v-show="profileEditShow"
+            @hide="onClickSwitchEdit()"
+          />
         </div>
       </div>
     </div>
@@ -103,7 +107,7 @@ export default {
     },
     onClickSwitchEdit() {
       this.profileEditShow = !this.profileEditShow;
-    }
+    },
   },
   mounted() {
     Authen.getUser().then(res => this.user=res.data.items)
@@ -114,8 +118,11 @@ export default {
 <style lang="scss" scoped>
 
 .info-screen {
-  padding-top: 50px; // potato code, needs changing later
+  padding: 50px 30px; // potato code, needs changing later
   min-height: 100vh;
+  // box-shadow: -6px 6px 0px 2px #3c2b7a;
+  // outline: 2px solid #3c2b7a;
+  // border-radius: 10px;
 }
 
 .side-buttons {

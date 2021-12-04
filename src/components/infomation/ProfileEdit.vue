@@ -2,33 +2,31 @@
   <form
     action=""
     class="profile-edit-form"
+    @submit="submitHandler"
   >
-    <!-- <div class="col c-3 key">
-        <p class="full-name-key">Full name:</p>
-        <p class="phone-number-key">Phone number:</p>
-        <p class="email-address-key">Email address:</p>
-    </div>
-    <div class="form-control__custom form-controls col c-7">
-      <input type="text" :placeholder="userInfo.name" />
-      <input type="text" :placeholder="userInfo.phone" />
-      <input type="text" :placeholder="userInfo.email" />
-    </div> -->
-
     <div class="form-control__custom form-controls name">
         <div class="col c-3"><label class="key">Full name:</label></div>
-        <div class="col col c-7"><input type="text" :placeholder="userInfo.name" v-model="tmpUser.name"/></div>
+        <div class="col c-7"><input type="text" :placeholder="userInfo.name" v-model="tmpUser.name"/></div>
     </div>
     <div class="form-control__custom form-controls phone">
         <div class="col c-3"><label class="key">Phone number:</label></div>
-        <div class="col col c-7"><input type="text" :placeholder="userInfo.phone" v-model="tmpUser.phone"/></div>
+        <div class="col c-7"><input type="text" :placeholder="userInfo.phone" v-model="tmpUser.phone"/></div>
     </div>
     <div class="form-control__custom form-controls email">
         <div class="col c-3"><label class="key">Email:</label></div>
-        <div class="col col c-7"><input type="text" :placeholder="userInfo.email" v-model="tmpUser.email"/></div>
+        <div class="col c-7"><input type="text" :placeholder="userInfo.email" v-model="tmpUser.email"/></div>
     </div>
+    <div class="form-control__custom form-controls position">
+        <div class="col c-3"><label class="key">Position:</label></div>
+        <div class="col c-7 level">{{userInfo.level == 1? 'Teacher' : 'Student'}}</div>
+    </div>
+    <!-- <div class="required" v-show="showRequiredEmail">
+        <div class="col c-3 padding"></div>
+        <div class="col c-7 inform">* Required</div>
+    </div> -->
 
     <div class="buttons">
-        <button @click="onClickCancel()" type="button" class="cancel-btn">Cancel</button>
+        <button type="button" class="cancel-btn" @click="onClickCancel()">Cancel</button>
         <button class="save-btn">Save</button>
     </div>
   </form>
@@ -39,6 +37,8 @@ export default {
   name: 'ProfileEdit',
   data() {
     return {
+      // showRequiredName: false,
+      // showRequiredEmail: false,
       tmpUser: {
         name: "",
         phone: "",
@@ -51,8 +51,14 @@ export default {
       this.tmpUser.name = "";
       this.tmpUser.phone = "";
       this.tmpUser.email = "";
-      this.$emit('onClickSwitchEdit');
+      this.$emit('hide');
     },
+    submitHandler(event) {
+      event.preventDefault();
+
+      //this.$emit('updateInfo', this.tmpUser);
+      this.onClickCancel();
+    }
   },
   props: {
     userInfo: {},
@@ -83,6 +89,10 @@ export default {
         margin: 0px 0px;
         color: #999;
     }
+    // .key:after {
+    //     content:" *";
+    //     color: red;
+    // }
 
     input {
         margin: 0px 0px;
@@ -116,6 +126,28 @@ export default {
 
     .cancel-btn {
         color: #312366;
+    }
+}
+
+.required {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // .inform {
+    //     padding-left: 30px;
+    //     color: rgb(231, 3, 3);
+    //     text-align: left;
+    // }
+}
+
+.position {
+    min-height: 44px;
+    .level {
+        padding-left: 30px;
+        text-align: left;
+        font-weight: bold;
+        color: #666;
     }
 }
 
