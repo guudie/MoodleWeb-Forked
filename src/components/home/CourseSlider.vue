@@ -82,6 +82,8 @@ export default {
   padding: 20px 60px;
   position: relative;
   border-radius: 10px;
+  box-shadow: -6px 6px 0px 2px #2b1c61;
+  // outline: 2px solid #3c2b7a;
 
   .scr-btn {
     position: absolute;
@@ -102,12 +104,6 @@ export default {
     color: #937de4;
   }
 
-  .scr-btn:active {
-    background-color: #ddd;
-    color: #332077;
-    box-shadow: 0px 2px 3px #412f85;
-  }
-
   .left {
     left: 20px;
   }
@@ -123,7 +119,7 @@ export default {
 
   h2 {
     font-family: "Montserrat";
-    font-weight: 900;
+    font-weight: 700;
     color: #fff;
   }
 
@@ -187,7 +183,7 @@ export default {
   }
 
   .course-info {
-    padding: 10px;
+    padding: 20px;
     text-align: left;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -196,11 +192,13 @@ export default {
     font-family: "Montserrat";
 
     h3 {
-      font-weight: 500;
+      font-weight: bold;
+      font-size: 22px;
     }
 
     p {
       font-weight: 500;
+      font-size: 15px;
     }
   }
 }

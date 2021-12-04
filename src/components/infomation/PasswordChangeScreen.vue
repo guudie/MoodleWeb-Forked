@@ -79,6 +79,8 @@ export default {
   margin-top: 0;
   min-height: 500px;
   font-family: "Montserrat";
+  border-color: #6347c7;
+  border-radius: 10px;
 
   div {
     margin-bottom: 15px;
@@ -95,11 +97,11 @@ export default {
 }
 
 .saveBtn {
-  background-color: rgb(29, 191, 175);
+  background-color: #6347c7;
   color: white;
   width: 10rem;
   height: 3rem;
-  border-radius: 15px;
+  border-radius: 1.5rem;
   outline: none;
   border: 1px solid #ccc;
   margin-top: 1rem;

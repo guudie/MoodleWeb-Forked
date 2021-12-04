@@ -39,14 +39,20 @@ export default {
   min-height: 500px;
   margin-top: 50px;
   border-radius: 10px;
-  background: rgb(83, 108, 235);
-  background: linear-gradient(
-    245deg,
-    rgba(83, 108, 235, 1) 0%,
-    rgba(161, 106, 242, 1) 26%,
-    rgba(187, 115, 215, 1) 50%,
-    rgba(235, 136, 156, 1) 91%
-  );
+  // background: rgb(83, 108, 235);
+  // background: linear-gradient(
+  //   245deg,
+  //   rgb(70, 33, 126) 0%,
+  //   rgb(94, 53, 156) 26%,
+  //   rgb(135, 52, 160) 50%,
+  //   rgb(189, 58, 171) 91%
+  // );
+  box-shadow: -6px 6px 0px 2px #3c2b7a;
+  outline: 2px solid #3c2b7a;
+  // border-top: 2px solid #3c2b7a;
+  // border-bottom: 9px solid #3c2b7a;
+  // border-left: 9px solid #3c2b7a;
+  // border-right: 2px solid #3c2b7a;
   overflow: hidden;
 
   .visit {
@@ -58,7 +64,6 @@ export default {
     .visit-func {
       position: absolute;
       font-family: "Montserrat";
-      font-weight: 500;
       right: 20px;
       margin-left: 40px;
       max-width: 400px;
@@ -68,15 +73,17 @@ export default {
       }
 
       h2 {
-        text-align: left;
-        background-color: #4d3a94;
+        text-align: center;
+        background-color: #6347c7;
         padding: 10px;
         color: #fff;
         cursor: pointer;
+        font-weight: bold;
       }
 
       p {
         text-align: justify;
+        // color: #fff;
       }
     }
   }

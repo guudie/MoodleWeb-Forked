@@ -32,12 +32,15 @@
         <div class="wrapper-information" v-show="informationShow">
           <div class="information-header">
             <h2 class="information-header-text">Infomation</h2>
-            <div class="draw-icon-wrapper">
+            <div @click="onClickSwitchEdit()"
+              class="draw-icon-wrapper"
+              v-show="!profileEditShow"
+            >
               <!-- <img :src="draw" alt="edit" class="draw-icon"> -->
               <i class="fas fa-pen pen-icon"></i>
             </div>
           </div>
-          <div class="grid information-body">
+          <div v-show="!profileEditShow" class="grid information-body">
             <div class="row information-body-row">
               <div class="col c-2 avt">
                 <img :src="avt" />
@@ -46,14 +49,17 @@
                 <p class="full-name-key">Full name:</p>
                 <p class="phone-number-key">Phone number:</p>
                 <p class="email-address-key">Email address:</p>
+                <p class="position-key">Position:</p>
               </div>
               <div class="col c-7 value">
                 <p class="full-name-value">{{ user.name }}</p>
-                <p class="phone-number-value">0122 222 222</p>
+                <p class="phone-number-value">{{ user.phone }}</p>
                 <p class="email-address-value">{{ user.email }}</p>
+                <p class="position-value">{{ user.level == 0 ? 'Student' : 'Teacher' }}</p>
               </div>
             </div>
           </div>
+          <ProfileEdit :userInfo="user" v-show="profileEditShow"/>
         </div>
       </div>
     </div>
@@ -66,11 +72,13 @@ import icond from "../../assets/images/information/draw.png";
 import "../UI/grid.css";
 import PasswordChange from "./PasswordChangeScreen.vue";
 import { Authen } from "../../services/apis/ApiService";
+import ProfileEdit from './ProfileEdit.vue';
 
 export default {
   name: "Information",
   components: {
-    PasswordChange
+    PasswordChange,
+    ProfileEdit,
   },
   data() {
     return {
@@ -78,6 +86,7 @@ export default {
       draw: icond,
       passwordShow: false,
       informationShow: true,
+      profileEditShow: false,
       user: {},
       
     };
@@ -91,6 +100,9 @@ export default {
     },
     onClickInformationField() {
       (this.passwordShow = false), (this.informationShow = true);
+    },
+    onClickSwitchEdit() {
+      this.profileEditShow = !this.profileEditShow;
     }
   },
   mounted() {
@@ -100,9 +112,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// để tạm, tải font sau
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 
 .info-screen {
   padding-top: 50px; // potato code, needs changing later
@@ -164,6 +173,14 @@ export default {
 .information-body {
   margin-top: 12px;
   font-family: "Montserrat";
+
+  p {
+    min-height: 24px;
+  }
+
+  .position-value {
+    font-weight: bold;
+  }
 }
 
 .key {

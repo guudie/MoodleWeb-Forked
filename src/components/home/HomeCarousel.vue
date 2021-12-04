@@ -145,11 +145,7 @@ export default {
     box-shadow: 0px 2px 5px #888;
   }
   .change-slide-btn:hover {
-    background-color: #6e53d1;
-  }
-  .change-slide-btn:active {
-    background-color: #453094;
-    box-shadow: 0px 0px 5px #888;
+    background-color: #6950c7;
   }
 
   .next {
