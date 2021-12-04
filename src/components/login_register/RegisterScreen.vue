@@ -18,7 +18,7 @@
     </div>
     <div class="sign-up">
       <h3>Bạn đã có tài khoản?</h3>
-      <router-link to="/login">Đăng nhập</router-link>
+      <router-link class="sign-up-router" to="/login">Đăng nhập</router-link>
     </div>
   </div>
 </template>
@@ -67,6 +67,7 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
   width: 640px;
   margin: 30px auto;
@@ -74,7 +75,8 @@ export default {
   min-height: 600px;
   border: 1px solid steelblue;
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-family: 'Montserrat';
 }
 .login-button {
   display: flex;
@@ -87,5 +89,9 @@ h1 {
 }
 .sign-up {
   margin-top: 20px;
+}
+
+.sign-up .sign-up-router:hover {
+  color: #6347c7;
 }
 </style>

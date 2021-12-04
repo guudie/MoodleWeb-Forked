@@ -15,6 +15,9 @@
       <p>Vui lòng nhập email</p>
     </div>
     <div class="form-control">
+      <label class="password">Mật khẩu</label>
+    </div>
+    <div class="form-control">
       <input
         v-model="verify"
         type="password"
@@ -75,9 +78,9 @@ export default {
   margin: 30px auto;
   overflow: auto;
   min-height: 600px;
-  border: 1px solid steelblue;
   padding: 30px;
-  border-radius: 5px;
+  /* border: 1px solid steelblue;
+  border-radius: 5px; */
 }
 .email-login {
   width: 80%;
@@ -102,15 +105,17 @@ h1 {
 }
 .form-control label {
   display: block;
+  font-weight: bold;
 }
 .form-control input {
   width: 100%;
   height: 44px;
-  padding: 3px 7px;
+  padding: 3px 15px;
   font-size: 17px;
   border: 2px solid #dce0e3;
   border-radius: 25px;
-  margin-top: 10px;
+  margin-top: 0px;
+  margin-bottom: 15px;
 }
 .form-control input:focus {
   outline: none;
@@ -135,8 +140,13 @@ h1 {
   color: #fff;
   border-radius: 25px;
   width: 100%;
-  background: rgb(29, 191, 175);
+  background: #6347c7;
 }
+
+/* .sign-in-btn:active {
+  transition: none;
+} */
+
 .form-control p {
   margin-bottom: 0;
 }

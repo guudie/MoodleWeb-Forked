@@ -74,9 +74,6 @@ export default {
 </script>
 
 <style lang="scss">
-// để tạm, tải font sau
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 
 .form-change-password {
   margin-top: 0;

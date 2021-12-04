@@ -36,8 +36,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 // .activeSlide {
 //     position: relative;
 //     width: 1024px;
@@ -49,7 +47,7 @@ button {
   height: 40px;
   border: 4px solid #fff;
   border-radius: 20px;
-  font-family: "Work Sans";
+  font-family: "Montserrat";
   font-weight: 500;
   color: #fff;
   background-color: transparent;
@@ -85,13 +83,13 @@ img {
   //margin-left: calc((100% - min(100%, 1600px))/2);
 
   h2 {
-    font-family: "Work Sans";
+    font-family: "Montserrat";
     font-weight: 900;
     text-shadow: 0px 0px 5px #555;
     color: #fff;
   }
   p {
-    font-family: "Work Sans";
+    font-family: "Montserrat";
     font-weight: 500;
     color: #fff;
   }

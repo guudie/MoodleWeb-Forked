@@ -58,8 +58,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 
 ::-webkit-scrollbar {
   height: 5px;
@@ -124,7 +122,7 @@ export default {
   position: relative;
 
   h2 {
-    font-family: "Work Sans";
+    font-family: "Montserrat";
     font-weight: 900;
     color: #fff;
   }
@@ -140,7 +138,7 @@ export default {
     color: #fff;
 
     div {
-      font-family: "Work Sans";
+      font-family: "Montserrat";
       font-weight: 500;
     }
   }
@@ -195,7 +193,7 @@ export default {
     border-bottom-left-radius: 10px;
     background-color: #fff;
     //color: #FFF;
-    font-family: "Work Sans";
+    font-family: "Montserrat";
 
     h3 {
       font-weight: 500;
