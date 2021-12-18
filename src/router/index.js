@@ -1,11 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-// Components
 import HomeScreen from "../components/home/HomeScreen.vue";
 import CoursesScreen from "../components/courses/CoursesScreen.vue";
-import Register from "../components/login_register/RegisterScreen";
-import LoginScreen from "../components/login_register/LoginScreen";
+import Information from "../components/infomation/InfoScreen.vue";
+import Register from "../components/login_register/RegisterScreen.vue";
+import LoginScreen from "../components/login_register/LoginScreen.vue";
 
 Vue.use(VueRouter);
 
@@ -20,9 +20,10 @@ export default new VueRouter({
       component: CoursesScreen
     },
     {
-      path: "/register",
-      component: Register
+      path: "/profile",
+      component: Information
     },
+    { path: "/register", component: Register },
     {
       path: "/login",
       component: LoginScreen

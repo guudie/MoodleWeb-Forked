@@ -58,8 +58,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 
 ::-webkit-scrollbar {
   height: 5px;
@@ -84,6 +82,8 @@ export default {
   padding: 20px 60px;
   position: relative;
   border-radius: 10px;
+  box-shadow: -6px 6px 0px 2px #2b1c61;
+  // outline: 2px solid #3c2b7a;
 
   .scr-btn {
     position: absolute;
@@ -104,12 +104,6 @@ export default {
     color: #937de4;
   }
 
-  .scr-btn:active {
-    background-color: #ddd;
-    color: #332077;
-    box-shadow: 0px 2px 3px #412f85;
-  }
-
   .left {
     left: 20px;
   }
@@ -124,8 +118,8 @@ export default {
   position: relative;
 
   h2 {
-    font-family: "Work Sans";
-    font-weight: 900;
+    font-family: "Montserrat";
+    font-weight: 700;
     color: #fff;
   }
 
@@ -140,7 +134,7 @@ export default {
     color: #fff;
 
     div {
-      font-family: "Work Sans";
+      font-family: "Montserrat";
       font-weight: 500;
     }
   }
@@ -189,20 +183,22 @@ export default {
   }
 
   .course-info {
-    padding: 10px;
+    padding: 20px;
     text-align: left;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: #fff;
     //color: #FFF;
-    font-family: "Work Sans";
+    font-family: "Montserrat";
 
     h3 {
-      font-weight: 500;
+      font-weight: bold;
+      font-size: 22px;
     }
 
     p {
       font-weight: 500;
+      font-size: 15px;
     }
   }
 }

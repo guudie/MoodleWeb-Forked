@@ -1,5 +1,12 @@
 <template>
   <div class="home-carousel">
+    <!-- <transition-group>
+            <img v-for="(slide, index) in slides" 
+                :key="index" 
+                :src="slide.img" 
+                v-show="index===currentSlide"
+            />
+        </transition-group> -->
     <CarouselSlide
       class="slides"
       v-for="(slide, index) in slides"
@@ -138,11 +145,7 @@ export default {
     box-shadow: 0px 2px 5px #888;
   }
   .change-slide-btn:hover {
-    background-color: #6e53d1;
-  }
-  .change-slide-btn:active {
-    background-color: #453094;
-    box-shadow: 0px 0px 5px #888;
+    background-color: #6950c7;
   }
 
   .next {

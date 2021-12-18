@@ -10,7 +10,7 @@
         ea cupiditate aspernatur accusamus aliquid incidunt quia voluptates
         minima porro!
       </p>
-      <a href="#"><button class="register">Register now</button></a>
+      <router-link to="/register"><button class="register">Register now</button></router-link>
     </div>
   </div>
 </template>
@@ -25,8 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
 
 .overview {
   position: relative;
