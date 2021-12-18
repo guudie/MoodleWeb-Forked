@@ -20,7 +20,10 @@
           <b-list-group-item v-for="(item, index) in courseList" :key="index">
             <router-link :to="item.href">
               <div class="course-item">
-                <div class="course-image" :style="{backgroundImage: `url(${item.image})`}">
+                <div
+                  class="course-image"
+                  :style="{ backgroundImage: `url(${item.image})` }"
+                >
                   <span>{{ item.short_title }}</span>
                 </div>
               </div>
@@ -63,7 +66,7 @@
             <router-link :to="item.href">
               <div class="course-item">
                 <div class="course-image">
-                  <img :src="item.image" :alt="item.title" >
+                  <img :src="item.image" :alt="item.title" />
                 </div>
                 <div class="course-title">{{ item.title }}</div>
               </div>
@@ -85,7 +88,7 @@ import iconHome from "../../assets/images/sidebar/house.png";
 import iconLearn from "../../assets/images/sidebar/learn.png";
 import iconQuestion from "../../assets/images/sidebar/conversation.png";
 
-import { Course } from "../../services/apis/ApiService"
+import { Course } from "../../services/apis/ApiService";
 
 export default {
   name: "SideBar",
@@ -113,8 +116,8 @@ export default {
   },
 
   watch: {
-    "$store.state.token": function (vNew) {
-      if(vNew) {
+    "$store.state.token": function(vNew) {
+      if (vNew) {
         this.menuList = [
           {
             title: "Home",
@@ -132,73 +135,77 @@ export default {
             icon: iconQuestion
           }
         ];
-        Course.getList("0").then(res => {
+        Course.getList("0")
+          .then(res => {
             this.courseList = res.data.items.map(item => {
-              return {title: item.title, short_title: item.short_title, href: "course/" + item.id, image: item.image}
-            })
-        }).catch(() => {this.courseList= []})
+              return {
+                title: item.title,
+                short_title: item.short_title,
+                href: "course/" + item.id,
+                image: item.image
+              };
+            });
+          })
+          .catch(() => {
+            this.courseList = [];
+          });
       } else {
-          this.menuList = [
-            {
-              title: "Home",
-              href: "/",
-              icon: iconHome
-            },
-            {
-              title: "Learn",
-              href: "/login",
-              icon: iconLearn
-            },
-            {
-              title: "Question",
-              href: "/login",
-              icon: iconQuestion
-            }
-          ];
-          this.courseList = [];
+        this.menuList = [
+          {
+            title: "Home",
+            href: "/",
+            icon: iconHome
+          },
+          {
+            title: "Learn",
+            href: "/login",
+            icon: iconLearn
+          },
+          {
+            title: "Question",
+            href: "/login",
+            icon: iconQuestion
+          }
+        ];
+        this.courseList = [];
       }
     }
   },
 
-
-  mounted () {
-    
-  }
-
+  mounted() {}
 };
 </script>
 
 <style lang="scss" scope>
 .os-sidebar {
-  
-    ::-webkit-scrollbar {
-      opacity: 0;
-      width: 5px;
-    }
+  ::-webkit-scrollbar {
+    opacity: 0;
+    width: 5px;
+  }
 
-    &:hover {
+  &:hover {
     /* width */
-      ::-webkit-scrollbar {
-        opacity: 1;
-      }
-
-      /* Track */
-      ::-webkit-scrollbar-track {
-        background: #fff;
-      }
-
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-        background: #ddd;
-        opacity: 0.5;
-        border-radius: 10px;
-      }
-
-      /* Handle on hover */
-      ::-webkit-scrollbar-thumb:hover {
-        background: #fff;
-      }
+    ::-webkit-scrollbar {
+      opacity: 1;
     }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #fff;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #ddd;
+      opacity: 0.5;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #fff;
+    }
+  }
 
   .sidebar-container {
     width: 96px;
@@ -210,7 +217,6 @@ export default {
     border-right: 1px solid #eee;
     z-index: 500;
     overflow-y: scroll;
-
 
     .menu-sidebar {
       .list-group-item {
@@ -280,7 +286,7 @@ export default {
 
             span {
               width: 90%;
-              background-color: rgba(0,0,0, 0.7);
+              background-color: rgba(0, 0, 0, 0.7);
               border-radius: 5px;
               font-weight: 800;
               padding: 0 5px;
@@ -351,7 +357,6 @@ export default {
 
       .list-course {
         border-top: 1px solid #666;
-        
         .list-title {
           margin: 20px 0;
 

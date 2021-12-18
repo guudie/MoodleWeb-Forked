@@ -27,7 +27,7 @@
         <template #button-content>
           <b-avatar variant="primary" class="avatar-img"></b-avatar>
         </template>
-       <div v-if="$store.state.token">
+        <div v-if="$store.state.token">
           <b-dropdown-item>
             <router-link to="/profile">profile</router-link>
           </b-dropdown-item>
@@ -49,11 +49,11 @@
 <script>
 export default {
   name: "Header",
-  methods:{
-    signOut(){
-       this.$store.dispatch('sendToken', '');
-       this.$route.path != '/' && this.$router.push('/');
-    }
+  methods: {
+    signOut() {
+      this.$store.dispatch("sendToken", "");
+      this.$route.path != "/" && this.$router.push("/");
+    },
   }
 };
 </script>
