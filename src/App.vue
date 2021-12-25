@@ -43,6 +43,8 @@ export default {
 
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap");
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -52,7 +54,7 @@ export default {
   .os-container {
     margin-left: 96px;
     .os-main {
-        width: 100%; 
+        width: 100%;      // width 100% nhìn đẹp hơn 100% - 96px :v
         margin-top: 86px;
         padding: 20px 2% 50px 2%;
         position: relative;
