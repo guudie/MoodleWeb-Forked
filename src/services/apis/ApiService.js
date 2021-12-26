@@ -20,14 +20,19 @@ export const Authen = {
       headers: { x_authorization: state.token },
       data: params
     });
-  },
+  }
 };
 
 export const Course = {
   getList(cateId) {
     return api.get({
-      url: `course?category=${cateId}`,
-      headers: { x_authorization: state.token }
+      url: `course?category=${cateId}`
+      // headers: { x_authorization: state.token }
+    });
+  },
+  getCategory() {
+    return api.get({
+      url: "course/categories"
     });
   }
 };
