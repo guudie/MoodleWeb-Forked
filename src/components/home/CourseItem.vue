@@ -10,6 +10,10 @@
       <div class="course-info">
         <h3>{{ course.title }}</h3>
         <!-- <p>{{ course.description }}</p> -->
+        <div class="side-info">
+          <i class="fas fa-users"></i>
+          <span>{{ course.short_title }}</span>
+        </div>
       </div>
     </div>
     <i @click="scrLeft" class="left fas fa-chevron-left scr-btn"></i>
@@ -71,7 +75,7 @@ export default {
 
   .img-wrapper {
     // width: 300px;
-    height: 100px;
+    height: 115px;
     overflow: hidden;
 
     img {
@@ -102,6 +106,17 @@ export default {
     p {
       font-weight: 500;
       font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    .side-info{
+      display: block;
+      i{
+        color: #4e4e4e;
+      }
+      span{
+        margin-left: 8px;
+      }
     }
   }
 }
