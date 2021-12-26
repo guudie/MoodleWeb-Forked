@@ -32,7 +32,8 @@
         <div class="wrapper-information" v-show="informationShow">
           <div class="information-header">
             <h2 class="information-header-text">Infomation</h2>
-            <div @click="onClickSwitchEdit()"
+            <div
+              @click="onClickSwitchEdit()"
               class="draw-icon-wrapper"
               v-show="!profileEditShow"
             >
@@ -55,7 +56,9 @@
                 <p class="full-name-value">{{ user.name }}</p>
                 <p class="phone-number-value">{{ user.phone }}</p>
                 <p class="email-address-value">{{ user.email }}</p>
-                <p class="position-value">{{ user.level == 1 ? 'Teacher' : 'Student' }}</p>
+                <p class="position-value">
+                  {{ user.level == 1 ? "Teacher" : "Student" }}
+                </p>
               </div>
             </div>
           </div>
@@ -76,13 +79,13 @@ import icond from "../../assets/images/information/draw.png";
 import "../UI/grid.css";
 import PasswordChange from "./PasswordChangeScreen.vue";
 import { Authen } from "../../services/apis/ApiService";
-import ProfileEdit from './ProfileEdit.vue';
+import ProfileEdit from "./ProfileEdit.vue";
 
 export default {
   name: "Information",
   components: {
     PasswordChange,
-    ProfileEdit,
+    ProfileEdit
   },
   data() {
     return {
@@ -91,8 +94,7 @@ export default {
       passwordShow: false,
       informationShow: true,
       profileEditShow: false,
-      user: {},
-      
+      user: {}
     };
   },
   methods: {
@@ -107,16 +109,15 @@ export default {
     },
     onClickSwitchEdit() {
       this.profileEditShow = !this.profileEditShow;
-    },
+    }
   },
   mounted() {
-    Authen.getUser().then(res => this.user=res.data.items)
+    Authen.getUser().then(res => (this.user = res.data.items));
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 .info-screen {
   padding: 50px 30px; // potato code, needs changing later
   min-height: 100vh;

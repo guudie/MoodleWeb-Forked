@@ -20,7 +20,7 @@ export const Authen = {
       headers: { x_authorization: state.token },
       data: params
     });
-  }
+  },
 };
 
 export const Course = {

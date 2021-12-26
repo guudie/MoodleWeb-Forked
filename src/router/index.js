@@ -6,6 +6,7 @@ import CoursesScreen from "../components/courses/CoursesScreen.vue";
 import Information from "../components/infomation/InfoScreen.vue";
 import Register from "../components/login_register/RegisterScreen.vue";
 import LoginScreen from "../components/login_register/LoginScreen.vue";
+import CourseDetail from "../components/courses/CourseDetail.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,10 @@ export default new VueRouter({
     {
       path: "/login",
       component: LoginScreen
+    },
+    {
+      path: "/courses/:courseId",
+      component: CourseDetail
     }
   ]
 });
