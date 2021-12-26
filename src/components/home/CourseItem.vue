@@ -9,7 +9,7 @@
 
       <div class="course-info">
         <h3>{{ course.title }}</h3>
-        <p>{{ course.description }}</p>
+        <!-- <p>{{ course.description }}</p> -->
       </div>
     </div>
     <i @click="scrLeft" class="left fas fa-chevron-left scr-btn"></i>
@@ -67,10 +67,12 @@ export default {
   margin-bottom: 20px;
   margin-left: 15px;
   margin-right: 15px;
+  max-width: 300px;
 
   .img-wrapper {
-    width: 300px;
+    // width: 300px;
     height: 100px;
+    overflow: hidden;
 
     img {
       border-top-left-radius: 10px;
@@ -90,6 +92,9 @@ export default {
     font-family: "Montserrat";
 
     h3 {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
       font-weight: bold;
       font-size: 22px;
     }
