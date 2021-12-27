@@ -83,6 +83,7 @@ export default {
   height: 100vh;
   padding: 1rem;
   padding-top: 3rem;
+  font-family: "Montserrat";
 }
 
 .infor {
@@ -105,23 +106,28 @@ export default {
 
 .sidebar {
   width: 30%;
-  border-radius: 12px;
-  height: 30rem;
-  border: 1px solid #ccc;
+  height: fit-content;
+  border-radius: 10px;
   text-align: center;
+  margin-left: 20px;
+  /* box-shadow: -6px 6px 0px 2px #3c2b7a; */
+  outline: 2px solid #6347c7;
 }
 
 .sidebar > header {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 500;
   min-height: 33px;
   margin-bottom: 12px;
-  color: steelblue;
+  color: #6347c7;
   margin-top: 2.5rem;
 }
 
 .sidebar img {
   width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  outline: 2px solid #6347c7;
 }
 
 .sidebar ul {
@@ -136,17 +142,19 @@ export default {
 
 button {
   padding: 0.5rem 1rem;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  background-color: #6347c7;
+  border: 2px solid #6347c7;
+  border-radius: 10px;
   margin-bottom: 1rem;
+  font-weight: bold;
+  color: white;
 }
 
 button:active,
 button:hover,
 button:focus {
-  background: steelblue;
-  color: white;
+  background: white;
+  color: #6347c7;
   outline: none;
 }
 
