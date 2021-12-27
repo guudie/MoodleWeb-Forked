@@ -5,3 +5,7 @@ export const sendToken = ({ commit }, token) => {
 export const getUser = ({ commit }, user) => {
   commit("GET_USER", user);
 };
+
+export const logOut = ({ commit }) => {
+  commit("LOG_OUT");
+};

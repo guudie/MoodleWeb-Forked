@@ -116,11 +116,11 @@ export default {
       let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       this.showEmailRequest = this.text.match(regexEmail) ? false : true;
       if (
-        !this.name ||
-        !this.password ||
-        !this.verify ||
-        (!this.position1 && !this.position2) ||
-        !this.text.match(regexEmail)
+        this.showNameRequest ||
+        this.showPasswordRequest ||
+        this.showPasswordRetypeRequest || 
+        this.showPositionRequest ||
+        this.showEmailRequest
       ) {
         return;
       }

@@ -1,154 +1,144 @@
 <template>
-  <div class="item">
-    <Card class="content">
-      <div class="image">
-        <img :src="course.img" :alt="course.name" />
+  <div class="details">
+    <div class="infor">
+      <header>{{ course.title }}</header>
+      <p class="description">{{ course.description }}</p>
+      <!-- <h2>What can you learn</h2> -->
+      <h2 class="chapter-area">Nội dung khóa học</h2>
+      <div v-for="(chap, index) in course.chapters" :key="index">
+        <div class="chapter-item">
+          <p>{{ chap.title }}</p>
+        </div>
       </div>
-      <div class="info">
-        <h2>{{ course.name }}</h2>
-        <p>{{ course.desc }}</p>
+    </div>
+    <div class="sidebar">
+      <div>
+        <img :src="course.image" :alt="course.title" />
       </div>
-      <div class="actions">
-        <button @click="enrollCourse()" class="btn btn--enroll">ENROLL</button>
+      <header>MIỄN PHÍ</header>
+      <button @click="enrollCourse" v-show="!registed">ĐĂNG KÝ NGAY</button>
+      <button @click="continueLearn" v-show="registed">
+        BẮT ĐẦU HỌC
+      </button>
+      <div class="prerequisite">
+        <h2>TIÊN QUYẾT</h2>
+        <ul>
+          <li>Trình Độ Cơ Bản</li>
+          <li>{{course.chapters.length }} bài học để hoàn thành</li>
+          <li>Học mọi lúc mọi nơi</li>
+        </ul>
       </div>
-    </Card>
+    </div>
   </div>
 </template>
 
 <script>
-import Button from "../login_register/Button.vue";
-import Card from "../UI/Card.vue";
+import { Course } from "../../services/apis/ApiService";
 export default {
   name: "CourseDetail",
   data() {
     return {
-      courses: [
-        {
-          id: "c1",
-          name: "OOP",
-          desc: "This is the course's brief description. Later changed",
-          img: "https://picsum.photos/seed/345253/1920/640/?blur=2"
-        },
-        {
-          id: "c2",
-          name: "Linear algebra",
-          desc: "This is the course's brief description. Later changed",
-          img: "https://picsum.photos/seed/345253/1920/640/?blur=2"
-        },
-        {
-          id: "c3",
-          name: "Calculus 1",
-          desc: "This is the course's brief description. Later changed",
-          img: "https://picsum.photos/seed/345253/1920/640/?blur=2"
-        },
-        {
-          id: "c4",
-          name: "Calculus 2",
-          desc: "This is the course's brief description. Later changed",
-          img: "https://picsum.photos/seed/345253/1920/640/?blur=2"
-        },
-        {
-          id: "c5",
-          name: "Calculus 3",
-          desc: "This is the course's brief description. Later changed",
-          img: "https://picsum.photos/seed/345253/1920/640/?blur=2"
-        },
-        {
-          id: "c6",
-          name: "Calculus 4",
-          desc: "This is the course's brief description. Later changed",
-          img: "https://picsum.photos/seed/345253/1920/640/?blur=2"
-        },
-        {
-          id: "c7",
-          name: "Calculus 5",
-          desc: "This is the course's brief description. Later changed",
-          img: "https://picsum.photos/seed/345253/1920/640/?blur=2"
-        }
-      ],
-      course: {
-        id: "",
-        name: "",
-        desc: "",
-        img: ""
-      },
-      isLoggedIn: false
+      courses: [],
+      course: {},
+      isLoggedIn: false,
+      registed: false
     };
-  },
-  components: {
-    Card,
-    Button
-  },
-  created() {
-    const courseId = this.$route.params.courseId;
-    // console.log(courseId);
-    this.course = this.courses.find(course => course.id === courseId);
-    // console.log(this.user)
   },
   methods: {
     enrollCourse() {
-      if(!this.isLoggedIn) {
-        this.$router.push('/login')
+      if (!this.isLoggedIn) {
+        this.$router.push("/login");
       } else {
-
+        Course.registerCourse({ course_id: this.course.id });
+        this.registed = true
       }
+    },
+    continueLearn() {
+      window.location.href = "https://www.youtube.com/watch?v=PkZNo7MFNFg";
     }
   },
   mounted() {
     this.isLoggedIn = localStorage.getItem("access_token");
+    const courseId = this.$route.params.courseId;
+    Course.getCourseDetail(courseId).then(res => {
+      this.course = res.data.items;
+      console.log(this.course);
+      this.registed = this.course.registed == 1 ? true : false;
+    });
   }
 };
 </script>
 
 <style scoped>
-.item {
-  margin: 1rem auto;
-  padding: 0;
-  width: 90%;
-  max-width: 40rem;
-}
-
-.content {
-  padding: 0;
-}
-
-.info {
+.details {
+  display: flex;
+  margin: 0rem 10rem;
+  height: 100vh;
   padding: 1rem;
+  padding-top: 3rem;
+}
+
+.infor {
+  width: 70%;
+  text-align: left;
+}
+
+.infor header {
+  font-size: 2.5rem;
+  font-weight: bold;
+  min-height: 33px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.infor h2 {
+  margin-top: 6rem;
+  text-transform: uppercase;
+}
+
+.sidebar {
+  width: 30%;
+  border-radius: 12px;
+  height: 30rem;
+  border: 1px solid #ccc;
   text-align: center;
 }
 
-.image {
+.sidebar > header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  min-height: 33px;
+  margin-bottom: 12px;
+  color: steelblue;
+  margin-top: 2.5rem;
+}
+
+.sidebar img {
   width: 100%;
-  height: 12.5rem;
-  margin-right: 1.5rem;
 }
 
-.image img {
-  width: 40rem;
-  height: 100%;
-  object-fit: cover;
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
-.info h2,
-.info h3,
-.info p {
-  margin: 0 0 0.5rem 0;
+.prerequisite {
+  margin-top: 4px;
 }
 
-.actions {
-  padding: 1rem;
-  text-align: center;
-  border-top: 1px solid #ccc;
+button {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
 }
 
-.btn--enroll {
-  background-color: transparent;
-  border: 1px solid steelblue;
-}
-
-.btn--enroll:hover,
-.btn--enroll:active {
-  background-color: rgb(66, 134, 190);
+button:active,
+button:hover,
+button:focus {
+  background: steelblue;
   color: white;
   outline: none;
 }

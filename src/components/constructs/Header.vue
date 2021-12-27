@@ -29,7 +29,10 @@
         </template>
         <div v-if="$store.state.token">
           <b-dropdown-item>
-            <router-link to="/profile">profile</router-link>
+            <router-link to="/profile">Profile</router-link>
+          </b-dropdown-item>
+          <b-dropdown-item v-show="this.isTeacher">
+            <router-link to="/course/create">Create Course</router-link>
           </b-dropdown-item>
           <b-dropdown-item @click="signOut">Sign Out</b-dropdown-item>
         </div>
@@ -47,13 +50,28 @@
 </template>
 
 <script>
+import { Authen } from "../../services/apis/ApiService";
 export default {
   name: "Header",
+  data() {
+    return {
+      user: {},
+      isTeacher: false
+    };
+  },
   methods: {
     signOut() {
-      this.$store.dispatch("sendToken", "");
+      this.$store.dispatch("logOut");
       this.$route.path != "/" && this.$router.push("/");
-    },
+    }
+  },
+  mounted() {
+    if (localStorage.getItem("access_token")) {
+      Authen.getUser().then(res => {
+        this.user = res.data.items;
+        this.isTeacher = this.user.level == 1 ? true : false;
+      });
+    }
   }
 };
 </script>

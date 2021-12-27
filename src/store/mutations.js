@@ -8,3 +8,8 @@ export const GET_USER = (state, user) => {
   state.user = user;
   // console.log(state.user)
 }
+
+export const LOG_OUT = (state, token) => {
+  localStorage.removeItem("access_token")
+  state.token = ""
+}

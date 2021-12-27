@@ -34,5 +34,31 @@ export const Course = {
     return api.get({
       url: "course/categories"
     });
+  },
+  registerCourse(params) {
+    return api.post({
+      url: "course/register",
+      headers: { x_authorization: state.token },
+      data: params
+    });
+  },
+  getRegisteredCourse() {
+    return api.get({
+      url: "course/registered",
+      headers: { x_authorization: state.token }
+    });
+  },
+  createCourse(params) {
+    return api.post({
+      url: "course/create",
+      headers: { x_authorization: state.token },
+      data: params
+    });
+  },
+  getCourseDetail(course_id) {
+    return api.get({
+      url: `course/detail?course=${course_id}`,
+      headers: { x_authorization: state.token }
+    });
   }
 };

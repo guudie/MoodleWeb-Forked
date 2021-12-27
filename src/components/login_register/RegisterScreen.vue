@@ -42,7 +42,9 @@ export default {
     },
     AddUser(newUser) {
       Authen.register(newUser)
-        .then(res => console.log(res))
+        .then(res => {
+          this.$router.push("/login")
+        })
         .catch(e => console.log(e));
     }
   },
@@ -67,7 +69,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
   width: 640px;
   margin: 30px auto;
@@ -76,7 +77,7 @@ export default {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 .login-button {
   display: flex;
