@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { Authen } from "../../services/apis/ApiService";
 
 export default {
   name: "Overview",
@@ -21,13 +20,10 @@ export default {
     };
   },
   mounted() {
-    //Authen.getUser().then(res => (this.user = res.data.items));
-    Authen.getUser().then(() => {
-      this.registerLink = "/courses";
-    })
-    .catch(() => {
+    if (!localStorage.getItem('access_token'))
       this.registerLink = "/register";
-    });
+    else
+      this.registerLink = "/courses"
   }
 };
 </script>

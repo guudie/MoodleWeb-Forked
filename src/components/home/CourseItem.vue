@@ -106,13 +106,10 @@ export default {
   margin-left: 15px;
   margin-right: 15px;
   max-width: 300px;
-  .course-info {
-    width: 300px;
-  }
 
   .img-wrapper {
     // width: 300px;
-    height: 115px;
+    height: 155px;
     overflow: hidden;
 
     img {
@@ -124,6 +121,7 @@ export default {
   }
 
   .course-info {
+    width: 300px;
     padding: 20px;
     text-align: left;
     border-bottom-right-radius: 10px;

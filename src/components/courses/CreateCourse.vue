@@ -216,6 +216,7 @@ export default {
   padding: 30px;
   border: 1px solid slateblue;
   border-radius: 5px;
+  font-family: "Montserrat";
 }
 .course-create {
   width: 80%;
@@ -264,6 +265,7 @@ h1 {
   border-radius: 25px;
   width: 100%;
   background: #6347c7;
+  border: 2px solid #6347c7;
 }
 
 .form-control p {
@@ -289,13 +291,13 @@ select {
   border-radius: 6px;
   font-weight: bold;
   font-size: 16px;
-  color: #fff;
+  color: #6347c7;
   padding: 10px 2px;
   border-radius: 25px;
-  width: 8rem;
-  background: steelblue;
+  width: 10rem;
   outline: none;
-  border: none;
+  border: 2px solid #6347c7;
+  background-color: white;
 }
 
 .input-chapter-area {
@@ -307,9 +309,9 @@ select {
   margin-bottom: 15px;
   margin-left: 10px;
   border-radius: 5px;
-  background: steelblue;
+  background: #6347c7;
   color: white;
   outline: none;
-  border: 1px solid steelblue;
+  border: 1px solid #6347c7;
 }
 </style>
