@@ -27,45 +27,40 @@
         <template #button-content>
           <b-avatar variant="primary" class="avatar-img"></b-avatar>
         </template>
-        <div v-if="$store.state.token">
+        <div v-if="$store.state.token" class="sub-menu">
           <b-dropdown-item>
             <router-link to="/profile">Profile</router-link>
           </b-dropdown-item>
-          <b-dropdown-item @click="signOut">Sign Out</b-dropdown-item>
+          <b-dropdown-item @click="signOut">Đăng Xuất</b-dropdown-item>
         </div>
         <div v-else>
           <b-dropdown-item>
-            <router-link to="/login">Sign In</router-link>
+            <router-link to="/login">Đăng nhập</router-link>
           </b-dropdown-item>
           <b-dropdown-item>
-            <router-link to="/register">Register</router-link>
+            <router-link to="/register">Đăng ký</router-link>
           </b-dropdown-item>
         </div>
       </b-nav-item-dropdown>
     </b-navbar>
-    <LoadingSpinner class="loading" v-show="isLoading" />
   </div>
 </template>
 
 <script>
-import LoadingSpinner from '../UI/LoadingSpinner.vue'
 export default {
   name: "Header",
-  components: {
-    LoadingSpinner
-  },
   data() {
     return {
       user: {},
-      isLoading: false
     };
   },
   methods: {
     signOut() {
-      this.isLoading = true
       this.$store.dispatch("logOut");
       this.$route.path != "/" && this.$router.push("/");
-      this.isLoading = false
+    },
+    addCourse() {
+      this.$router.push('course/create')
     }
   }
 };
@@ -125,5 +120,11 @@ export default {
 }
 .loading {
   height: 100vh;
+}
+.sub-menu {
+  width: 100%;
+}
+b-dropdown-item {
+  width: 100%;
 }
 </style>
