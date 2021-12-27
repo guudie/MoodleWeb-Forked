@@ -42,6 +42,13 @@ export const Course = {
       data: params
     });
   },
+  unRegisterCourse(params) {
+    return api.post({
+      url: "course/unregister",
+      headers: { x_authorization: state.token },
+      data: params
+    });
+  },
   getRegisteredCourse() {
     return api.get({
       url: "course/registered",

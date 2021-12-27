@@ -32,6 +32,9 @@
           <li>Học mọi lúc mọi nơi</li>
         </ul>
       </div>
+      <button @click="unregister" v-show="registed" class="unregister-btn">
+        HỦY ĐĂNG KÝ
+      </button>
     </div>
   </div>
 </template>
@@ -59,6 +62,10 @@ export default {
         Course.registerCourse({ course_id: this.course.id });
         this.registed = true;
       }
+    },
+    unregister() {
+        Course.unRegisterCourse({ course_id: this.course.id });
+        this.registed = false;
     },
     continueLearn() {
       window.location.href = "https://www.youtube.com/watch?v=PkZNo7MFNFg";
@@ -163,5 +170,18 @@ button:focus {
   font-size: 5rem;
   font-weight: bold;
   margin-top: 10rem;
+}
+
+.unregister-btn {
+  background-color: red;
+  border: 2px solid red;
+}
+
+.unregister-btn:hover,
+.unregister-btn:active,
+.unregister-btn:focus {
+  background: white;
+  color: rgb(206, 9, 9);
+  outline: none;
 }
 </style>
