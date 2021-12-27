@@ -1,7 +1,7 @@
 <template>
   <div class="if">
-    <loading-spinner v-show="user==undefined" />
-    <div class="info-screen grid wide" v-show="user">
+    <loading-spinner v-show="isLoading" />
+    <div class="info-screen grid wide" v-show="!isLoading">
       <div class="row">
         <div class="col c-3 buttons-column">
           <div class="side-buttons">
@@ -99,7 +99,8 @@ export default {
       passwordShow: false,
       informationShow: true,
       profileEditShow: false,
-      user: undefined
+      user: {},
+      isLoading: true
     };
   },
   methods: {
@@ -116,7 +117,10 @@ export default {
   },
   mounted() {
     if (localStorage.getItem("access_token")) {
-      Authen.getUser().then(res => (this.user = res.data.items));
+      Authen.getUser().then(res => {
+        this.user = res.data.items
+        this.isLoading = false
+      });
     }
   }
 };

@@ -9,21 +9,18 @@
 
       <div class="course-info">
         <h3>{{ course.title }}</h3>
-        <!-- <p>{{ course.description }}</p> -->
         <div class="side-info">
           <i class="fas fa-users"></i>
           <span>{{ course.short_title }}</span>
         </div>
       </div>
     </div>
-    <i @click="scrLeft" class="left fas fa-chevron-left scr-btn"></i>
-    <i @click="scrRight" class="right fas fa-chevron-right scr-btn"></i>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CourseItem",
+  name: "CourseItemAll",
   props: {
     courses: Array
   },
@@ -48,20 +45,11 @@ export default {
 
 <style lang="scss" scoped>
 .slides-container {
-  padding-top: 5px;
   display: flex;
-  overflow-x: scroll;
-  gap: 10px;
-}
-
-.slides-container:hover {
-  &::-webkit-scrollbar-thumb {
-    background-color: #7759e6;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #937de4;
-  }
+  flex-wrap: wrap;
+  margin-top: 20px;
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .course {

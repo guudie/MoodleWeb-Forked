@@ -24,11 +24,7 @@ export default {
     };
   },
   mounted() {
-    let cateId;
-    Course.getCategory().then(res => {
-      cateId = res.data.items[0].id;
-    });
-    Course.getList(0).then(res => (this.courses = res.data.items));
+    Course.getList(0).then(res => (this.courses = res.data.items.slice(0,4)));
   },
   components: {
     HomeCarousel,

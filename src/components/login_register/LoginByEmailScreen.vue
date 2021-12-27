@@ -1,53 +1,59 @@
 <template>
-  <form @submit="onSubmit" class="email-login">
-    <div class="form-control">
-      <label class="email">Email</label>
-    </div>
-    <div class="form-control">
-      <input
-        v-model="text"
-        type="text"
-        name="phoneNum"
-        placeholder="Nhập email"
-      />
-    </div>
-    <div v-show="showEmailRequest" class="form-control" style="color:red">
-      <p>Vui lòng nhập email</p>
-    </div>
-    <div class="form-control">
-      <label class="password">Mật khẩu</label>
-    </div>
-    <div class="form-control">
-      <input
-        v-model="verify"
-        type="password"
-        name="verify"
-        placeholder="Nhập mật khẩu"
-      />
-    </div>
-    <div v-show="showPasswordRequest" class="form-control" style="color:red">
-      <p>Vui lòng nhập mật khẩu</p>
-    </div>
-    <div class="form-control">
-      <input type="submit" value="Đăng nhập" class="sign-in-btn" />
-    </div>
-  </form>
+  <div>
+    <form @submit="onSubmit" class="email-login">
+      <div class="form-control">
+        <label class="email">Email</label>
+      </div>
+      <div class="form-control">
+        <input
+          v-model="text"
+          type="text"
+          name="phoneNum"
+          placeholder="Nhập email"
+        />
+      </div>
+      <div v-show="showEmailRequest" class="form-control" style="color:red">
+        <p>Vui lòng nhập email</p>
+      </div>
+      <div class="form-control">
+        <label class="password">Mật khẩu</label>
+      </div>
+      <div class="form-control">
+        <input
+          v-model="verify"
+          type="password"
+          name="verify"
+          placeholder="Nhập mật khẩu"
+        />
+      </div>
+      <div v-show="showPasswordRequest" class="form-control" style="color:red">
+        <p>Vui lòng nhập mật khẩu</p>
+      </div>
+      <div class="form-control">
+        <input type="submit" value="Đăng nhập" class="sign-in-btn" />
+      </div>
+    </form>
+    <LoadingSpinner class="loading" v-show="isLoading" />
+  </div>
 </template>
 
 <script>
 import { Authen } from "../../services/apis/ApiService";
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 import Button from "./Button.vue";
 export default {
   name: "LoginByEmail",
   components: {
-    Button
+    Button,
+    LoadingSpinner
   },
   data() {
     return {
       text: "",
       verify: "",
       showEmailRequest: false,
-      showPasswordRequest: false
+      showPasswordRequest: false,
+      isLoading: false
     };
   },
   methods: {
@@ -66,7 +72,10 @@ export default {
         email: this.text,
         password: this.verify
       };
-      Authen.login(user).then(res => this.$emit("loginToken", res));
+      this.isLoading = true;
+      Authen.login(user).then(res => {
+        this.$emit("loginToken", res);
+      });
     }
   }
 };
@@ -81,6 +90,9 @@ export default {
   padding: 30px;
   /* border: 1px solid steelblue;
   border-radius: 5px; */
+}
+.loading {
+  height: 100vh;
 }
 .email-login {
   width: 80%;

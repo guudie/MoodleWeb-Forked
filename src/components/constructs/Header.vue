@@ -31,9 +31,6 @@
           <b-dropdown-item>
             <router-link to="/profile">Profile</router-link>
           </b-dropdown-item>
-          <b-dropdown-item v-show="this.isTeacher">
-            <router-link to="/course/create">Create Course</router-link>
-          </b-dropdown-item>
           <b-dropdown-item @click="signOut">Sign Out</b-dropdown-item>
         </div>
         <div v-else>
@@ -46,31 +43,29 @@
         </div>
       </b-nav-item-dropdown>
     </b-navbar>
+    <LoadingSpinner class="loading" v-show="isLoading" />
   </div>
 </template>
 
 <script>
-import { Authen } from "../../services/apis/ApiService";
+import LoadingSpinner from '../UI/LoadingSpinner.vue'
 export default {
   name: "Header",
+  components: {
+    LoadingSpinner
+  },
   data() {
     return {
       user: {},
-      isTeacher: false
+      isLoading: false
     };
   },
   methods: {
     signOut() {
+      this.isLoading = true
       this.$store.dispatch("logOut");
       this.$route.path != "/" && this.$router.push("/");
-    }
-  },
-  mounted() {
-    if (localStorage.getItem("access_token")) {
-      Authen.getUser().then(res => {
-        this.user = res.data.items;
-        this.isTeacher = this.user.level == 1 ? true : false;
-      });
+      this.isLoading = false
     }
   }
 };
@@ -127,5 +122,8 @@ export default {
       box-shadow: none;
     }
   }
+}
+.loading {
+  height: 100vh;
 }
 </style>
