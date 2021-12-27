@@ -3,7 +3,7 @@
     <div class="course" v-for="(course, index) in courses" :key="index">
       <div class="img-wrapper">
         <router-link :to="`/courses/${course.id}`">
-          <img :src="course.image" />
+          <img class="imgg" :src="course.image" :alt="course.title" />
         </router-link>
       </div>
 
@@ -50,9 +50,10 @@ export default {
 .slides-container {
   padding-top: 5px;
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll;
   gap: 10px;
-  overflow-y: hidden;
+  // overflow-y: hidden;
+  // flex-wrap: wrap;
 }
 
 .slides-container:hover {
@@ -65,6 +66,39 @@ export default {
   }
 }
 
+// .course {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   width: 300px;
+//   text-align: left;
+//   margin-right: 20px;
+//   background-color: whitesmoke;
+//   border-radius: 6px;
+// }
+
+// .img-wrapper {
+//   height: 100%;
+//   width: 100%;
+// }
+
+// .imgg {
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 6px;
+// }
+
+// .img-wrapper {
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .course > img {
+//   width: 100%;
+//   height: 100%;
+// }
+
 .course {
   box-shadow: -2px 3px 8px 1px #342764;
   border-radius: 10px;
@@ -72,6 +106,9 @@ export default {
   margin-left: 15px;
   margin-right: 15px;
   max-width: 300px;
+  .course-info {
+    width: 300px;
+  }
 
   .img-wrapper {
     // width: 300px;
