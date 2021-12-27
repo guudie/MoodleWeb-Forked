@@ -3,7 +3,7 @@
     <HomeCarousel />
     <Overview />
 
-    <CourseSlider title="These are our courses" :courses="this.courses" />
+    <CourseSlider title="Khóa học nổi bật" :courses="this.courses" />
 
     <ForumCard />
   </div>

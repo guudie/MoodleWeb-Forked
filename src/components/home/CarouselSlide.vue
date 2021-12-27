@@ -11,9 +11,9 @@
         <div class="content">
           <h2>{{ slideInfo.title }}</h2>
           <p>{{ slideInfo.text }}</p>
-          <a :href="slideInfo.url"
-            ><button>{{ slideInfo.urlText }}</button></a
-          >
+          <a :href="slideInfo.url">
+            <button>{{ slideInfo.urlText }}</button>
+          </a>
         </div>
       </div>
     </transition>
@@ -44,11 +44,12 @@ export default {
 
 button {
   width: auto;
-  height: 40px;
-  border: 4px solid #fff;
-  border-radius: 20px;
+  height: 30px;
+  padding: 0px 15px;
+  border: 2px solid #fff;
+  border-radius: 15px;
   font-family: "Montserrat";
-  font-weight: 500;
+  font-weight: 600;
   color: #fff;
   background-color: transparent;
 }

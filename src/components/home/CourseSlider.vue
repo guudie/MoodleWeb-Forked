@@ -4,7 +4,7 @@
       <h2>{{ title }}</h2>
       <router-link :to="'/courses'">
         <div class="view-more">
-          <div>View more</div>
+          <div>Xem thêm</div>
           <i class="fas fa-chevron-right"></i>
         </div>
       </router-link>

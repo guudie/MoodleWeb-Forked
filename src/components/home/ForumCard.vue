@@ -3,19 +3,20 @@
     <div class="visit">
       <div class="visit-func">
         <router-link :to="'/forum'">
-          <h2>Visit the Forum!</h2>
+          <h2>Tham gia Forum!</h2>
         </router-link>
-        <p class="checkout">Checkout our forum!</p>
+        <p class="checkout">Thảo luận trong diễn đàn của chúng tôi</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-          recusandae, voluptates soluta aliquid nulla nisi blanditiis ducimus
-          vitae fuga quod quam, minima quis, nam suscipit officia ex? Quas, non
-          officiis.
+          Bạn có thắc mắc gì về một chủ đề hay muốn chia sẻ
+          kiến thức và kinh nghiệm của mình? Bạn có bài tập
+          mà bạn đang suy nghĩ nát óc? Hay bạn chỉ muốn trò
+          chuyện?
         </p>
+        <router-link to="/forum"><p class="visit-now">Tham gia thảo luận ngay bây giờ!</p></router-link>
       </div>
     </div>
     <div class="img-wrapper">
-      <img :src="'https://picsum.photos/seed/23426/1920/1080/?blur=2'" />
+      <img src="..\..\assets\images\forum\forum_pic.jpg" />
     </div>
   </div>
 </template>
@@ -74,7 +75,7 @@ export default {
 
       h2 {
         text-align: center;
-        background-color: #6347c7;
+        background-color: #3c2b7a;
         padding: 10px;
         color: #fff;
         cursor: pointer;
@@ -84,6 +85,14 @@ export default {
       p {
         text-align: justify;
         // color: #fff;
+      }
+      
+      .visit-now {
+        color: #4d4d4d;
+      }
+
+      .visit-now:hover {
+        color: #6347c7;
       }
     }
   }
@@ -101,7 +110,7 @@ export default {
       left: 0;
       top: 0px;
       bottom: 0px;
-      box-shadow: 3px 3px 8px 2px #3e2c80;
+      // box-shadow: 3px 3px 8px 2px #3e2c80;
       border-radius: 10px;
     }
   }

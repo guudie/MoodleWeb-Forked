@@ -40,35 +40,19 @@ export default {
       slides: [
         {
           img: "https://picsum.photos/seed/235253/1920/240/?blur=2",
-          title: "BIG TITLE",
+          title: "Học với EDUlanthropy",
           text:
-            "Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd",
+            "Tìm hiểu về EDUlanthropy",
           url: "#",
-          urlText: "More info"
+          urlText: "Xem video"
         },
         {
           img: "https://picsum.photos/seed/345253/1920/240/?blur=2",
-          title: "BIG TITLE",
+          title: "Gặp gỡ dev team",
           text:
-            "Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd",
+            "Gặp gỡ nhóm HTVD trên Facebook!",
           url: "#",
-          urlText: "More info"
-        },
-        {
-          img: "https://picsum.photos/seed/756878/1920/240/?blur=2",
-          title: "BIG TITLE",
-          text:
-            "Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd",
-          url: "#",
-          urlText: "More info"
-        },
-        {
-          img: "https://picsum.photos/seed/23426/1920/240/?blur=2",
-          title: "BIG TITLE",
-          text:
-            "Lorem ipssum dsjflak jldskfj kahdfkjhf jhsdfj hsjkdhf ksh ksjh kd",
-          url: "#",
-          urlText: "More info"
+          urlText: "Facebook page"
         }
       ],
       currentSlide: 0,

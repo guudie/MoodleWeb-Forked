@@ -9,7 +9,11 @@
 
       <div class="course-info">
         <h3>{{ course.title }}</h3>
-        <p>{{ course.description }}</p>
+        <!-- <p>{{ course.description }}</p> -->
+        <div class="side-info">
+          <i class="fas fa-users"></i>
+          <span>{{ course.short_title }}</span>
+        </div>
       </div>
     </div>
     <i @click="scrLeft" class="left fas fa-chevron-left scr-btn"></i>
@@ -67,10 +71,12 @@ export default {
   margin-bottom: 20px;
   margin-left: 15px;
   margin-right: 15px;
+  max-width: 300px;
 
   .img-wrapper {
-    width: 300px;
-    height: 100px;
+    // width: 300px;
+    height: 115px;
+    overflow: hidden;
 
     img {
       border-top-left-radius: 10px;
@@ -90,6 +96,9 @@ export default {
     font-family: "Montserrat";
 
     h3 {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
       font-weight: bold;
       font-size: 22px;
     }
@@ -97,6 +106,17 @@ export default {
     p {
       font-weight: 500;
       font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    .side-info{
+      display: block;
+      i{
+        color: #4e4e4e;
+      }
+      span{
+        margin-left: 8px;
+      }
     }
   }
 }
