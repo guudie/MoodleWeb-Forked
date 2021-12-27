@@ -1,6 +1,7 @@
 <template>
   <div class="details">
-    <div class="infor">
+    <loading-spinner v-show="!course.chapters" />
+    <div class="infor" v-show="course.chapters">
       <header>{{ course.title }}</header>
       <p class="description">{{ course.description }}</p>
       <!-- <h2>What can you learn</h2> -->
@@ -11,7 +12,7 @@
         </div>
       </div>
     </div>
-    <div class="sidebar">
+    <div class="sidebar" v-show="course.chapters">
       <div>
         <img :src="course.image" :alt="course.title" />
       </div>
@@ -24,7 +25,10 @@
         <h2>TIÊN QUYẾT</h2>
         <ul>
           <li>Trình Độ Cơ Bản</li>
-          <li>{{course.chapters.length }} bài học để hoàn thành</li>
+          <li>
+            {{ course.chapters ? course.chapters.length : 0 }} bài học để hoàn
+            thành
+          </li>
           <li>Học mọi lúc mọi nơi</li>
         </ul>
       </div>
@@ -34,14 +38,17 @@
 
 <script>
 import { Course } from "../../services/apis/ApiService";
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 export default {
+  components: { LoadingSpinner },
   name: "CourseDetail",
   data() {
     return {
       courses: [],
       course: {},
       isLoggedIn: false,
-      registed: false
+      registed: false,
+      isLoading: false
     };
   },
   methods: {
@@ -50,7 +57,7 @@ export default {
         this.$router.push("/login");
       } else {
         Course.registerCourse({ course_id: this.course.id });
-        this.registed = true
+        this.registed = true;
       }
     },
     continueLearn() {
@@ -141,5 +148,12 @@ button:focus {
   background: steelblue;
   color: white;
   outline: none;
+}
+
+.loading {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: bold;
+  margin-top: 10rem;
 }
 </style>

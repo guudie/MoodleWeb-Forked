@@ -119,6 +119,7 @@ export default {
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       max-width: 100%;
+      object-fit: contain;
       //max-height: 100%;
     }
   }
