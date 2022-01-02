@@ -9,6 +9,7 @@ export const Authen = {
     return api.post({ url: "auth/register", data: params });
   },
   getUser() {
+    console.log(state.token)
     return api.get({
       url: "user/profile",
       headers: { x_authorization: state.token }
@@ -17,6 +18,13 @@ export const Authen = {
   changePassword(params) {
     return api.post({
       url: "user/changePassword",
+      headers: { x_authorization: state.token },
+      data: params,
+    });
+  },
+  editProfile(params) {
+    return api.post({
+      url: "user/edit",
       headers: { x_authorization: state.token },
       data: params
     });

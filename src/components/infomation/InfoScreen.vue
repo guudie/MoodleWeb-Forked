@@ -55,11 +55,13 @@
                   <p class="position-key">Position:</p>
                 </div>
                 <div class="col c-7 value">
-                  <p class="full-name-value">{{ user ? user.name : '' }}</p>
-                  <p class="phone-number-value">{{ user ? user.phone : '' }}</p>
-                  <p class="email-address-value">{{ user ? user.email : '' }}</p>
+                  <p class="full-name-value">{{ user ? user.name : "" }}</p>
+                  <p class="phone-number-value">{{ user ? user.phone : "" }}</p>
+                  <p class="email-address-value">
+                    {{ user ? user.email : "" }}
+                  </p>
                   <p class="position-value">
-                    {{ user ? (user.level == 1 ? "Teacher" : "Student") : ''}}
+                    {{ user ? (user.level == 1 ? "Teacher" : "Student") : "" }}
                   </p>
                 </div>
               </div>
@@ -99,7 +101,7 @@ export default {
       passwordShow: false,
       informationShow: true,
       profileEditShow: false,
-      user: {},
+      user: null,
       isLoading: true
     };
   },
@@ -117,10 +119,18 @@ export default {
   },
   mounted() {
     if (localStorage.getItem("access_token")) {
-      Authen.getUser().then(res => {
-        this.user = res.data.items
-        this.isLoading = false
-      });
+      Authen.getUser()
+        .then(res => {
+          this.user = res.data.items;
+          this.isLoading = false;
+          // console.log('yes')
+        })
+        .catch(err => {
+          // console.log(err.msg)
+        });
+    } else {
+      this.isLoading = false;
+      return;
     }
   }
 };
