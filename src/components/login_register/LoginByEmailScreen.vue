@@ -75,7 +75,12 @@ export default {
       this.isLoading = true;
       Authen.login(user).then(res => {
         this.$emit("loginToken", res);
-      });
+      })
+      .catch(error => {
+        alert(error.data.msg)
+        this.isLoading = false
+        return
+        })
     }
   }
 };

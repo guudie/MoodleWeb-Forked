@@ -53,16 +53,6 @@
       <div v-show="showIntroRequest" class="form-control" style="color:red">
         <p>Vui lòng nhập giới thiệu</p>
       </div>
-      <!-- Noi dung -->
-      <div class="form-control">
-        <label class="content">Nội dung</label>
-      </div>
-      <div class="form-control">
-        <input v-model="content" placeholder="Nhập nội dung khóa học" />
-      </div>
-      <div v-show="showContentRequest" class="form-control" style="color:red">
-        <p>Vui lòng nhập nội dung khóa học</p>
-      </div>
       <!-- chapter -->
       <div class="add-chapter-btn">
         <button type="button" @click="addChapter" v-show="!showTitleChapter">
@@ -86,17 +76,13 @@
         <p>Vui lòng nhập tiêu đề chương học</p>
       </div>
       <div v-show="showTitleChapter" class="form-control input-chapter-area">
-        <input v-model="chapterContent" placeholder="Nhập nội dung chương" />
+        <input
+          v-model="chapterContent"
+          placeholder="Nhập nội dung chương (Tùy chọn)"
+        />
         <button @click="realAdd" type="button" class="add-chapter-icon">
           +
         </button>
-      </div>
-      <div
-        v-show="showChapterContentRequest"
-        class="form-control"
-        style="color:red"
-      >
-        <p>Vui lòng nhập nội dung chương học</p>
       </div>
       <div class="form-control">
         <input type="submit" value="Tạo" class="create-btn" />
@@ -118,7 +104,6 @@ export default {
       title: "",
       desc: "",
       intro: "",
-      content: "",
       chapters: [],
       chapterTitle: "",
       chapterContent: "",
@@ -129,11 +114,8 @@ export default {
       showTitleRequest: false,
       showDescRequest: false,
       showIntroRequest: false,
-      showContentRequest: false,
-      showChapterRequest: false,
       showCateRequest: false,
-      showChapterTitleRequest: false,
-      showChapterContentRequest: false
+      showChapterTitleRequest: false
     };
   },
   methods: {
@@ -144,46 +126,35 @@ export default {
       this.showTitleChapter = !this.showTitleChapter;
     },
     realAdd() {
-      if (this.chapterTitle && this.chapterContent) {
-        this.chapters.push({
-          title: this.chapterTitle,
-          content: this.chapterContent,
-          video: ""
-        });
-        this.chapterTitle = "";
-        this.chapterContent = "";
-      } else {
-        this.showChapterTitleRequest = this.chapterTitle ? false : true;
-        this.showChapterContentRequest = this.chapterContent ? false : true;
+      if (!this.chapterTitle) {
+        this.showChapterTitleRequest = true;
+        return;
       }
+      this.chapters.push({
+        title: this.chapterTitle,
+        content: this.chapterContent || "",
+        video: ""
+      });
+      this.chapterTitle = ""
+      this.chapterContent = ""
+      this.showTitleChapter = false
     },
     onSubmit(event) {
       event.preventDefault();
       this.showTitleRequest = this.title ? false : true;
       this.showDescRequest = this.desc.length >= 5 ? false : true;
       this.showIntroRequest = this.intro ? false : true;
-      this.showContentRequest = this.content ? false : true;
-      // this.showChapterRequest = this.chapters.length !== 0 ? false : true;
       this.showCateRequest = this.cate != 0 ? false : true;
-      console.log(this.showTitleRequest);
-      console.log(this.showDescRequest);
-      console.log(this.showIntroRequest);
-      console.log(this.showContentRequest);
-      console.log(this.showChapterRequest);
-      console.log(this.cate);
-      console.log(this.showCateRequest);
-
-      // this.showChapterTitleRequest = this.chapterTitle ? false : true;
-      // this.showChapterContentRequest = this.chapterContent ? false : true;
+      if(!this.chapterTitle && this.chapterContent) {
+        this.showChapterTitleRequest = true
+      }
       if (
         this.showTitleRequest ||
         this.showDescRequest ||
         this.showIntroRequest ||
-        this.showContentRequest ||
         this.showChapterRequest ||
-        this.showCateRequest
-        // this.showChapterTitleRequest ||
-        // this.showChapterContentRequest
+        this.showCateRequest ||
+        this.showChapterTitleRequest
       ) {
         return;
       }
@@ -193,12 +164,10 @@ export default {
         short_title: this.title.substr(0, 6),
         description: this.desc,
         intro: this.intro,
-        content: this.content,
         chapters: this.chapters,
         image: this.image || ""
       };
-      // console.log(newCourse);
-      Course.createCourse(newCourse);
+      Course.createCourse(newCourse).then(res => this.$router.push('/'))
     }
   },
   mounted() {

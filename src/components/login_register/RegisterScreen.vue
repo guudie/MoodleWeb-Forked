@@ -20,6 +20,7 @@
       <h3>Bạn đã có tài khoản?</h3>
       <router-link class="sign-up-router" to="/login">Đăng nhập</router-link>
     </div>
+    <LoadingSpinner class="loading" v-show="isLoading" />
   </div>
 </template>
 <script>
@@ -30,22 +31,29 @@ import icongithub from "../../assets/images/login_register/github.svg";
 import { Authen } from "../../services/apis/ApiService";
 import Button from "./Button.vue";
 import RegisterByEmail from "./RegisterByEmailScreen.vue";
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 export default {
   name: "RegisterScreen",
   components: {
     Button,
-    RegisterByEmail
+    RegisterByEmail,
+    LoadingSpinner
   },
   methods: {
     onClick() {
       this.showEmailRegister = true;
     },
     AddUser(newUser) {
+      this.isLoading = true
       Authen.register(newUser)
         .then(res => {
-          this.$router.push("/login")
+          this.$router.push("/login");
         })
-        .catch(e => console.log(e));
+        .catch(e => {
+          alert(error.data.msg);
+          this.isLoading = false;
+          return;
+        });
     }
   },
   data() {
@@ -54,7 +62,8 @@ export default {
       iconps: iconperson,
       icongg: icongoogle,
       iconfb: iconfacebook,
-      icongh: icongithub
+      icongh: icongithub,
+      isLoading: false
     };
   },
   computed: {

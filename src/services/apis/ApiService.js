@@ -67,5 +67,12 @@ export const Course = {
       url: `course/detail?course=${course_id}`,
       headers: { x_authorization: state.token }
     });
+  },
+  editCourseDetail(params) {
+    return api.post({
+      url: "course/edit",
+      headers: { x_authorization: state.token },
+      data: params
+    });
   }
 };

@@ -141,7 +141,7 @@ export default {
               return {
                 title: item.title,
                 short_title: item.short_title,
-                href: "/course/registered" + item.id,
+                href: "/courses/" + item.id,
                 image: item.image
               };
             });
