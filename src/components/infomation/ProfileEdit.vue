@@ -78,6 +78,10 @@ export default {
         this.userInfo.name = this.tmpUser.name;
       if(this.tmpUser.phone)
         this.userInfo.phone = this.tmpUser.phone;
+      if(this.tmpUser.address)
+        this.userInfo.address = this.tmpUser.address;
+      if(this.tmpUser.date_birth)
+        this.userInfo.date_birth = this.tmpUser.date_birth;
       ///
       this.onClickCancel();
       const newUser = {
