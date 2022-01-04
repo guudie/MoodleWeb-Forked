@@ -3,23 +3,27 @@
     <div class="content">
       <h1>Welcome!</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos magnam
-        omnis repellendus optio vitae velit sapiente odit natus eum molestias
-        excepturi eaque neque, nulla, placeat vel soluta dignissimos voluptatum
-        a eligendi labore, tenetur sit veniam? Assumenda illo minus fuga. Sint
-        ea cupiditate aspernatur accusamus aliquid incidunt quia voluptates
-        minima porro!
+        Chào mừng đến với EDUlanthropy. Đăng ký học miễn phí ngay bây giờ!
       </p>
-      <router-link to="/register"><button class="register">Register now</button></router-link>
+      <router-link :to="registerLink"><button class="register">Đăng ký học</button></router-link>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "Overview",
   data() {
-    return {};
+    return {
+      registerLink: {type: String, required: true}
+    };
+  },
+  mounted() {
+    if (!localStorage.getItem('access_token'))
+      this.registerLink = "/register";
+    else
+      this.registerLink = "/courses"
   }
 };
 </script>
@@ -64,6 +68,7 @@ export default {
 
     button {
       position: absolute;
+      margin: 20px 0px;
       left: 15px;
       width: 200px;
       height: 40px;

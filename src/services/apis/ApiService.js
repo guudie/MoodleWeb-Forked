@@ -9,6 +9,7 @@ export const Authen = {
     return api.post({ url: "auth/register", data: params });
   },
   getUser() {
+    console.log(state.token)
     return api.get({
       url: "user/profile",
       headers: { x_authorization: state.token }
@@ -18,6 +19,13 @@ export const Authen = {
     return api.post({
       url: "user/changePassword",
       headers: { x_authorization: state.token },
+      data: params,
+    });
+  },
+  editProfile(params) {
+    return api.post({
+      url: "user/edit",
+      headers: { x_authorization: state.token },
       data: params
     });
   }
@@ -26,8 +34,53 @@ export const Authen = {
 export const Course = {
   getList(cateId) {
     return api.get({
-      url: `course?category=${cateId}`,
+      url: `course?category=${cateId}`
+      // headers: { x_authorization: state.token }
+    });
+  },
+  getCategory() {
+    return api.get({
+      url: "course/categories"
+    });
+  },
+  registerCourse(params) {
+    return api.post({
+      url: "course/register",
+      headers: { x_authorization: state.token },
+      data: params
+    });
+  },
+  unRegisterCourse(params) {
+    return api.post({
+      url: "course/unregister",
+      headers: { x_authorization: state.token },
+      data: params
+    });
+  },
+  getRegisteredCourse() {
+    return api.get({
+      url: "course/registered",
       headers: { x_authorization: state.token }
+    });
+  },
+  createCourse(params) {
+    return api.post({
+      url: "course/create",
+      headers: { x_authorization: state.token },
+      data: params
+    });
+  },
+  getCourseDetail(course_id) {
+    return api.get({
+      url: `course/detail?course=${course_id}`,
+      headers: { x_authorization: state.token }
+    });
+  },
+  editCourseDetail(params) {
+    return api.post({
+      url: "course/edit",
+      headers: { x_authorization: state.token },
+      data: params
     });
   }
 };

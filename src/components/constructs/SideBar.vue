@@ -141,8 +141,12 @@ export default {
               return {
                 title: item.title,
                 short_title: item.short_title,
+
                 href: "/course/registered" + item.id,
                 image: item.image,
+
+                href: "/courses/" + item.id,
+                image: item.image
               };
             });
           })

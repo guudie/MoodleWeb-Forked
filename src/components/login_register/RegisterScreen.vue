@@ -20,6 +20,7 @@
       <h3>Bạn đã có tài khoản?</h3>
       <router-link class="sign-up-router" to="/login">Đăng nhập</router-link>
     </div>
+    <LoadingSpinner class="loading" v-show="isLoading" />
   </div>
 </template>
 <script>
@@ -30,20 +31,29 @@ import icongithub from "../../assets/images/login_register/github.svg";
 import { Authen } from "../../services/apis/ApiService";
 import Button from "./Button.vue";
 import RegisterByEmail from "./RegisterByEmailScreen.vue";
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 export default {
   name: "RegisterScreen",
   components: {
     Button,
-    RegisterByEmail
+    RegisterByEmail,
+    LoadingSpinner
   },
   methods: {
     onClick() {
       this.showEmailRegister = true;
     },
     AddUser(newUser) {
+      this.isLoading = true
       Authen.register(newUser)
-        .then(res => console.log(res))
-        .catch(e => console.log(e));
+        .then(res => {
+          this.$router.push("/login");
+        })
+        .catch(e => {
+          alert(error.data.msg);
+          this.isLoading = false;
+          return;
+        });
     }
   },
   data() {
@@ -52,7 +62,8 @@ export default {
       iconps: iconperson,
       icongg: icongoogle,
       iconfb: iconfacebook,
-      icongh: icongithub
+      icongh: icongithub,
+      isLoading: false
     };
   },
   computed: {
@@ -67,7 +78,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
   width: 640px;
   margin: 30px auto;
@@ -76,7 +86,7 @@ export default {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 10px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 .login-button {
   display: flex;

@@ -31,6 +31,7 @@ export default {
   font-size: 14px;
   padding: 20px 10px;
   background: #f3f6fa;
+  bottom: 0;
 
   .copy-right {
     flex: 0 50%;

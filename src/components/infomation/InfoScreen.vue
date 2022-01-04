@@ -1,69 +1,77 @@
 <template>
-  <div class="info-screen grid wide">
-    <div class="row">
-      <div class="col c-3 buttons-column">
-        <div class="side-buttons">
-          <router-link to="/profile">
-            <p
-              :class="[informationShow ? 'active' : '']"
-              @click="onClickInformationField"
-            >
-              Information and contact
-            </p>
-          </router-link>
-          <router-link to="/profile">
-            <p
-              :class="[passwordShow ? 'active' : '']"
-              @click="onClickChangePassword"
-            >
-              Change Password
-            </p>
-          </router-link>
-          <router-link to="/teammanagement">
-            <p>
-              Team Management
-            </p>
-          </router-link>
+  <div class="if">
+    <loading-spinner v-show="isLoading" />
+    <div class="info-screen grid wide" v-show="!isLoading">
+      <div class="row">
+        <div class="col c-3 buttons-column">
+          <div class="side-buttons">
+            <router-link to="/profile">
+              <p
+                :class="[informationShow ? 'active' : '']"
+                @click="onClickInformationField"
+              >
+                Information and contact
+              </p>
+            </router-link>
+            <router-link to="/profile">
+              <p
+                :class="[passwordShow ? 'active' : '']"
+                @click="onClickChangePassword"
+              >
+                Change Password
+              </p>
+            </router-link>
+            <router-link to="/teammanagement">
+              <p>
+                Team Management
+              </p>
+            </router-link>
+          </div>
         </div>
-      </div>
-      <div class="col c-9">
-        <PasswordChange v-show="passwordShow" />
-        <router-view></router-view>
-        <div class="wrapper-information" v-show="informationShow">
-          <div class="information-header">
-            <h2 class="information-header-text">Infomation</h2>
-            <div @click="onClickSwitchEdit()"
-              class="draw-icon-wrapper"
-              v-show="!profileEditShow"
-            >
-              <!-- <img :src="draw" alt="edit" class="draw-icon"> -->
-              <i class="fas fa-pen pen-icon"></i>
-            </div>
-          </div>
-          <div v-show="!profileEditShow" class="grid information-body">
-            <div class="row information-body-row">
-              <div class="col c-2 avt">
-                <img :src="avt" />
-              </div>
-              <div class="col c-3 key">
-                <p class="full-name-key">Full name:</p>
-                <p class="phone-number-key">Phone number:</p>
-                <p class="email-address-key">Email address:</p>
-                <p class="position-key">Position:</p>
-              </div>
-              <div class="col c-7 value">
-                <p class="full-name-value">{{ user.name }}</p>
-                <p class="phone-number-value">{{ user.phone }}</p>
-                <p class="email-address-value">{{ user.email }}</p>
-                <p class="position-value">{{ user.level == 1 ? 'Teacher' : 'Student' }}</p>
+        <div class="col c-9">
+          <PasswordChange v-show="passwordShow" />
+          <router-view></router-view>
+          <div class="wrapper-information" v-show="informationShow">
+            <div class="information-header">
+              <h2 class="information-header-text">Infomation</h2>
+              <div
+                @click="onClickSwitchEdit()"
+                class="draw-icon-wrapper"
+                v-show="!profileEditShow"
+              >
+                <!-- <img :src="draw" alt="edit" class="draw-icon"> -->
+                <i class="fas fa-pen pen-icon"></i>
               </div>
             </div>
+            <div v-show="!profileEditShow" class="grid information-body">
+              <div class="row information-body-row">
+                <div class="col c-2 avt">
+                  <img :src="avt" />
+                </div>
+                <div class="col c-3 key">
+                  <p class="full-name-key">Full name:</p>
+                  <p class="phone-number-key">Phone number:</p>
+                  <p class="email-address-key">Email address:</p>
+                  <p class="position-key">Position:</p>
+                </div>
+                <div class="col c-7 value">
+                  <p class="full-name-value">{{ user ? user.name : "" }}</p>
+                  <p class="phone-number-value">{{ user ? user.phone : "" }}</p>
+                  <p class="email-address-value">
+                    {{ user ? user.email : "" }}
+                  </p>
+                  <p class="position-value">
+                    {{ user ? (user.level == 1 ? "Teacher" : "Student") : "" }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <ProfileEdit
+              :userInfo="user"
+              v-show="profileEditShow"
+              @hide="onClickSwitchEdit()"
+            />
           </div>
-          <ProfileEdit
-            :userInfo="user"
-            v-show="profileEditShow"
-            @hide="onClickSwitchEdit()"
-          />
         </div>
       </div>
     </div>
@@ -76,13 +84,15 @@ import icond from "../../assets/images/information/draw.png";
 import "../UI/grid.css";
 import PasswordChange from "./PasswordChangeScreen.vue";
 import { Authen } from "../../services/apis/ApiService";
-import ProfileEdit from './ProfileEdit.vue';
+import ProfileEdit from "./ProfileEdit.vue";
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 
 export default {
   name: "Information",
   components: {
     PasswordChange,
     ProfileEdit,
+    LoadingSpinner
   },
   data() {
     return {
@@ -91,32 +101,45 @@ export default {
       passwordShow: false,
       informationShow: true,
       profileEditShow: false,
-      user: {},
-      
+      user: null,
+      isLoading: true
     };
   },
   methods: {
     onClickChangePassword(e) {
       this.passwordShow = true;
       this.informationShow = false;
-      console.log(this.user);
-      console.log(this.$store.user);
     },
     onClickInformationField() {
       (this.passwordShow = false), (this.informationShow = true);
     },
     onClickSwitchEdit() {
       this.profileEditShow = !this.profileEditShow;
-    },
+    }
   },
   mounted() {
-    Authen.getUser().then(res => this.user=res.data.items)
+    if (localStorage.getItem("access_token")) {
+      Authen.getUser()
+        .then(res => {
+          this.user = res.data.items;
+          this.isLoading = false;
+          // console.log('yes')
+        })
+        .catch(err => {
+          // console.log(err.msg)
+        });
+    } else {
+      this.isLoading = false;
+      return;
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
+.if {
+  height: 100vh;
+}
 .info-screen {
   padding: 50px 30px; // potato code, needs changing later
   min-height: 100vh;
