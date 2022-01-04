@@ -1,7 +1,8 @@
 import { XMLHttpRequest } from "xmlhttprequest";
 
 const api = {
-  path: "https://api-edulanthropy.herokuapp.com/"
+  // path: "https://api-edulanthropy.herokuapp.com/"
+  path: "http://localhost:3000/"
 };
 
 api.get = function(params) {
@@ -91,7 +92,6 @@ api.post = function(params) {
     }
 
     if (params.data != undefined) {
-      console.log(JSON.stringify(params.data))
       xhttp.send(JSON.stringify(params.data));
     } else {
       xhttp.send();

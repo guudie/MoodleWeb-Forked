@@ -31,3 +31,34 @@ export const Course = {
     });
   }
 };
+
+export const Topic = {
+  getList() {
+    return api.get({
+      url: "topic"
+    });
+  },
+  getTags() {
+    return api.get({
+      url: "topic/tags"
+    });
+  },
+  getTagsByKey(key) {
+    return api.get({
+      url: `topic/tags?key=${key}`
+    });
+  },
+  getDetail(id) {
+    return api.get({
+      url: `topic/detail?id=${id}`,
+      headers: { x_authorization: state.token }
+    });
+  },
+  create(params) {
+    return api.post({
+      url: `topic/create`,
+      headers: { x_authorization: state.token },
+      data: params
+    });
+  }
+};

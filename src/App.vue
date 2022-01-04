@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div :class="`os-container ${checkRouter? '': 'blank' }`">
+    <div :class="`os-container ${checkRouter ? '' : 'blank'}`">
       <Header />
       <SideBar />
       <div class="os-main">
-          <router-view />
+        <router-view />
       </div>
       <Footer />
     </div>
@@ -19,9 +19,7 @@ import Footer from "../src/components/constructs/Footer.vue";
 export default {
   name: "app",
   data() {
-    return {
-  
-    };
+    return {};
   },
   components: {
     Header,
@@ -30,12 +28,15 @@ export default {
   },
   computed: {
     checkRouter() {
-      return this.$route.path.toLowerCase() !== "/login" && this.$route.path.toLowerCase() !== "/register";
+      return (
+        this.$route.path.toLowerCase() !== "/login" &&
+        this.$route.path.toLowerCase() !== "/register"
+      );
     },
   },
   mounted() {
     if (localStorage.access_token) {
-      this.$store.dispatch('sendToken', localStorage.access_token);
+      this.$store.dispatch("sendToken", localStorage.access_token);
     }
   },
 };
@@ -49,20 +50,21 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   .os-container {
     margin-left: 96px;
     .os-main {
-        width: 100%;      // width 100% nhìn đẹp hơn 100% - 96px :v
-        margin-top: 86px;
-        padding: 20px 2% 50px 2%;
-        position: relative;
+      width: 100%; // width 100% nhìn đẹp hơn 100% - 96px :v
+      margin-top: 86px;
+      padding: 20px 2% 50px 2%;
+      position: relative;
     }
   }
 
   .os-container.blank {
-    .os-header, .os-sidebar, .footer {
+    .os-header,
+    .os-sidebar,
+    .footer {
       display: none;
     }
     .os-main {
@@ -96,31 +98,31 @@ a {
   }
 }
 
-@media screen and (max-width:768px ) {
-  .os-container{
+@media screen and (max-width: 768px) {
+  .os-container {
     margin-left: 0 !important;
   }
 }
 .btn {
-    display: inline-block;
-    background: #fff;
-    color: #000;
-    border:none;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 15px;
-    font-family: inherit;
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
 }
 .btn:hover {
   background-color: #dce0e3;
 }
 .btn:focus {
-    outline: none;
+  outline: none;
 }
 .btn:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 </style>
