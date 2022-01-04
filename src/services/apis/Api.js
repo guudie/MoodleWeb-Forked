@@ -1,8 +1,7 @@
 import { XMLHttpRequest } from "xmlhttprequest";
 
 const api = {
-  // path: "https://api-edulanthropy.herokuapp.com/"
-  path: "http://localhost:3000/"
+  path: "https://api-edulanthropy.herokuapp.com/"
 };
 
 api.get = function(params) {

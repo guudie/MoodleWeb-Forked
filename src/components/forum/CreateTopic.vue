@@ -1,7 +1,7 @@
 <template>
   <div class="create-topic">
     <div class="list-button mb-5">
-      <b-button variant="danger" class="danger">Delete</b-button>
+      <!-- <b-button variant="danger" class="danger">Delete</b-button> -->
       <b-button
         variant="outline-primary"
         class="outline-primary"
