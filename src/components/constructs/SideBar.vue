@@ -98,51 +98,51 @@ export default {
         {
           title: "Home",
           href: "/",
-          icon: iconHome
+          icon: iconHome,
         },
         {
           title: "Learn",
           href: "/login",
-          icon: iconLearn
+          icon: iconLearn,
         },
         {
           title: "Question",
           href: "/login",
-          icon: iconQuestion
-        }
+          icon: iconQuestion,
+        },
       ],
-      courseList: []
+      courseList: [],
     };
   },
 
   watch: {
-    "$store.state.token": function(vNew) {
+    "$store.state.token": function (vNew) {
       if (vNew) {
         this.menuList = [
           {
             title: "Home",
             href: "/",
-            icon: iconHome
+            icon: iconHome,
           },
           {
             title: "Learn",
             href: "/courses",
-            icon: iconLearn
+            icon: iconLearn,
           },
           {
             title: "Question",
             href: "/forum",
-            icon: iconQuestion
-          }
+            icon: iconQuestion,
+          },
         ];
         Course.getList("0")
-          .then(res => {
-            this.courseList = res.data.items.map(item => {
+          .then((res) => {
+            this.courseList = res.data.items.map((item) => {
               return {
                 title: item.title,
                 short_title: item.short_title,
                 href: "/course/registered" + item.id,
-                image: item.image
+                image: item.image,
               };
             });
           })
@@ -154,25 +154,25 @@ export default {
           {
             title: "Home",
             href: "/",
-            icon: iconHome
+            icon: iconHome,
           },
           {
             title: "Learn",
             href: "/login",
-            icon: iconLearn
+            icon: iconLearn,
           },
           {
             title: "Question",
             href: "/login",
-            icon: iconQuestion
-          }
+            icon: iconQuestion,
+          },
         ];
         this.courseList = [];
       }
-    }
+    },
   },
 
-  mounted() {}
+  mounted() {},
 };
 </script>
 
@@ -236,6 +236,7 @@ export default {
           align-items: center;
           .icon {
             flex: 0 100%;
+            text-align: center;
             img {
               width: 25px;
               height: 22px;
@@ -245,6 +246,7 @@ export default {
             flex: 0 100%;
             font-size: 12px;
             font-weight: 700;
+            text-align: center;
           }
         }
       }
@@ -417,6 +419,7 @@ export default {
       border-radius: 5px;
       div {
         flex: 0 100%;
+        text-align: center;
       }
     }
   }

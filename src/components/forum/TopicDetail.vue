@@ -364,105 +364,107 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.title {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  padding: 0 10px;
-  font-weight: 700;
-}
-
-.card-link {
-  background-color: rgba($color: #0d6efd, $alpha: 0.3);
-  padding: 4px 5px 6px;
-  border-radius: 5px;
-  font-size: 12px;
-}
-
-.btn.like {
-  border: solid 1px;
-  margin: 20px;
-  padding: 5px 10px;
-  img {
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-    padding: 0;
-    position: relative;
+.topic-detail {
+  .title {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 0 10px;
+    font-weight: 700;
   }
-}
 
-.like.active {
-  background-color: #0d6efd;
-}
-
-.avatar-user {
-  width: 50px;
-  height: 50px;
-  padding: 5px;
-  margin: 15px 0;
-  border: solid 2px;
-  border-radius: 50%;
-}
-
-.success {
-  color: #fff;
-  background-color: #198754;
-  border-color: #198754;
-  float: right;
-}
-
-.button-edit {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-}
-
-.btn {
-  padding: 2px 10px;
-  border: solid 1px;
-
-  img {
-    width: 12px;
-    height: 12px;
-    object-fit: cover;
-    padding: 0;
+  .card-link {
+    background-color: rgba($color: #0d6efd, $alpha: 0.3);
+    padding: 4px 5px 6px;
+    border-radius: 5px;
+    font-size: 12px;
   }
-}
 
-.outline-primary {
-  color: #0d6efd;
-  border-color: #0d6efd;
-}
+  .btn.like {
+    border: solid 1px;
+    margin: 20px;
+    padding: 5px 10px;
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+      padding: 0;
+      position: relative;
+    }
+  }
 
-.danger {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-  margin-right: 30px;
-}
+  .like.active {
+    background-color: #0d6efd;
+  }
 
-.list-button {
-  display: flex;
-  justify-content: end;
-}
+  .avatar-user {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    margin: 15px 0;
+    border: solid 2px;
+    border-radius: 50%;
+  }
 
-.m-0 {
-  display: block !important;
-}
-.badge {
-  background-color: #0d6efd;
-  border-radius: 20px;
-}
+  .success {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
+    float: right;
+  }
 
-.b-form-tag > button.b-form-tag-remove {
-  border: none;
-  background-color: #0d6efd;
-}
+  .button-edit {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
 
-.comment-content {
-  min-height: 0 !important;
+  .btn {
+    padding: 2px 10px;
+    border: solid 1px;
+
+    img {
+      width: 12px;
+      height: 12px;
+      object-fit: cover;
+      padding: 0;
+    }
+  }
+
+  .outline-primary {
+    color: #0d6efd;
+    border-color: #0d6efd;
+  }
+
+  .danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    margin-right: 30px;
+  }
+
+  .list-button {
+    display: flex;
+    justify-content: end;
+  }
+
+  .m-0 {
+    display: block !important;
+  }
+  .badge {
+    background-color: #0d6efd;
+    border-radius: 20px;
+  }
+
+  .b-form-tag > button.b-form-tag-remove {
+    border: none;
+    background-color: #0d6efd;
+  }
+
+  .comment-content {
+    min-height: 0 !important;
+  }
 }
 </style>

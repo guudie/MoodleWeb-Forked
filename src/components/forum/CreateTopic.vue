@@ -127,7 +127,7 @@ export default {
         content: this.$refs.editor.content,
         tags: this.tags,
       }).then((res) => {
-        console.log(res);
+        this.$router.replace({ path: `/forum/detail?id=${res.data.items.id}` });
       });
     },
 
