@@ -6,7 +6,8 @@
         <div class="col c-7">
           <input
             type="text"
-            v-model="userInfo.name"
+            :placeholder="userInfo.name"
+            v-model="tmpUser.name"
           />
         </div>
       </div>
@@ -15,7 +16,8 @@
         <div class="col c-7">
           <input
             type="text"
-            v-model="userInfo.phone"
+            :placeholder="userInfo.phone"
+            v-model="tmpUser.phone"
           />
         </div>
       </div>
@@ -50,13 +52,37 @@
 import {Authen} from '../../services/apis/ApiService'
 export default {
   name: "ProfileEdit",
+  data() {
+    return {
+      tmpUser: {
+        name: "",
+        phone: "",
+        address: "",
+        date_birth: ""
+      }
+    };
+  },
   methods: {
     onClickCancel() {
+      this.tmpUser.name = "";
+      this.tmpUser.phone = "";
+      this.tmpUser.address = "";
+      this.tmpUser.date_birth = "";
       this.$emit("hide");
     },
     submitHandler(event) {
       event.preventDefault();
 
+      // mark new info here ///
+      if(this.tmpUser.name)
+        this.userInfo.name = this.tmpUser.name;
+      if(this.tmpUser.phone)
+        this.userInfo.phone = this.tmpUser.phone;
+      if(this.tmpUser.address)
+        this.userInfo.address = this.tmpUser.address;
+      if(this.tmpUser.date_birth)
+        this.userInfo.date_birth = this.tmpUser.date_birth;
+      ///
       this.onClickCancel();
       const newUser = {
         name: this.userInfo.name,
