@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Đăng ký tài khoản Edulanthropy</h1>
+    <h1 style="text-align: center">Đăng ký tài khoản Edulanthropy</h1>
     <RegisterByEmail
       @addUser="AddUser"
       v-show="showEmailRegister"
@@ -16,7 +16,7 @@
       <Button :text="'Continue ' + 'with ' + 'facebook'" :source="iconfb" />
       <Button :text="'Continue ' + 'with ' + 'github'" :source="icongh" />
     </div>
-    <div class="sign-up">
+    <div class="sign-up" style="text-align: center">
       <h3>Bạn đã có tài khoản?</h3>
       <router-link class="sign-up-router" to="/login">Đăng nhập</router-link>
     </div>

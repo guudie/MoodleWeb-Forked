@@ -87,35 +87,39 @@ export default {
 }
 
 .course-grid__list {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  margin-top: 10px;
 }
-
 .item {
-  width: 20rem;
-  min-height: 18rem;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
-  text-align: left;
+  /* width: 25rem; */
+  display: flex;
+  flex-direction: column;
   border: 2px solid #ccc;
   border-radius: 10px;
+  margin-bottom: 18px;
 }
-
 .image {
   width: 100%;
   height: 10rem;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
-
+.info {
+  flex: 1;
+  padding: 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .title {
-  font-size: 2rem;
-  margin-top: 1rem;
-  width: 100%;
-  overflow-x: hidden;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+.short_title {
+  margin-left: 5px;
 }
 </style>
