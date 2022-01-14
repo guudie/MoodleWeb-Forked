@@ -1,73 +1,78 @@
 <template>
-  <div class="forum-screen">
-    <div class="create d-flex">
-      <router-link class="link-create" to="/forum/create">
-        <button class="btn btn-success">
-          <span class="me-3">Create</span>
-          <b-icon icon="plus-square" aria-hidden="true" class="ml-2" />
-        </button>
-      </router-link>
-    </div>
-    <div class="header row justify-content-between">
-      <div class="col">
-        <h4 class="float-start">Topic: {{ selected }}</h4>
+  <div>
+    <div class="forum-screen" v-show="!isLoading">
+      <div class="create d-flex">
+        <router-link class="link-create" to="/forum/create">
+          <button class="btn btn-success">
+            <span class="me-3">Create</span>
+            <b-icon icon="plus-square" aria-hidden="true" class="ml-2" />
+          </button>
+        </router-link>
       </div>
-      <div class="col">
-        <b-form-select
-          v-model="selected"
-          :options="options"
-          size="sm"
-          class="mt-3 float-end"
-          value-field="name"
-          text-field="name"
-        ></b-form-select>
+      <div class="header row justify-content-between">
+        <div class="col">
+          <h4 class="float-start">Topic: {{ selected }}</h4>
+        </div>
+        <div class="col">
+          <b-form-select
+            v-model="selected"
+            :options="options"
+            size="sm"
+            class="mt-3 float-end"
+            value-field="name"
+            text-field="name"
+          ></b-form-select>
+        </div>
       </div>
-    </div>
 
-    <div class="list my-5">
-      <b-card class="my-5" v-for="(item, index) in list" :key="index">
-        <b-card-title>
-          <router-link :to="{ name: 'TopicDetail', query: { id: item.id } }">
-            {{ item.title }}
-          </router-link>
-        </b-card-title>
-        <b-card-text>
-          {{ item.description }}
-        </b-card-text>
-        <b-card-text class="small text-muted row justify-content-between">
-          <div class="col">
-            <span
-              class="tag-item"
-              v-for="(el, _index) in item.tags"
-              :key="_index"
-            >
-              {{ el.name }}
-            </span>
-          </div>
-          <div class="like-comment col">
-            <div class="float-end row pe-3">
-              <div class="col">
-                <div class="row">
-                  <img src="../../assets/icons/like.png" alt="like" />
-                  {{ item.likes }}
+      <div class="list my-5">
+        <b-card class="my-5" v-for="(item, index) in list" :key="index">
+          <b-card-title>
+            <router-link :to="{ name: 'TopicDetail', query: { id: item.id } }">
+              {{ item.title }}
+            </router-link>
+          </b-card-title>
+          <b-card-text>
+            {{ item.description }}
+          </b-card-text>
+          <b-card-text class="small text-muted row justify-content-between">
+            <div class="col">
+              <span
+                class="tag-item"
+                v-for="(el, _index) in item.tags"
+                :key="_index"
+              >
+                {{ el.name }}
+              </span>
+            </div>
+            <div class="like-comment col">
+              <div class="float-end row pe-3">
+                <div class="col">
+                  <div class="row">
+                    <img src="../../assets/icons/like.png" alt="like" />
+                    {{ item.likes }}
+                  </div>
                 </div>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <img src="../../assets/icons/comment.png" alt="comment" />
-                  {{ item.comments }}
+                <div class="col">
+                  <div class="row">
+                    <img src="../../assets/icons/comment.png" alt="comment" />
+                    {{ item.comments }}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </b-card-text>
-      </b-card>
+          </b-card-text>
+        </b-card>
+      </div>
     </div>
+    <LoadingSpinner v-show="isLoading" />
   </div>
 </template>
 
 <script>
+import App from "../../App.vue";
 import { Topic } from "../../services/apis/ApiService";
+import LoadingSpinner from "../UI/LoadingSpinner.vue";
 
 export default {
   name: "ForumScreen",
@@ -76,19 +81,25 @@ export default {
       selected: "tất cả",
       options: [{ name: "tất cả" }],
       list: [],
+      isLoading: true
     };
+  },
+  components: {
+    LoadingSpinner,
+    App
   },
   methods: {},
   created() {
-    Topic.getTags().then((res) => {
+    Topic.getTags().then(res => {
       this.options = [...this.options, ...res.data.items];
     });
 
-    Topic.getList().then((res) => {
+    Topic.getList().then(res => {
       this.list = res.data.items;
+      this.isLoading = false;
     });
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 

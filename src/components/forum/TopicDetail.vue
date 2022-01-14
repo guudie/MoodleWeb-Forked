@@ -1,209 +1,215 @@
 <template>
-  <div class="topic-detail">
-    <div class="button-edit me-3" v-if="detail.editor == 1 && !topicEditing">
-      <b-btn @click="changeEditTopic">
-        <img src="../../assets/icons/edit.svg" alt="" />
-      </b-btn>
-    </div>
-    <div class="my-5" v-if="!topicEditing">
-      <b-card>
-        <b-card-title class="d-inline-block title">
-          {{ detail.title }}
-        </b-card-title>
-        <b-card-sub-title class="mb-5">
-          {{
-            detail.author ? `${detail.author} | ${detail.date}` : detail.date
-          }}
-        </b-card-sub-title>
+  <div>
+    <div class="topic-detail" >
+      <div class="button-edit me-3" v-if="detail.editor == 1 && !topicEditing">
+        <b-btn @click="changeEditTopic">
+          <img src="../../assets/icons/edit.svg" alt="" />
+        </b-btn>
+      </div>
+      <div class="my-5" v-if="!topicEditing">
+        <b-card>
+          <b-card-title class="d-inline-block title">
+            {{ detail.title }}
+          </b-card-title>
+          <b-card-sub-title class="mb-5">
+            {{
+              detail.author ? `${detail.author} | ${detail.date}` : detail.date
+            }}
+          </b-card-sub-title>
 
-        <b-card-text class="ql-editor" v-html="detail.content"></b-card-text>
+          <b-card-text class="ql-editor" v-html="detail.content"></b-card-text>
 
-        <b-link
-          v-for="(item, index) in detail.tags"
-          :key="index"
-          href="#"
-          class="card-link"
-          >{{ item.name }}</b-link
+          <b-link
+            v-for="(item, index) in detail.tags"
+            :key="index"
+            href="#"
+            class="card-link"
+            >{{ item.name }}</b-link
+          >
+        </b-card>
+        <button
+          class="btn like"
+          :class="detail.isLike == 1 ? 'active' : ''"
+          @click="likeTopic"
         >
-      </b-card>
-      <button
-        class="btn like"
-        :class="detail.isLike == 1 ? 'active' : ''"
-        @click="likeTopic"
-      >
-        <img src="../../assets/icons/like.png" alt="like" />
-      </button>
-      <span>{{ detail.likes }}</span>
-    </div>
-
-    <div v-else class="edit-topic">
-      <div class="list-button mb-5">
-        <!-- <b-button variant="danger" class="danger">Delete</b-button> -->
-        <b-button
-          variant="outline-primary"
-          class="outline-primary"
-          @click="cancelEditTopic"
-        >
-          Cancel
-        </b-button>
-        <b-button variant="success" class="success" @click="saveEditTopic">
-          Save
-        </b-button>
+          <img src="../../assets/icons/like.png" alt="like" />
+        </button>
+        <span>{{ detail.likes }}</span>
       </div>
 
-      <b-row class="my-1">
-        <b-col sm="2">
-          <label for="input-large">Title:</label>
-        </b-col>
-        <b-col sm="11" xl="8">
-          <b-form-input
-            id="input-large"
-            size="lg"
-            placeholder="Enter title"
-            v-model="detailEdit.title"
-          ></b-form-input>
-        </b-col>
-      </b-row>
-      <b-row class="my-4">
-        <b-col sm="2">
-          <label for="input-large">description:</label>
-        </b-col>
-        <b-col sm="11" xl="8">
-          <b-form-input
-            id="input-large"
-            size="lg"
-            placeholder="Enter description"
-            v-model="detailEdit.description"
-          ></b-form-input>
-        </b-col>
-      </b-row>
+      <div v-else class="edit-topic">
+        <div class="list-button mb-5">
+          <!-- <b-button variant="danger" class="danger">Delete</b-button> -->
+          <b-button
+            variant="outline-primary"
+            class="outline-primary"
+            @click="cancelEditTopic"
+          >
+            Cancel
+          </b-button>
+          <b-button variant="success" class="success" @click="saveEditTopic">
+            Save
+          </b-button>
+        </div>
 
-      <div class="tags-input row">
-        <div class="col-12 col-xl-10">
-          <label for="tags-pills">Tags:</label>
-          <b-form-tags
-            input-id="tags-pills"
-            v-model="detailEdit.tags"
-            tag-variant="primary"
-            tag-pills
-            size="lg"
-            separator=" "
-            placeholder="Enter new tags separated by space"
-            ref="tags"
-            @tag-state="onChangeTags"
-          ></b-form-tags>
-          <div class="mt-2">
-            <span>recommend : </span>
-            <span
-              v-for="(item, index) in detailEdit.recommendTags"
-              :key="index"
-            >
-              <b-button
-                variant="outline-primary"
-                class="outline-primary"
-                @click="addTags(item.name)"
+        <b-row class="my-1">
+          <b-col sm="2">
+            <label for="input-large">Title:</label>
+          </b-col>
+          <b-col sm="11" xl="8">
+            <b-form-input
+              id="input-large"
+              size="lg"
+              placeholder="Enter title"
+              v-model="detailEdit.title"
+            ></b-form-input>
+          </b-col>
+        </b-row>
+        <b-row class="my-4">
+          <b-col sm="2">
+            <label for="input-large">description:</label>
+          </b-col>
+          <b-col sm="11" xl="8">
+            <b-form-input
+              id="input-large"
+              size="lg"
+              placeholder="Enter description"
+              v-model="detailEdit.description"
+            ></b-form-input>
+          </b-col>
+        </b-row>
+
+        <div class="tags-input row">
+          <div class="col-12 col-xl-10">
+            <label for="tags-pills">Tags:</label>
+            <b-form-tags
+              input-id="tags-pills"
+              v-model="detailEdit.tags"
+              tag-variant="primary"
+              tag-pills
+              size="lg"
+              separator=" "
+              placeholder="Enter new tags separated by space"
+              ref="tags"
+              @tag-state="onChangeTags"
+            ></b-form-tags>
+            <div class="mt-2">
+              <span>recommend : </span>
+              <span
+                v-for="(item, index) in detailEdit.recommendTags"
+                :key="index"
               >
-                {{ item.name }}
-              </b-button></span
-            >
+                <b-button
+                  variant="outline-primary"
+                  class="outline-primary"
+                  @click="addTags(item.name)"
+                >
+                  {{ item.name }}
+                </b-button></span
+              >
+            </div>
           </div>
         </div>
+        <div class="content-editor mt-5">
+          <EditorToolbar ref="editorDetail" />
+        </div>
       </div>
-      <div class="content-editor mt-5">
-        <EditorToolbar ref="editorDetail" />
-      </div>
-    </div>
 
-    <div class="comment my-5">
-      <h4>Answer: {{ comments.length }}</h4>
-      <b-card no-body class="overflow-hidden mt-5">
+      <div class="comment my-5">
+        <h4>Answer: {{ comments.length }}</h4>
+        <b-card no-body class="overflow-hidden mt-5">
+          <b-row no-gutters>
+            <b-col md="1">
+              <img
+                src="../../assets/icons/user-1.svg"
+                alt="Image"
+                class="avatar-user"
+              />
+            </b-col>
+            <b-col md="11">
+              <b-card-body>
+                <EditorToolbar ref="editor" />
+                <b-button
+                  variant="success"
+                  class="success my-3"
+                  @click="sendComment"
+                >
+                  Send
+                </b-button>
+              </b-card-body>
+            </b-col>
+          </b-row>
+        </b-card>
+      </div>
+
+      <b-card
+        no-body
+        class="overflow-hidden mb-3"
+        v-for="(item, index) in comments"
+        :key="index"
+      >
         <b-row no-gutters>
           <b-col md="1">
             <img
               src="../../assets/icons/user-1.svg"
               alt="Image"
               class="avatar-user"
+              v-if="item.editor == '1'"
+            />
+            <img
+              src="../../assets/icons/user-2.svg"
+              alt="Image"
+              class="avatar-user"
+              v-else
             />
           </b-col>
           <b-col md="11">
-            <b-card-body>
-              <EditorToolbar ref="editor" />
+            <b-card-body v-if="editIndex == index">
+              <b-card-title>{{ item.user_name }}</b-card-title>
+              <b-card-sub-title class="mb-3">{{ item.date }}</b-card-sub-title>
+              <EditorToolbar ref="commentEditor" />
               <b-button
                 variant="success"
                 class="success my-3"
-                @click="sendComment"
+                @click="editComment(index, item.id)"
               >
                 Send
               </b-button>
             </b-card-body>
+            <b-card-body v-else>
+              <b-card-title>{{ item.user_name }}</b-card-title>
+              <b-card-sub-title class="mb-3">{{ item.date }}</b-card-sub-title>
+              <div
+                class="ql-editor comment-content"
+                v-html="item.content"
+              ></div>
+            </b-card-body>
+            <div class="button-edit" v-if="item.editor == '1'">
+              <b-button
+                variant="danger"
+                class="danger"
+                v-if="editIndex == index"
+                @click="deleteComment(item.id)"
+                >Delete</b-button
+              >
+              <b-button
+                variant="outline-primary"
+                class="outline-primary"
+                v-if="editIndex == index"
+                @click="cancelEdit"
+              >
+                Cancel
+              </b-button>
+
+              <b-btn v-else @click="changeEdit(index)">
+                <img src="../../assets/icons/edit.svg" alt="" />
+              </b-btn>
+            </div>
           </b-col>
         </b-row>
       </b-card>
     </div>
-
-    <b-card
-      no-body
-      class="overflow-hidden mb-3"
-      v-for="(item, index) in comments"
-      :key="index"
-    >
-      <b-row no-gutters>
-        <b-col md="1">
-          <img
-            src="../../assets/icons/user-1.svg"
-            alt="Image"
-            class="avatar-user"
-            v-if="item.editor == '1'"
-          />
-          <img
-            src="../../assets/icons/user-2.svg"
-            alt="Image"
-            class="avatar-user"
-            v-else
-          />
-        </b-col>
-        <b-col md="11">
-          <b-card-body v-if="editIndex == index">
-            <b-card-title>{{ item.user_name }}</b-card-title>
-            <b-card-sub-title class="mb-3">{{ item.date }}</b-card-sub-title>
-            <EditorToolbar ref="commentEditor" />
-            <b-button
-              variant="success"
-              class="success my-3"
-              @click="editComment(index, item.id)"
-            >
-              Send
-            </b-button>
-          </b-card-body>
-          <b-card-body v-else>
-            <b-card-title>{{ item.user_name }}</b-card-title>
-            <b-card-sub-title class="mb-3">{{ item.date }}</b-card-sub-title>
-            <div class="ql-editor comment-content" v-html="item.content"></div>
-          </b-card-body>
-          <div class="button-edit" v-if="item.editor == '1'">
-            <b-button
-              variant="danger"
-              class="danger"
-              v-if="editIndex == index"
-              @click="deleteComment(item.id)"
-              >Delete</b-button
-            >
-            <b-button
-              variant="outline-primary"
-              class="outline-primary"
-              v-if="editIndex == index"
-              @click="cancelEdit"
-            >
-              Cancel
-            </b-button>
-
-            <b-btn v-else @click="changeEdit(index)">
-              <img src="../../assets/icons/edit.svg" alt="" />
-            </b-btn>
-          </div>
-        </b-col>
-      </b-row>
-    </b-card>
+    <!-- <LoadingSpinner v-show="isLoading" /> -->
   </div>
 </template>
 
@@ -226,8 +232,9 @@ export default {
         description: "",
         tags: [],
         recommendTags: [],
-        settimeoutGetTags: null,
+        settimeoutGetTags: null
       },
+
     };
   },
   components: {
@@ -235,9 +242,9 @@ export default {
   },
   created() {
     let _this = this;
-    Topic.getDetail(this.$route.query.id).then((res) => {
+    Topic.getDetail(this.$route.query.id).then(res => {
       _this.detail = res.data.items;
-      Topic.getComments(_this.detail.id).then((res) => {
+      Topic.getComments(_this.detail.id).then(res => {
         _this.comments = res.data.items.comments;
       });
     });
@@ -247,8 +254,8 @@ export default {
       let _this = this;
       Topic.comment({
         topic_id: _this.detail.id,
-        content: _this.$refs.editor.content,
-      }).then((res) => {
+        content: _this.$refs.editor.content
+      }).then(res => {
         _this.comments = [res.data.items, ..._this.comments];
         _this.$refs.editor.content = "";
       });
@@ -272,8 +279,8 @@ export default {
       Topic.comment({
         topic_id: _this.detail.id,
         id: id,
-        content: newContent,
-      }).then((res) => {
+        content: newContent
+      }).then(res => {
         _this.comments[index].content = newContent;
         this.cancelEdit();
       });
@@ -283,10 +290,10 @@ export default {
       let _this = this;
       Topic.deleteComment({
         topic_id: _this.detail.id,
-        id: id,
-      }).then((res) => {
+        id: id
+      }).then(res => {
         _this.cancelEdit();
-        _this.comments = _this.comments.filter((item) => item.id != id);
+        _this.comments = _this.comments.filter(item => item.id != id);
       });
     },
 
@@ -294,7 +301,7 @@ export default {
       this.topicEditing = true;
       this.detailEdit.title = this.detail.title;
       this.detailEdit.description = this.detail.description;
-      this.detailEdit.tags = this.detail.tags.map((item) => item.name);
+      this.detailEdit.tags = this.detail.tags.map(item => item.name);
       this.detailEdit.recommendTags = [];
       this.detailEdit.settimeoutGetTags = null;
       setTimeout(() => {
@@ -309,7 +316,7 @@ export default {
         return;
       }
       this.detailEdit.settimeoutGetTags = setTimeout(() => {
-        Topic.getTagsByKey(value[0]).then((res) => {
+        Topic.getTagsByKey(value[0]).then(res => {
           if (res.data.items.length) {
             this.detailEdit.recommendTags = res.data.items;
           } else {
@@ -320,7 +327,7 @@ export default {
     },
 
     addTags(value) {
-      let _index = this.detailEdit.tags.findIndex((item) => item == value);
+      let _index = this.detailEdit.tags.findIndex(item => item == value);
       if (_index >= 0) return;
 
       this.detailEdit.tags.push(value);
@@ -334,8 +341,8 @@ export default {
         title: this.detailEdit.title,
         description: this.detailEdit.description,
         content: this.$refs.editorDetail.content,
-        tags: this.detailEdit.tags,
-      }).then((res) => {
+        tags: this.detailEdit.tags
+      }).then(res => {
         this.detail = res.data.items;
         this.cancelEditTopic();
       });
@@ -357,9 +364,9 @@ export default {
           this.detail.likes -= 1;
         });
       }
-    },
+    }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 
