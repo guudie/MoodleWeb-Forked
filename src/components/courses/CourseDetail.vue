@@ -1,7 +1,10 @@
 <template>
   <div class="details">
     <loading-spinner v-show="!course.chapters" />
-    <div class="create-course-area" v-show="!isLoading && isTeacher && course.chapters && editable">
+    <div
+      class="create-course-area"
+      v-show="!isLoading && isTeacher && course.chapters && editable"
+    >
       <button class="create-course-btn" @click="editCourse" v-show="!isEditing">
         Sửa
       </button>
@@ -19,9 +22,12 @@
           <p>{{ chap.title }}</p>
         </div>
       </div>
-      <div v-if="!course.chapters || course.chapters.length === 0" class="chapter-item">
-          <p> Đang cập nhật </p>
-        </div>
+      <div
+        v-if="!course.chapters || course.chapters.length === 0"
+        class="chapter-item"
+      >
+        <p>Đang cập nhật</p>
+      </div>
     </div>
 
     <div class="infor" v-show="course.chapters && isEditing">
@@ -52,7 +58,7 @@
         v-show="showTitleChapter"
       />
 
-      <p v-show="showTitleRequest" style="color:red">
+      <p v-show="showTitleRequest" style="color: red">
         Vui lòng nhập tiêu đề chương học
       </p>
       <div v-show="showTitleChapter" class="input-chapter-area">
@@ -72,9 +78,7 @@
       </div>
       <header>MIỄN PHÍ</header>
       <button @click="enrollCourse" v-show="!registed">ĐĂNG KÝ NGAY</button>
-      <button @click="continueLearn" v-show="registed">
-        BẮT ĐẦU HỌC
-      </button>
+      <button @click="continueLearn" v-show="registed">BẮT ĐẦU HỌC</button>
       <div class="prerequisite">
         <h2>TIÊN QUYẾT</h2>
         <ul>
@@ -114,7 +118,7 @@ export default {
       showTitleChapter: false,
       chapterTitle: "",
       chapterContent: "",
-      showTitleRequest: false
+      showTitleRequest: false,
     };
   },
   methods: {
@@ -122,13 +126,17 @@ export default {
       if (!this.isLoggedIn) {
         this.$router.push("/login");
       } else {
-        Course.registerCourse({ course_id: this.course.id });
-        this.registed = true;
+        Course.registerCourse({ course_id: this.course.id }).then(() => {
+          this.registed = true;
+          this.$store.dispatch("getRegisteredCourse");
+        });
       }
     },
     unregister() {
-      Course.unRegisterCourse({ course_id: this.course.id });
-      this.registed = false;
+      Course.unRegisterCourse({ course_id: this.course.id }).then(() => {
+        this.registed = false;
+        this.$store.dispatch("getRegisteredCourse");
+      });
     },
     continueLearn() {
       window.location.href = "https://www.youtube.com/watch?v=PkZNo7MFNFg";
@@ -150,31 +158,31 @@ export default {
       this.course.chapters.push({
         title: this.chapterTitle,
         content: this.chapterContent || "",
-        video: ""
+        video: "",
       });
       this.chapterTitle = "";
       this.chapterContent = "";
       this.showTitleChapter = false;
-    }
+    },
   },
   mounted() {
     this.isLoggedIn = localStorage.getItem("access_token");
     const courseId = this.$route.params.courseId;
-    Course.getCourseDetail(courseId).then(res => {
+    Course.getCourseDetail(courseId).then((res) => {
       this.course = res.data.items;
       this.registed = this.course.registed == 1 ? true : false;
       this.isLoading = false;
-      this.editable = this.course.editor
-      console.log(this.course)
+      this.editable = this.course.editor;
+      console.log(this.course);
     });
     if (localStorage.getItem("access_token")) {
-      Authen.getUser().then(res => {
+      Authen.getUser().then((res) => {
         const user = res.data.items;
         this.isTeacher = user.level == 1 ? true : false;
         this.isLoading = false;
       });
     }
-  }
+  },
 };
 </script>
 

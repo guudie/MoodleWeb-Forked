@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="topic-detail" >
+    <div class="topic-detail">
       <div class="button-edit me-3" v-if="detail.editor == 1 && !topicEditing">
         <b-btn @click="changeEditTopic">
           <img src="../../assets/icons/edit.svg" alt="" />
@@ -232,9 +232,10 @@ export default {
         description: "",
         tags: [],
         recommendTags: [],
-        settimeoutGetTags: null
+        settimeoutGetTags: null,
       },
 
+      setIntervalGetComments: null,
     };
   },
   components: {
@@ -242,9 +243,9 @@ export default {
   },
   created() {
     let _this = this;
-    Topic.getDetail(this.$route.query.id).then(res => {
+    Topic.getDetail(this.$route.query.id).then((res) => {
       _this.detail = res.data.items;
-      Topic.getComments(_this.detail.id).then(res => {
+      Topic.getComments(_this.detail.id).then((res) => {
         _this.comments = res.data.items.comments;
       });
     });
@@ -254,8 +255,8 @@ export default {
       let _this = this;
       Topic.comment({
         topic_id: _this.detail.id,
-        content: _this.$refs.editor.content
-      }).then(res => {
+        content: _this.$refs.editor.content,
+      }).then((res) => {
         _this.comments = [res.data.items, ..._this.comments];
         _this.$refs.editor.content = "";
       });
@@ -279,8 +280,8 @@ export default {
       Topic.comment({
         topic_id: _this.detail.id,
         id: id,
-        content: newContent
-      }).then(res => {
+        content: newContent,
+      }).then((res) => {
         _this.comments[index].content = newContent;
         this.cancelEdit();
       });
@@ -290,10 +291,10 @@ export default {
       let _this = this;
       Topic.deleteComment({
         topic_id: _this.detail.id,
-        id: id
-      }).then(res => {
+        id: id,
+      }).then((res) => {
         _this.cancelEdit();
-        _this.comments = _this.comments.filter(item => item.id != id);
+        _this.comments = _this.comments.filter((item) => item.id != id);
       });
     },
 
@@ -301,7 +302,7 @@ export default {
       this.topicEditing = true;
       this.detailEdit.title = this.detail.title;
       this.detailEdit.description = this.detail.description;
-      this.detailEdit.tags = this.detail.tags.map(item => item.name);
+      this.detailEdit.tags = this.detail.tags.map((item) => item.name);
       this.detailEdit.recommendTags = [];
       this.detailEdit.settimeoutGetTags = null;
       setTimeout(() => {
@@ -316,7 +317,7 @@ export default {
         return;
       }
       this.detailEdit.settimeoutGetTags = setTimeout(() => {
-        Topic.getTagsByKey(value[0]).then(res => {
+        Topic.getTagsByKey(value[0]).then((res) => {
           if (res.data.items.length) {
             this.detailEdit.recommendTags = res.data.items;
           } else {
@@ -327,7 +328,7 @@ export default {
     },
 
     addTags(value) {
-      let _index = this.detailEdit.tags.findIndex(item => item == value);
+      let _index = this.detailEdit.tags.findIndex((item) => item == value);
       if (_index >= 0) return;
 
       this.detailEdit.tags.push(value);
@@ -341,8 +342,8 @@ export default {
         title: this.detailEdit.title,
         description: this.detailEdit.description,
         content: this.$refs.editorDetail.content,
-        tags: this.detailEdit.tags
-      }).then(res => {
+        tags: this.detailEdit.tags,
+      }).then((res) => {
         this.detail = res.data.items;
         this.cancelEditTopic();
       });
@@ -364,9 +365,19 @@ export default {
           this.detail.likes -= 1;
         });
       }
-    }
+    },
   },
-  mounted() {}
+  mounted() {
+    let _this = this;
+    _this.setIntervalGetComments = setInterval(() => {
+      Topic.getComments(_this.detail.id).then((res) => {
+        _this.comments = res.data.items.comments;
+      });
+    }, 30000);
+  },
+  beforeDestroy() {
+    clearInterval(this.setIntervalGetComments);
+  },
 };
 </script>
 
@@ -472,6 +483,22 @@ export default {
 
   .comment-content {
     min-height: 0 !important;
+  }
+
+  .card-body {
+    button {
+      display: none;
+    }
+
+    button.btn {
+      display: block;
+    }
+
+    .quillWrapper {
+      button {
+        display: block !important;
+      }
+    }
   }
 }
 </style>

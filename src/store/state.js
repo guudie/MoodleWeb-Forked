@@ -1,4 +1,5 @@
 export default {
-    token: "",
-    user: {}
-}
+  token: "",
+  user: {},
+  registeredCourse: []
+};

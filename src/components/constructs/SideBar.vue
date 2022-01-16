@@ -29,7 +29,7 @@
               </div>
             </router-link>
           </b-list-group-item>
-          <b-list-group-item class="view-more">
+          <b-list-group-item v-if="false" class="view-more">
             <router-link to="/course">
               <div class="course-item"><div>&#183;&#183;&#183;</div></div>
             </router-link>
@@ -72,7 +72,7 @@
               </div>
             </router-link>
           </b-list-group-item>
-          <b-list-group-item class="view-more">
+          <b-list-group-item v-if="false" class="view-more">
             <router-link to="#">
               <div class="course-item"><div>&#183;&#183;&#183;</div></div>
             </router-link>
@@ -87,8 +87,6 @@
 import iconHome from "../../assets/images/sidebar/house.png";
 import iconLearn from "../../assets/images/sidebar/learn.png";
 import iconQuestion from "../../assets/images/sidebar/conversation.png";
-
-import { Course } from "../../services/apis/ApiService";
 
 export default {
   name: "SideBar",
@@ -135,24 +133,7 @@ export default {
             icon: iconQuestion,
           },
         ];
-        Course.getList("0")
-          .then((res) => {
-            this.courseList = res.data.items.map((item) => {
-              return {
-                title: item.title,
-                short_title: item.short_title,
-
-                href: "/course/registered" + item.id,
-                image: item.image,
-
-                href: "/courses/" + item.id,
-                image: item.image
-              };
-            });
-          })
-          .catch(() => {
-            this.courseList = [];
-          });
+        this.$store.dispatch("getRegisteredCourse");
       } else {
         this.menuList = [
           {
@@ -173,6 +154,9 @@ export default {
         ];
         this.courseList = [];
       }
+    },
+    "$store.state.registeredCourse": function (vNew) {
+      this.courseList = vNew;
     },
   },
 

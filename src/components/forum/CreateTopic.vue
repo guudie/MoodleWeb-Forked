@@ -178,5 +178,17 @@ export default {
     border: none;
     background-color: #0d6efd;
   }
+
+  .content-editor {
+    button {
+      display: none;
+    }
+
+    .quillWrapper {
+      button {
+        display: block !important;
+      }
+    }
+  }
 }
 </style>

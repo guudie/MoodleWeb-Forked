@@ -9,7 +9,7 @@ export const Authen = {
     return api.post({ url: "auth/register", data: params });
   },
   getUser() {
-    console.log(state.token)
+    console.log(state.token);
     return api.get({
       url: "user/profile",
       headers: { x_authorization: state.token }
@@ -19,7 +19,7 @@ export const Authen = {
     return api.post({
       url: "user/changePassword",
       headers: { x_authorization: state.token },
-      data: params,
+      data: params
     });
   },
   editProfile(params) {
@@ -36,6 +36,12 @@ export const Course = {
     return api.get({
       url: `course?category=${cateId}`
       // headers: { x_authorization: state.token }
+    });
+  },
+  getListRegistered(cateId) {
+    return api.get({
+      url: `course/registered`,
+      headers: { x_authorization: state.token }
     });
   },
   getCategory() {
@@ -91,6 +97,11 @@ export const Topic = {
       url: "topic"
     });
   },
+  getTagsByFilter(filter) {
+    return api.get({
+      url: `topic?filter=${filter}`
+    });
+  },
   getTags() {
     return api.get({
       url: "topic/tags"
@@ -124,7 +135,7 @@ export const Topic = {
   getComments(id) {
     return api.get({
       url: `topic/comments?id=${id}`,
-      headers: { x_authorization: state.token },
+      headers: { x_authorization: state.token }
     });
   },
   comment(params) {
@@ -154,7 +165,7 @@ export const Topic = {
     return api.post({
       url: `topic/like`,
       headers: { x_authorization: state.token },
-      data: {topic_id: id}
+      data: { topic_id: id }
     });
   },
 
@@ -162,8 +173,7 @@ export const Topic = {
     return api.post({
       url: `topic/unlike`,
       headers: { x_authorization: state.token },
-      data: {topic_id: id}
+      data: { topic_id: id }
     });
-  },
-
+  }
 };

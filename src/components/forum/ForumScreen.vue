@@ -81,25 +81,41 @@ export default {
       selected: "tất cả",
       options: [{ name: "tất cả" }],
       list: [],
-      isLoading: true
+      isLoading: true,
     };
   },
   components: {
     LoadingSpinner,
-    App
+    App,
   },
   methods: {},
   created() {
-    Topic.getTags().then(res => {
+    Topic.getTags().then((res) => {
       this.options = [...this.options, ...res.data.items];
     });
 
-    Topic.getList().then(res => {
+    Topic.getList().then((res) => {
       this.list = res.data.items;
       this.isLoading = false;
     });
   },
-  mounted() {}
+  watch: {
+    selected(vNew) {
+      this.isLoading = true;
+      if (vNew == "tất cả") {
+        Topic.getList().then((res) => {
+          this.list = res.data.items;
+          this.isLoading = false;
+        });
+      } else {
+        Topic.getTagsByFilter(vNew).then((res) => {
+          this.list = res.data.items;
+          this.isLoading = false;
+        });
+      }
+    },
+  },
+  mounted() {},
 };
 </script>
 
