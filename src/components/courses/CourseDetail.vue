@@ -165,6 +165,21 @@ export default {
       this.showTitleChapter = false;
     },
   },
+
+  watch: {
+    $route(vNew) {
+      this.isLoading = true;
+      this.course = {};
+
+      let courseId = vNew.params.courseId;
+      Course.getCourseDetail(courseId).then((res) => {
+        this.course = res.data.items;
+        this.registed = this.course.registed == 1 ? true : false;
+        this.isLoading = false;
+        this.editable = this.course.editor;
+      });
+    },
+  },
   mounted() {
     this.isLoggedIn = localStorage.getItem("access_token");
     const courseId = this.$route.params.courseId;
